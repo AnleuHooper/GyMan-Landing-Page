@@ -384,11 +384,11 @@
     </div>
 
     <!-- Temple Info Modal -->
-    <div id="templeModal" class="fixed inset-0 z-[200] flex items-center justify-center invisible opacity-0 transition-all duration-300">
+    <div id="templeModal" class="fixed inset-0 z-[200] flex items-center justify-center invisible opacity-0 transition-all duration-300" style="padding: env(safe-area-inset-top, 0px) env(safe-area-inset-right, 0px) env(safe-area-inset-bottom, 0px) env(safe-area-inset-left, 0px);">
         <div class="absolute inset-0 bg-black/98 backdrop-blur-2xl"></div>
-        <div class="modal-panel relative w-full max-w-5xl bg-[#0a0a0a] border border-white/10 p-1 overflow-hidden shadow-[0_50px_100px_rgba(0,0,0,1)] rounded-2xl mx-4">
-            <div class="bg-surface p-8 md:p-16 overflow-y-auto max-h-[90vh]">
-                <button id="closeModal" class="absolute top-8 right-8 text-zinc-500 hover:text-white transition-colors">
+        <div class="modal-panel relative w-full max-w-5xl bg-[#0a0a0a] border border-white/10 p-1 overflow-hidden shadow-[0_50px_100px_rgba(0,0,0,1)] rounded-2xl mx-3 sm:mx-4">
+            <div class="bg-surface p-5 sm:p-8 md:p-16 overflow-y-auto" style="max-height: calc(100dvh - 3rem); max-height: calc(100vh - 3rem);">
+                <button id="closeModal" class="absolute top-4 right-4 sm:top-8 sm:right-8 text-zinc-500 hover:text-white transition-colors z-10">
                     <span class="material-symbols-outlined text-3xl">close</span>
                 </button>
                 <div id="modalDetails">

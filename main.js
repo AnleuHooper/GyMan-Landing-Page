@@ -381,27 +381,28 @@ import { fetchActiveBranches } from './src/services/branchService.js';
 
           modalContent.innerHTML = `
             <!-- Header Táctico -->
-            <div class="mb-12 border-b border-primary/20 pb-8">
-              <div class="flex justify-between items-center mb-2">
-                <h2 class="text-6xl font-headline font-black text-white tracking-tighter uppercase leading-none">GYMAN <span class="text-primary">${data.name}</span></h2>
+            <div class="mb-8 border-b border-primary/20 pb-6">
+              <div class="flex flex-wrap items-start justify-between gap-3 mb-2">
+                <h2 class="text-3xl sm:text-5xl md:text-6xl font-headline font-black text-white tracking-tighter uppercase leading-none">GYMAN <span class="text-primary">${data.name}</span></h2>
                 ${data.maps_url ? `
                   <a href="${data.maps_url}" target="_blank" 
-                     class="group/maps flex items-center gap-2.5 bg-zinc-900 border border-white/10 px-5 py-2.5 rounded-full 
-                            text-[10px] font-black uppercase tracking-[0.2em] text-zinc-400
+                     class="group/maps flex items-center gap-2 bg-zinc-900 border border-white/10 px-4 py-2 rounded-full 
+                            text-[10px] font-black uppercase tracking-[0.15em] text-zinc-400
                             hover:border-primary/50 hover:text-primary transition-all duration-500 
-                            shadow-xl hover:shadow-primary/5 active:scale-95">
+                            shadow-xl hover:shadow-primary/5 active:scale-95 flex-none">
                     <span class="material-symbols-outlined text-[16px] transition-transform group-hover/maps:scale-110">location_on</span>
-                    ver en google maps
+                    <span class="hidden sm:inline">ver en google maps</span>
+                    <span class="sm:hidden">Maps</span>
                   </a>
                 ` : ''}
               </div>
-              <p class="text-zinc-500 font-body text-sm tracking-widest uppercase">${data.dir}</p>
+              <p class="text-zinc-500 font-body text-xs sm:text-sm tracking-widest uppercase">${data.dir}</p>
             </div>
 
             <!-- Galería Interior (solo si hay fotos) -->
             ${galleryHTML}
             
-            <div class="grid lg:grid-cols-12 gap-12">
+            <div class="grid lg:grid-cols-12 gap-8 lg:gap-12">
               
               <!-- Izquierda: Horarios & Servicios -->
               <div class="lg:col-span-5 space-y-12">
@@ -413,11 +414,11 @@ import { fetchActiveBranches } from './src/services/branchService.js';
                   </h4>
                   <div class="flex justify-between items-end mb-4">
                     <span class="text-zinc-500 text-[10px] font-bold uppercase">Lunes - Viernes</span>
-                    <span class="text-3xl font-headline font-black text-white leading-none">${data.hours.week}</span>
+                    <span class="text-xl sm:text-3xl font-headline font-black text-white leading-none">${data.hours.week}</span>
                   </div>
                   <div class="flex justify-between items-end border-t border-white/5 pt-4">
                     <span class="text-zinc-500 text-[10px] font-bold uppercase">Fin de Semana</span>
-                    <span class="text-3xl font-headline font-black text-zinc-400 leading-none">${data.hours.weekend}</span>
+                    <span class="text-xl sm:text-3xl font-headline font-black text-zinc-400 leading-none">${data.hours.weekend}</span>
                   </div>
                 </div>
 
@@ -438,24 +439,24 @@ import { fetchActiveBranches } from './src/services/branchService.js';
               <!-- Derecha: Dossier de Membresías -->
               <div class="lg:col-span-7">
                 <h4 class="text-[10px] font-black text-zinc-500 tracking-[.3em] uppercase mb-6">Dossier de Membresías</h4>
-                <div class="grid sm:grid-cols-2 gap-4">
+                <div class="grid grid-cols-2 gap-3">
                   ${data.prices.map(p => `
-                    <div class="price-card relative bg-zinc-900 border ${p.isHighlighted ? 'border-primary shadow-[0_0_15px_rgba(233,196,0,0.2)] sm:col-span-2' : 'border-white/10'} rounded-xl p-6 hover:border-primary hover:shadow-[0_0_20px_rgba(233,196,0,0.1)] transition-all ${p.benefits ? 'cursor-pointer' : ''} group overflow-hidden">
+                    <div class="price-card relative bg-zinc-900 border ${p.isHighlighted ? 'border-primary shadow-[0_0_15px_rgba(233,196,0,0.2)] col-span-2' : 'border-white/10'} rounded-xl p-3 sm:p-5 hover:border-primary hover:shadow-[0_0_20px_rgba(233,196,0,0.1)] transition-all ${p.benefits ? 'cursor-pointer' : ''} group overflow-hidden">
                       ${p.benefits ? `
-                      <div class="absolute top-0 right-0 p-3 opacity-30 group-hover:opacity-100 transition-all">
-                         <span class="material-symbols-outlined text-primary toggle-icon">expand_more</span>
+                      <div class="absolute top-0 right-0 p-2 opacity-30 group-hover:opacity-100 transition-all">
+                         <span class="material-symbols-outlined text-primary toggle-icon" style="font-size:18px">expand_more</span>
                       </div>` : ''}
-                      <p class="text-[10px] font-black ${p.isHighlighted ? 'text-primary' : 'text-zinc-600'} uppercase mb-1">${p.tag || 'Standard'}</p>
-                      <h5 class="text-lg font-headline font-black text-white uppercase group-hover:text-primary transition-colors">${p.type}</h5>
-                      <div class="mt-4 flex items-baseline gap-1">
-                        <span class="text-2xl font-headline font-black ${p.isHighlighted ? 'text-primary' : 'text-white'}">${p.price}</span>
-                        <span class="text-zinc-500 text-[10px] font-bold">MXN</span>
+                      <p class="text-[9px] font-black ${p.isHighlighted ? 'text-primary' : 'text-zinc-600'} uppercase mb-1">${p.tag || 'Standard'}</p>
+                      <h5 class="text-sm sm:text-lg font-headline font-black text-white uppercase group-hover:text-primary transition-colors leading-tight">${p.type}</h5>
+                      <div class="mt-2 sm:mt-4 flex items-baseline gap-1">
+                        <span class="text-lg sm:text-2xl font-headline font-black ${p.isHighlighted ? 'text-primary' : 'text-white'}">${p.price}</span>
+                        <span class="text-zinc-500 text-[9px] font-bold">MXN</span>
                       </div>
                       ${p.benefits && p.benefits.length > 0 ? `
-                      <p class="text-[9px] font-bold text-zinc-500 uppercase tracking-widest mt-4 group-hover:text-primary transition-colors toggle-legend">Ver beneficios</p>
-                      <div class="benefits-container hidden mt-3 border-t border-white/10 pt-4">
-                        <p class="text-[9px] font-black text-white uppercase tracking-widest mb-3">Beneficios Incluidos:</p>
-                        <ul class="grid grid-cols-2 gap-2">
+                      <p class="text-[8px] font-bold text-zinc-500 uppercase tracking-widest mt-2 group-hover:text-primary transition-colors toggle-legend">Ver beneficios</p>
+                      <div class="benefits-container hidden mt-2 border-t border-white/10 pt-3">
+                        <p class="text-[9px] font-black text-white uppercase tracking-widest mb-2">Beneficios Incluidos:</p>
+                        <ul class="grid grid-cols-1 gap-1.5">
                           ${p.benefits.map(b => `
                             <li class="flex items-center gap-2 text-xs text-zinc-400 font-medium">
                               <div class="w-1 h-1 rounded-full bg-primary flex-shrink-0"></div>
@@ -910,7 +911,9 @@ import { fetchActiveBranches } from './src/services/branchService.js';
 
       const panel = document.createElement('div');
       panel.id = 'recommendations-panel';
-      panel.className = 'fixed bottom-8 left-1/2 -translate-x-1/2 z-[150] w-[90%] max-w-lg bg-zinc-900/95 backdrop-blur-xl border border-primary/30 rounded-2xl p-6 shadow-[0_20px_50px_rgba(0,0,0,0.5)] reveal active';
+      // Use left-0/right-0 + mx-auto instead of left-1/2 + -translate-x-1/2
+      // to avoid iOS Safari sub-pixel rendering issues with transforms
+      panel.className = 'fixed bottom-4 left-0 right-0 mx-auto z-[150] w-[calc(100%-2rem)] max-w-lg bg-zinc-900/95 backdrop-blur-xl border border-primary/30 rounded-2xl p-5 shadow-[0_20px_50px_rgba(0,0,0,0.5)] reveal active';
       
       panel.innerHTML = `
         <div class="flex items-center justify-between mb-4">
@@ -924,12 +927,12 @@ import { fetchActiveBranches } from './src/services/branchService.js';
         </div>
         <div class="space-y-3">
           ${recos.map(r => `
-            <button class="reco-item w-full flex items-center justify-between p-4 rounded-xl bg-white/5 border border-white/5 hover:border-primary/50 hover:bg-white/10 transition-all group" data-branch-id="${r.id}" data-key="${normalizeKey(r.name)}">
-              <div class="text-left">
-                <p class="text-sm font-black text-white uppercase group-hover:text-primary transition-colors">${r.name}</p>
+            <button class="reco-item w-full flex items-center justify-between p-3 rounded-xl bg-white/5 border border-white/5 hover:border-primary/50 hover:bg-white/10 transition-all group" data-branch-id="${r.id}" data-key="${normalizeKey(r.name)}">
+              <div class="text-left min-w-0 flex-1 mr-3">
+                <p class="text-sm font-black text-white uppercase group-hover:text-primary transition-colors truncate">${r.name}</p>
                 <p class="text-[10px] text-zinc-500 font-bold uppercase mt-0.5">${r.durationText} de conducción</p>
               </div>
-              <div class="text-right">
+              <div class="text-right flex-none">
                 <p class="text-xs font-black text-primary">${r.distanceText}</p>
                 <span class="text-[9px] text-zinc-600 font-black uppercase tracking-tighter">Ver Templo</span>
               </div>
