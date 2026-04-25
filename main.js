@@ -319,6 +319,7 @@ import { fetchActiveBranches } from './src/services/branchService.js';
                   <img src="${galleryImages[0]}" alt="Vista del gimnasio"
                        class="w-full h-full object-cover scale-100 group-hover/trig:scale-110 transition-transform duration-700 ease-out"
                        loading="lazy"
+                       decoding="async"
                        onerror="this.parentElement.style.display='none'"/>
                   <div class="absolute inset-0 z-20 flex items-center justify-center bg-black/35 group-hover/trig:bg-black/10 transition-all duration-300">
                     <div class="w-7 h-7 rounded-full bg-primary/90 flex items-center justify-center shadow-[0_0_14px_rgba(233,196,0,.65)] group-hover/trig:scale-110 transition-transform duration-300">
@@ -363,6 +364,8 @@ import { fetchActiveBranches } from './src/services/branchService.js';
                       <img src="${url}" alt="Foto ${i+1}"
                            class="w-full h-full object-cover scale-100 group-hover/thumb:scale-110 transition-transform duration-500 ease-out"
                            loading="lazy"
+                           decoding="async"
+                           fetchpriority="low"
                            onerror="this.parentElement.style.display='none'"/>
                       <div class="absolute inset-0 z-20 flex items-center justify-center opacity-0 group-hover/thumb:opacity-100 transition-all duration-300">
                         <span class="material-symbols-outlined text-white text-2xl drop-shadow-lg">zoom_in</span>
@@ -379,7 +382,19 @@ import { fetchActiveBranches } from './src/services/branchService.js';
           modalContent.innerHTML = `
             <!-- Header Táctico -->
             <div class="mb-12 border-b border-primary/20 pb-8">
-              <h2 class="text-6xl font-headline font-black text-white mb-2 tracking-tighter uppercase leading-none">GYMAN <span class="text-primary">${data.name}</span></h2>
+              <div class="flex justify-between items-center mb-2">
+                <h2 class="text-6xl font-headline font-black text-white tracking-tighter uppercase leading-none">GYMAN <span class="text-primary">${data.name}</span></h2>
+                ${data.maps_url ? `
+                  <a href="${data.maps_url}" target="_blank" 
+                     class="group/maps flex items-center gap-2.5 bg-zinc-900 border border-white/10 px-5 py-2.5 rounded-full 
+                            text-[10px] font-black uppercase tracking-[0.2em] text-zinc-400
+                            hover:border-primary/50 hover:text-primary transition-all duration-500 
+                            shadow-xl hover:shadow-primary/5 active:scale-95">
+                    <span class="material-symbols-outlined text-[16px] transition-transform group-hover/maps:scale-110">location_on</span>
+                    ver en google maps
+                  </a>
+                ` : ''}
+              </div>
               <p class="text-zinc-500 font-body text-sm tracking-widest uppercase">${data.dir}</p>
             </div>
 
@@ -474,6 +489,18 @@ import { fetchActiveBranches } from './src/services/branchService.js';
 
           // ── Gallery trigger button ────────────────────────────
           modalContent.querySelectorAll('.gallery-trigger').forEach(btn => {
+            // Pre-carga en hover para ganar tiempo de respuesta
+            btn.addEventListener('mouseenter', () => {
+              if (btn.dataset.preloaded) return;
+              btn.dataset.preloaded = 'true';
+              const images = JSON.parse(btn.dataset.galleryImages || '[]');
+              // Pre-cargamos las primeras 4 fotos silenciosamente
+              images.slice(0, 4).forEach(src => {
+                const img = new Image();
+                img.src = src;
+              });
+            }, { once: true });
+
             btn.addEventListener('click', () => {
               const gid = btn.dataset.galleryId;
               const panel = modalContent.querySelector('#' + gid);
@@ -607,7 +634,7 @@ import { fetchActiveBranches } from './src/services/branchService.js';
 
           <!-- Main image -->
           <div id="gy-lbx-img-wrap" style="flex:1;display:flex;align-items:center;justify-content:center;width:100%;padding:0 80px;position:relative;">
-            <img id="gy-lbx-img" src="" alt="" style="animation:gyLbxImgSwap .3s ease;"/>
+            <img id="gy-lbx-img" src="" alt="" style="animation:gyLbxImgSwap .3s ease;" decoding="async" fetchpriority="high"/>
           </div>
 
           <!-- Prev / Next -->
@@ -690,7 +717,7 @@ import { fetchActiveBranches } from './src/services/branchService.js';
         const strip = document.getElementById('gy-lbx-filmstrip');
         strip.innerHTML = images.map((url, i) => `
           <div class="gy-lbx-film-item${i === lbxIndex ? ' active' : ''}" data-lbx-index="${i}">
-            <img src="${url}" alt="Foto ${i+1}" loading="lazy" onerror="this.parentElement.style.display='none'"/>
+            <img src="${url}" alt="Foto ${i+1}" loading="lazy" decoding="async" fetchpriority="low" onerror="this.parentElement.style.display='none'"/>
           </div>
         `).join('');
 
@@ -770,9 +797,10 @@ import { fetchActiveBranches } from './src/services/branchService.js';
             }
           }
 
-          // Merge gallery images into templesData so the modal can use them
+          // Merge gallery images and maps_url into templesData so the modal can use them
           if (templesData[key]) {
             templesData[key].gallery_images = branch.gallery_images ?? [];
+            templesData[key].maps_url = branch.maps_url ?? null;
           }
         }
       });
