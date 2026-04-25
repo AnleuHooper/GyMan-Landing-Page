@@ -1,5 +1,6 @@
 import { fetchActiveBranches } from './src/services/branchService.js';
 
+// GyMan Landing Page - Sync Update v1.0.2
 // ════════════════════════════════════════════════════════════
 //  GYMAN | KINETIC SANCTUARY — main.js
 //  Landing Page Interactivity & Animations
