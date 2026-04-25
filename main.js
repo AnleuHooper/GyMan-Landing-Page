@@ -88,6 +88,7 @@ import { fetchActiveBranches } from './src/services/branchService.js';
           { type: "Pareja", price: "$890" },
           { type: "Trimestre", price: "$1,290" },
           { type: "Estudiante", price: "$390" },
+          { type: "Restringido", price: "$390" },
           { type: "Semana", price: "$150" },
           { type: "Visita", price: "$50" }
         ],
@@ -100,8 +101,11 @@ import { fetchActiveBranches } from './src/services/branchService.js';
         prices: [
           { type: "Anualidad", price: "$4,200" },
           { type: "VIP", price: "$550" },
+          { type: "Pareja", price: "$890" },
           { type: "Trimestre", price: "$1,290" },
           { type: "Estudiante", price: "$390" },
+          { type: "Restringido", price: "$290" },
+          { type: "Semana", price: "$150" },
           { type: "Visita", price: "$50" }
         ],
         services: ["Sauna", "Regaderas amplias", "Coach certificado", "Mega zona cardio", "Zona pesas", "Café gratis"]
@@ -114,6 +118,9 @@ import { fetchActiveBranches } from './src/services/branchService.js';
           { type: "Anualidad", price: "$4,200" },
           { type: "VIP", price: "$550" },
           { type: "Pareja", price: "$890" },
+          { type: "Trimestre", price: "$1,290" },
+          { type: "Estudiante", price: "$390" },
+          { type: "Restringido", price: "$290" },
           { type: "Semana", price: "$150" },
           { type: "Visita", price: "$50" }
         ],
@@ -127,7 +134,11 @@ import { fetchActiveBranches } from './src/services/branchService.js';
           { type: "Anualidad", price: "$4,200" },
           { type: "VIP", price: "$550" },
           { type: "Regular", price: "$490" },
+          { type: "Pareja", price: "$890" },
           { type: "Trimestre", price: "$1,290" },
+          { type: "Estudiante", price: "$390" },
+          { type: "Restringido", price: "$290" },
+          { type: "Semana", price: "$150" },
           { type: "Visita", price: "$50" }
         ],
         services: ["Sauna", "Vapor", "Área Infantil", "Café sin costo"]
@@ -188,6 +199,7 @@ import { fetchActiveBranches } from './src/services/branchService.js';
         prices: [
           { type: "Anualidad", price: "$4,200", tag: "Elite" },
           { type: "VIP", price: "$550", tag: "Full" },
+          { type: "Semestre", price: "$2,490", tag: "6 Months" },
           { type: "Trimestre", price: "$1,290", tag: "3 Months" },
           { type: "Platinum", price: "$1,090", tag: "Premium" },
           { type: "Pareja", price: "$890", tag: "Duo" },
@@ -241,6 +253,7 @@ import { fetchActiveBranches } from './src/services/branchService.js';
           { type: "VIP", price: "$550", tag: "Full" },
           { type: "Trimestre", price: "$899", tag: "3 Months" },
           { type: "Pareja", price: "$599", tag: "Duo" },
+          { type: "Regular", price: "$349", tag: "Basic" },
           { type: "Estudiante", price: "$249", tag: "Scholar" },
           { type: "Restringido", price: "$249", tag: "Morning" },
           { type: "Semana", price: "$150", tag: "Short" },
