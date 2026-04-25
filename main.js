@@ -29,7 +29,6 @@ import { fetchActiveBranches } from './src/services/branchService.js';
 
     // ── 1. NAVIGATION & DRAWER ──────────────────────────────────
     const nav       = document.getElementById('mainNav');
-    const profileBtn= document.getElementById('profileBtn');
     const sideDrawer= document.getElementById('sideDrawer');
     const overlay   = document.getElementById('drawerOverlay');
     const panel     = document.getElementById('drawerPanel');
@@ -40,8 +39,7 @@ import { fetchActiveBranches } from './src/services/branchService.js';
     window.addEventListener('scroll', onScroll, { passive: true });
     onScroll();
 
-    if (profileBtn && sideDrawer) {
-      profileBtn.addEventListener('click', () => toggleDrawer(true));
+    if (sideDrawer && overlay && panel) {
       overlay.addEventListener('click', () => toggleDrawer(false));
       function toggleDrawer(open) {
         if (open) {
@@ -851,7 +849,8 @@ import { fetchActiveBranches } from './src/services/branchService.js';
     }
 
     function resetFindBtn() {
-      findMyTempleBtn.innerText = 'BUSCAR MI TEMPLO';
+      if (!findMyTempleBtn) return;
+      findMyTempleBtn.innerText = 'Busca el gimnasio más cercano';
       findMyTempleBtn.classList.remove('opacity-50', 'pointer-events-none');
     }
 
