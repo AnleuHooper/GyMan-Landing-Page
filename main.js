@@ -801,8 +801,157 @@ import { fetchActiveBranches } from './src/services/branchService.js';
           if (templesData[key]) {
             templesData[key].gallery_images = branch.gallery_images ?? [];
             templesData[key].maps_url = branch.maps_url ?? null;
+            templesData[key].latitude = branch.latitude;
+            templesData[key].longitude = branch.longitude;
+            templesData[key].id = branch.id;
           }
         }
+      });
+    }
+
+    // ── 5. BUSCAR MI TEMPLO (GEOLOCATION + DISTANCE MATRIX) ──────
+    const findMyTempleBtn = document.getElementById('findMyTempleBtn');
+    let branchesWithCoords = [];
+
+    if (findMyTempleBtn) {
+      findMyTempleBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        
+        if (!navigator.geolocation) {
+          alert('Tu navegador no soporta geolocalización.');
+          return;
+        }
+
+        findMyTempleBtn.innerText = 'LOCALIZANDO...';
+        findMyTempleBtn.classList.add('opacity-50', 'pointer-events-none');
+
+        navigator.geolocation.getCurrentPosition(
+          async (position) => {
+            const userLoc = {
+              lat: position.coords.latitude,
+              lng: position.coords.longitude
+            };
+
+            try {
+              await calculateDistances(userLoc);
+            } catch (err) {
+              console.error('Error calculating distances:', err);
+              alert('Error al calcular las distancias.');
+              resetFindBtn();
+            }
+          },
+          (err) => {
+            console.error('Geolocation error:', err);
+            alert('No pudimos obtener tu ubicación. Por favor, activa los permisos.');
+            resetFindBtn();
+          }
+        );
+      });
+    }
+
+    function resetFindBtn() {
+      findMyTempleBtn.innerText = 'BUSCAR MI TEMPLO';
+      findMyTempleBtn.classList.remove('opacity-50', 'pointer-events-none');
+    }
+
+    async function calculateDistances(userLoc) {
+      const apiKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY || '';
+      
+      const origins = `${userLoc.lat},${userLoc.lng}`;
+      const destinations = branchesWithCoords
+        .map(b => `${b.latitude},${b.longitude}`)
+        .join('|');
+
+      if (!destinations) {
+        alert('No hay sucursales con coordenadas configuradas.');
+        resetFindBtn();
+        return;
+      }
+
+      // We use our local proxy to avoid CORS
+      const url = `/api/distancematrix?origins=${origins}&destinations=${destinations}&mode=driving&units=metric&language=es&key=${apiKey}`;
+
+      try {
+        const res = await fetch(url);
+        const data = await res.json();
+
+        if (data.status !== 'OK') {
+          throw new Error(data.error_message || data.status);
+        }
+
+        const results = data.rows[0].elements;
+        const recommendations = branchesWithCoords.map((branch, i) => ({
+          ...branch,
+          distanceText: results[i].distance?.text || 'N/A',
+          distanceValue: results[i].distance?.value ?? 999999,
+          durationText: results[i].duration?.text || 'N/A'
+        }))
+        .filter(b => b.distanceValue < 999999)
+        .sort((a, b) => a.distanceValue - b.distanceValue)
+        .slice(0, 3);
+
+        renderRecommendations(recommendations);
+        resetFindBtn();
+      } catch (err) {
+        console.error('Distance Matrix error:', err);
+        alert('Error al calcular las distancias: ' + err.message);
+        resetFindBtn();
+      }
+    }
+
+    function renderRecommendations(recos) {
+      // Remove existing if any
+      const existing = document.getElementById('recommendations-panel');
+      if (existing) existing.remove();
+
+      const panel = document.createElement('div');
+      panel.id = 'recommendations-panel';
+      panel.className = 'fixed bottom-8 left-1/2 -translate-x-1/2 z-[150] w-[90%] max-w-lg bg-zinc-900/95 backdrop-blur-xl border border-primary/30 rounded-2xl p-6 shadow-[0_20px_50px_rgba(0,0,0,0.5)] reveal active';
+      
+      panel.innerHTML = `
+        <div class="flex items-center justify-between mb-4">
+          <h4 class="text-[10px] font-black text-primary tracking-[.3em] uppercase flex items-center gap-2">
+            <span class="material-symbols-outlined text-sm">explore</span>
+            Templos Recomendados
+          </h4>
+          <button onclick="this.parentElement.parentElement.remove()" class="text-zinc-500 hover:text-white transition-colors">
+            <span class="material-symbols-outlined text-sm">close</span>
+          </button>
+        </div>
+        <div class="space-y-3">
+          ${recos.map(r => `
+            <button class="reco-item w-full flex items-center justify-between p-4 rounded-xl bg-white/5 border border-white/5 hover:border-primary/50 hover:bg-white/10 transition-all group" data-branch-id="${r.id}" data-key="${normalizeKey(r.name)}">
+              <div class="text-left">
+                <p class="text-sm font-black text-white uppercase group-hover:text-primary transition-colors">${r.name}</p>
+                <p class="text-[10px] text-zinc-500 font-bold uppercase mt-0.5">${r.durationText} de conducción</p>
+              </div>
+              <div class="text-right">
+                <p class="text-xs font-black text-primary">${r.distanceText}</p>
+                <span class="text-[9px] text-zinc-600 font-black uppercase tracking-tighter">Ver Templo</span>
+              </div>
+            </button>
+          `).join('')}
+        </div>
+      `;
+
+      document.body.appendChild(panel);
+
+      panel.querySelectorAll('.reco-item').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const key = btn.dataset.key;
+          const card = document.querySelector(`[data-temple="${key}"]`);
+          if (card) {
+            card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            
+            // Highlight effect
+            card.classList.add('highlighted-branch-card');
+            setTimeout(() => {
+              card.classList.remove('highlighted-branch-card');
+            }, 3000);
+            
+            panel.remove();
+          }
+        });
       });
     }
 
@@ -813,6 +962,7 @@ import { fetchActiveBranches } from './src/services/branchService.js';
 
     fetchActiveBranches().then(branches => {
       if (branches && branches.length > 0) {
+        branchesWithCoords = branches.filter(b => b.latitude && b.longitude);
         renderBranchCards(branches);
       }
       attachModalListeners();

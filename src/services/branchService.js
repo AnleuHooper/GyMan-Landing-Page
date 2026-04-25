@@ -10,7 +10,7 @@ export async function fetchActiveBranches() {
   const [branchesRes, cardsRes, galleryRes] = await Promise.all([
     supabase
       .from('branches')
-      .select('id, name, address, image_url, maps_url')
+      .select('id, name, address, image_url, maps_url, latitude, longitude')
       .order('name'),
     supabase
       .from('landing_branch_cards')
