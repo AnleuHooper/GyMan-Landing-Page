@@ -39,5 +39,4 @@ jobs:
           password: ${{ secrets.FTP_PASSWORD }}
           local-dir: ./dist/
           server-dir: public_html/
-          # Se eliminó state-name para forzar una sincronización limpia
-
+          state-name: .ftp-deploy-sync-state-v2.json
