@@ -855,31 +855,39 @@ import { fetchActiveBranches } from './src/services/branchService.js';
     }
 
     async function calculateDistances(userLoc) {
-      const apiKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY || '';
-      
-      const origins = `${userLoc.lat},${userLoc.lng}`;
-      const destinations = branchesWithCoords
-        .map(b => `${b.latitude},${b.longitude}`)
-        .join('|');
+      if (!window.google || !window.google.maps) {
+        alert('La librería de mapas no se cargó correctamente.');
+        resetFindBtn();
+        return;
+      }
 
-      if (!destinations) {
+      const service = new google.maps.DistanceMatrixService();
+      
+      const origins = [new google.maps.LatLng(userLoc.lat, userLoc.lng)];
+      const destinations = branchesWithCoords.map(b => new google.maps.LatLng(b.latitude, b.longitude));
+
+      if (destinations.length === 0) {
         alert('No hay sucursales con coordenadas configuradas.');
         resetFindBtn();
         return;
       }
 
-      // We use our local proxy to avoid CORS
-      const url = `/api/distancematrix?origins=${origins}&destinations=${destinations}&mode=driving&units=metric&language=es&key=${apiKey}`;
-
-      try {
-        const res = await fetch(url);
-        const data = await res.json();
-
-        if (data.status !== 'OK') {
-          throw new Error(data.error_message || data.status);
+      service.getDistanceMatrix({
+        origins: origins,
+        destinations: destinations,
+        travelMode: google.maps.TravelMode.DRIVING,
+        unitSystem: google.maps.UnitSystem.METRIC,
+        avoidHighways: false,
+        avoidTolls: false,
+      }, (response, status) => {
+        if (status !== 'OK') {
+          console.error('Distance Matrix Error:', status);
+          alert('Error al calcular las distancias: ' + status);
+          resetFindBtn();
+          return;
         }
 
-        const results = data.rows[0].elements;
+        const results = response.rows[0].elements;
         const recommendations = branchesWithCoords.map((branch, i) => ({
           ...branch,
           distanceText: results[i].distance?.text || 'N/A',
@@ -892,11 +900,7 @@ import { fetchActiveBranches } from './src/services/branchService.js';
 
         renderRecommendations(recommendations);
         resetFindBtn();
-      } catch (err) {
-        console.error('Distance Matrix error:', err);
-        alert('Error al calcular las distancias: ' + err.message);
-        resetFindBtn();
-      }
+      });
     }
 
     function renderRecommendations(recos) {
