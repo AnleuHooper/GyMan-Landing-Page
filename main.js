@@ -115,16 +115,16 @@ import { fetchActiveBranches } from './src/services/branchService.js';
         dir: "Av. del canal esq. calle caoba, Col. Alfredo del mazo.",
         hours: { week: "06:00 - 22:00", weekend: "09:00 - 15:00" },
         prices: [
-          { type: "Anualidad", price: "$4,200" },
-          { type: "VIP", price: "$550" },
-          { type: "Pareja", price: "$890" },
-          { type: "Trimestre", price: "$1,290" },
-          { type: "Estudiante", price: "$390" },
-          { type: "Restringido", price: "$290" },
-          { type: "Semana", price: "$150" },
-          { type: "Visita", price: "$50" }
+          { type: "Anualidad", price: "$4,200", tag: "Platinum", benefits: ["Acceso a todas las sucursales", "Sauna & Vapor", "Regaderas", "Lockers & Vestidores", "Nutriólogo", "Café gratis", "Coach"] },
+          { type: "Mensualidad VIP", price: "$550", tag: "Full", benefits: ["Acceso a todas las sucursales", "Sauna & Vapor", "Regaderas", "Lockers & Vestidores", "Nutriólogo", "Café gratis", "Coach"] },
+          { type: "Trimestre", price: "$1,290", tag: "Quarter", benefits: ["Sauna & Vapor", "Regaderas", "Lockers & Vestidores", "Nutriólogo", "Café gratis", "Coach"] },
+          { type: "Pareja", price: "$890", tag: "Duo", benefits: ["Sauna & Vapor", "Regaderas", "Lockers & Vestidores", "Nutriólogo", "Café gratis", "Coach"] },
+          { type: "Estudiante", price: "$390", tag: "Scholar", benefits: ["Nutriólogo", "Regaderas", "Coach"] },
+          { type: "Restringido", note: "11:00 am a 4:00 pm", price: "$290", tag: "Morning", benefits: ["Regaderas", "Coach"] },
+          { type: "Semana", price: "$150", tag: "Short", benefits: ["Coach", "Regaderas"] },
+          { type: "Visita", price: "$50", tag: "One Day", benefits: ["Coach", "Regaderas"] }
         ],
-        services: ["Sauna", "Vapor", "Área infantil", "Zona lounge", "Regaderas", "Café gratis"]
+        services: ["Sauna & Vapor", "Regaderas", "Lockers", "Vestidores", "Nutriólogo", "Café gratis", "Coach"]
       },
       "maxximus": {
         name: "MAXXIMUS",
@@ -181,16 +181,16 @@ import { fetchActiveBranches } from './src/services/branchService.js';
         dir: "Paseo del Tepozán esq. Álamos, Floresta, Los Reyes.",
         hours: { week: "06:00 - 22:30", weekend: "09:00 - 21:00" },
         prices: [
-          { type: "Anualidad", price: "$4,200", tag: "Elite" },
-          { type: "VIP", price: "$550", tag: "Full" },
-          { type: "Trimestre", price: "$1,290", tag: "3 Months" },
-          { type: "Pareja", price: "$890", tag: "Duo" },
-          { type: "Estudiante", price: "$390", tag: "Scholar" },
-          { type: "Restringido", price: "$290", tag: "Morning" },
-          { type: "Semana", price: "$150", tag: "Short" },
-          { type: "Visita", price: "$50", tag: "One Day" }
+          { type: "Anualidad", price: "$4,200", tag: "Elite", benefits: ["Acceso a todas las sucursales", "Nutriólogo", "Regaderas", "Coach", "Café gratis", "Estancia para niños"] },
+          { type: "Socio VIP", price: "$550", tag: "Full", benefits: ["Acceso a todas las sucursales", "Nutriólogo", "Regaderas", "Coach", "Café gratis", "Estancia para niños"] },
+          { type: "Trimestre", price: "$1,290", tag: "3 Months", benefits: ["Nutriólogo", "Regaderas", "Coach", "Café gratis", "Estancia para niños"] },
+          { type: "Pareja", price: "$890", tag: "Duo", benefits: ["Nutriólogo", "Regaderas", "Coach", "Estancia para niños"] },
+          { type: "Estudiante", price: "$390", tag: "Scholar", benefits: ["Regaderas", "Coach", "Café gratis", "Estancia para niños"] },
+          { type: "Restringido", note: "11:00 am - 5:00 pm", price: "$290", tag: "Morning", benefits: ["Regadera", "Coach", "Estancia para niños"] },
+          { type: "Semana", price: "$150", tag: "Short", benefits: ["Coach", "Regaderas", "Estancia para niños"] },
+          { type: "Día", price: "$50", tag: "One Day", benefits: ["Coach", "Regaderas", "Estancia para niños"] }
         ],
-        services: ["Área infantil", "Regaderas amplias", "Café gratuito"]
+        services: ["Estancia para Niños", "Nutriólogo", "Regaderas Amplias", "Coach Certificado", "Café Gratuito"]
       },
       "tezontle": {
         name: "TEZONTLE",
@@ -215,17 +215,17 @@ import { fetchActiveBranches } from './src/services/branchService.js';
         dir: "Calle Allende MZ 1 LT 1, La Candelaria Tlapala.",
         hours: { week: "06:00 - 22:00", weekend: "09:00 - 15:00" },
         prices: [
-          { type: "Anualidad", price: "$4,200", tag: "Elite" },
-          { type: "VIP", price: "$550", tag: "Full" },
-          { type: "Trimestre", price: "$1,090", tag: "3 Months" },
-          { type: "Regular", price: "$390", tag: "Basic" },
-          { type: "Pareja", price: "$750", tag: "Duo" },
-          { type: "Estudiante", price: "$330", tag: "Scholar" },
-          { type: "Restringido", price: "$290", tag: "Morning" },
-          { type: "Semana", price: "$150", tag: "Short" },
-          { type: "Visita", price: "$50", tag: "One Day" }
+          { type: "Anualidad", price: "$4,200", tag: "Elite", benefits: ["Acceso a todas las sucursales", "Sauna & Vapor", "Regaderas", "Lockers & Vestidores", "Nutriólogo", "Café gratis", "Coach"] },
+          { type: "Mensualidad VIP", price: "$550", tag: "Full", benefits: ["Acceso a todas las sucursales", "Sauna & Vapor", "Regaderas", "Lockers & Vestidores", "Nutriólogo", "Café gratis", "Coach"] },
+          { type: "Regular", price: "$390", tag: "Basic", benefits: ["Nutrióloga", "Coach", "Regaderas", "Lockers", "Vestidores", "Café gratis"] },
+          { type: "Trimestre", price: "$1,090", tag: "3 Months", benefits: ["Regaderas", "Lockers", "Vestidores", "Café gratis", "Coach"] },
+          { type: "Pareja", price: "$750", tag: "Duo", benefits: ["Regaderas", "Lockers", "Vestidores", "Café gratis", "Coach"] },
+          { type: "Estudiante", price: "$330", tag: "Scholar", benefits: ["Regaderas", "Coach"] },
+          { type: "Restringido", note: "11:00 am a 4:00 pm", price: "$290", tag: "Morning", benefits: ["Regaderas", "Coach"] },
+          { type: "Semana", price: "$150", tag: "Short", benefits: ["Coach", "Regaderas"] },
+          { type: "Visita", price: "$50", tag: "One Day", benefits: ["Coach", "Regaderas"] }
         ],
-        services: ["Regaderas", "Coach certificado", "Zona cardio", "Pesas", "Café gratuito"]
+        services: ["Sauna & Vapor", "Nutrióloga", "Lockers & Vestidores", "Coach Certificado", "Regaderas", "Café gratuito"]
       },
       "vallechalco": {
         name: "VALLE DE CHALCO",
@@ -249,17 +249,15 @@ import { fetchActiveBranches } from './src/services/branchService.js';
         dir: "Av Cuautemoc, San Miguel Xico 3ra sección, Valle de Chalco.",
         hours: { week: "06:00 - 22:00", weekend: "09:00 - 15:00" },
         prices: [
-          { type: "Anualidad", price: "$4,200", tag: "Elite" },
-          { type: "VIP", price: "$550", tag: "Full" },
-          { type: "Trimestre", price: "$899", tag: "3 Months" },
-          { type: "Pareja", price: "$599", tag: "Duo" },
-          { type: "Regular", price: "$349", tag: "Basic" },
-          { type: "Estudiante", price: "$249", tag: "Scholar" },
-          { type: "Restringido", price: "$249", tag: "Morning" },
-          { type: "Semana", price: "$150", tag: "Short" },
-          { type: "Visita", price: "$50", tag: "One Day" }
+          { type: "Mensualidad VIP", price: "$550", tag: "Elite", benefits: ["Acceso a todas las sucursales", "Sauna & Vapor", "Nutriólogo", "Entrenador", "Regadera", "Pesas / Cardio"] },
+          { type: "Mensualidad Pareja", price: "$600", tag: "Duo", benefits: ["Nutriólogo", "Entrenador", "Regadera", "Acceso libre", "Pesas / Cardio"] },
+          { type: "Mensualidad Hombre", price: "$350", tag: "Standard", benefits: ["Nutriólogo", "Regadera", "Entrenador", "Pesas / Cardio", "Acceso Libre"] },
+          { type: "Mensualidad Mujer", price: "$200", tag: "Standard", benefits: ["Nutriólogo", "Regadera", "Entrenador", "Pesas / Cardio", "Acceso Libre"] },
+          { type: "Estudiante", price: "$250", tag: "Scholar", benefits: ["Entrenador", "Regaderas", "Acceso libre", "Pesas / Cardio"] },
+          { type: "Semana", price: "$150", tag: "Short", benefits: ["Regadera", "Entrenador", "Horario Libre", "Pesas / Cardio"] },
+          { type: "Visita", price: "$50", tag: "One Day", benefits: ["Regadera", "Entrenador", "Pesas / Cardio"] }
         ],
-        services: ["Sauna", "Vapor", "Regaderas Amplias", "Coach Certificado", "Café sin costo"]
+        services: ["Sauna & Vapor", "Nutriólogo", "Entrenador Personal", "Regaderas", "Zona de Pesas & Cardio"]
       },
       "zapata": {
         name: "ZAPATA",
@@ -283,14 +281,14 @@ import { fetchActiveBranches } from './src/services/branchService.js';
         hours: { week: "05:00 - 00:00", weekend: "08:00 - 21:00" },
         prices: [
           { type: "Inscripción", price: "$499", tag: "Pago Único", isHighlighted: true, benefits: ["Pase directo de ingreso", "Activación del sistema"] },
-          { type: "Mensualidad", price: "$780", tag: "Elite", benefits: ["GyM", "Nutrióloga", "Sauna", "Regaderas", "Coach", "Acceso a todas las sucursales"] },
-          { type: "Anualidad", price: "$6,900", tag: "Platinum", benefits: ["GyM", "Nutrióloga", "Sauna", "Regaderas", "Coach", "Acceso a todas las sucursales"] },
+          { type: "Mensualidad", price: "$780", tag: "Elite", benefits: ["GyM", "Regaderas", "Coach", "Sauna", "Nutricionista", "Acceso a todas las sucursales"] },
+          { type: "Anualidad", price: "$6,900", tag: "Platinum", benefits: ["GyM", "Regaderas", "Coach", "Sauna", "Nutricionista", "Acceso a todas las sucursales"] },
           { type: "Trimestre", price: "$1,990", tag: "Quarter", benefits: ["GyM", "Regaderas", "Coach"] },
           { type: "Pareja", price: "$1,350", tag: "Duo", benefits: ["GyM", "Regaderas", "Coach"] },
-          { type: "Semana", price: "$290", tag: "Short", benefits: ["GyM", "Regaderas", "Coach"] },
-          { type: "Visita", price: "$100", tag: "Single", benefits: ["GyM", "Regaderas", "Coach"] }
+          { type: "Semana", note: "(no pagan inscripción)", price: "$290", tag: "Short", benefits: ["GyM", "Regaderas", "Coach", "(no pagan inscripción)"] },
+          { type: "Visita", note: "(no pagan inscripción)", price: "$100", tag: "Single", benefits: ["GyM", "Regaderas", "Coach", "(no pagan inscripción)"] }
         ],
-        services: ["GyM Tech-Zone", "Nutrióloga Certificada", "Sauna & Vapor", "Regaderas Climatizadas", "Coach Master", "Acceso Total a Sucursales"]
+        services: ["GyM Tech-Zone", "Nutricionista Certificada", "Sauna & Vapor", "Regaderas Climatizadas", "Coach Master", "Acceso Total a Sucursales"]
       }
     };
 
@@ -451,7 +449,7 @@ import { fetchActiveBranches } from './src/services/branchService.js';
               <!-- Derecha: Dossier de Membresías -->
               <div class="lg:col-span-7">
                 <h4 class="text-[10px] font-black text-zinc-500 tracking-[.3em] uppercase mb-6">Dossier de Membresías</h4>
-                <div class="grid grid-cols-2 gap-3">
+                <div class="grid grid-cols-2 gap-3 items-start">
                   ${data.prices.map(p => `
                     <div class="price-card relative bg-zinc-900 border ${p.isHighlighted ? 'border-primary shadow-[0_0_15px_rgba(233,196,0,0.2)] col-span-2' : 'border-white/10'} rounded-xl p-3 sm:p-5 hover:border-primary hover:shadow-[0_0_20px_rgba(233,196,0,0.1)] transition-all ${p.benefits ? 'cursor-pointer' : ''} group overflow-hidden">
                       ${p.benefits ? `
@@ -460,6 +458,7 @@ import { fetchActiveBranches } from './src/services/branchService.js';
                       </div>` : ''}
                       <p class="text-[9px] font-black ${p.isHighlighted ? 'text-primary' : 'text-zinc-600'} uppercase mb-1">${p.tag || 'Standard'}</p>
                       <h5 class="text-sm sm:text-lg font-headline font-black text-white uppercase group-hover:text-primary transition-colors leading-tight">${p.type}</h5>
+                      ${p.note ? `<p class="text-zinc-400 font-medium normal-case mt-1 font-body text-[10px] sm:text-xs tracking-wide">${p.note}</p>` : ''}
                       <div class="mt-2 sm:mt-4 flex items-baseline gap-1">
                         <span class="text-lg sm:text-2xl font-headline font-black ${p.isHighlighted ? 'text-primary' : 'text-white'}">${p.price}</span>
                         <span class="text-zinc-500 text-[9px] font-bold">MXN</span>
