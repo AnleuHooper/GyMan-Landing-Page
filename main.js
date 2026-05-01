@@ -66,15 +66,14 @@ import { fetchActiveBranches } from './src/services/branchService.js';
         dir: "Av. del Peñon, esq. Acuitlapilco, Chimalhuacán.",
         hours: { week: "06:00 - 22:00", weekend: "09:00 - 15:00" },
         prices: [
-          { type: "Anualidad", price: "$4,200", tag: "Elite" },
-          { type: "VIP", price: "$550", tag: "Full" },
-          { type: "Regular", price: "$390", tag: "Basic" },
-          { type: "Pareja", price: "$750", tag: "Duo" },
-          { type: "Trimestre", price: "$1,090", tag: "3 Months" },
-          { type: "Estudiante", price: "$330", tag: "Scholar" },
-          { type: "Restringido", price: "$290", tag: "Morning" },
-          { type: "Semana", price: "$150", tag: "Short" },
-          { type: "Visita", price: "$50", tag: "One Day" }
+          { type: "Anualidad", price: "$4,200", tag: "Elite", benefits: ["Acceso al área de cardio", "Instructor", "Regaderas", "Pesas", "Nutriólogo", "Acceso a todas las sucursales"] },
+          { type: "Mensualidad VIP", price: "$550", tag: "Full", benefits: ["Acceso al área de cardio", "Instructor", "Regaderas", "Pesas", "Nutriólogo", "Acceso a todas las sucursales"] },
+          { type: "Mensualidad", price: "$390", tag: "Basic", benefits: ["Acceso al área de cardio", "Instructor", "Regaderas", "Pesas", "Nutriólogo"] },
+          { type: "Pareja", price: "$750", tag: "Duo", benefits: ["Acceso al área de cardio", "Instructor", "Regaderas", "Pesas", "Nutriólogo"] },
+          { type: "Trimestre", price: "$1,090", tag: "3 Months", benefits: ["Acceso al área de cardio", "Instructor", "Regaderas", "Pesas", "Nutriólogo"] },
+          { type: "Estudiante", note: "Requiere presentar credencial de estudiante", price: "$330", tag: "Scholar", benefits: ["Acceso al área de cardio", "Instructor", "Regaderas", "Pesas"] },
+          { type: "Acceso Restringido", note: "Horario de 11:00 AM a 4:00 PM", price: "$290", tag: "Morning", benefits: ["Acceso al área de cardio", "Instructor", "Regaderas", "Pesas"] },
+          { type: "Semana", price: "$150", tag: "Short", benefits: ["Acceso al área de cardio", "Instructor", "Regaderas", "Pesas"] }
         ],
         services: ["Regaderas con shampoo", "Coach certificado", "Zona cardio variada", "Amplia zona de pesas", "Café sin costo"]
       },
@@ -99,14 +98,14 @@ import { fetchActiveBranches } from './src/services/branchService.js';
         dir: "Carretera Refinería Tula - Jorobas km 05, Huehuetoca.",
         hours: { week: "06:00 - 22:00", weekend: "09:00 - 15:00" },
         prices: [
-          { type: "Anualidad", price: "$4,200" },
-          { type: "VIP", price: "$550" },
-          { type: "Pareja", price: "$890" },
-          { type: "Trimestre", price: "$1,290" },
-          { type: "Estudiante", price: "$390" },
-          { type: "Restringido", price: "$290" },
-          { type: "Semana", price: "$150" },
-          { type: "Visita", price: "$50" }
+          { type: "Anualidad", price: "$4,200", tag: "Elite", benefits: ["Nutrióloga", "Sauna", "Regaderas", "Coach", "Acceso a todas las sucursales"] },
+          { type: "Mensualidad", price: "$550", tag: "Full", benefits: ["Nutrióloga", "Sauna", "Regaderas", "Coach", "Acceso a todas las sucursales"] },
+          { type: "Trimestre", price: "$1,290", tag: "Quarter", benefits: ["Nutrióloga", "Regaderas", "Coach"] },
+          { type: "Pareja", price: "$890", tag: "Duo", benefits: ["Nutrióloga", "Regaderas", "Coach"] },
+          { type: "Estudiante", price: "$390", tag: "Scholar", benefits: ["Gym", "Regaderas", "Coach"] },
+          { type: "Restringido", note: "Horario 11:00 am a 4:00 pm", price: "$290", tag: "Morning", benefits: ["Gym", "Regaderas", "Coach"] },
+          { type: "Semana", price: "$150", tag: "Short", benefits: ["Gym", "Regaderas", "Coach"] },
+          { type: "Visita", price: "$50", tag: "One Day", benefits: ["Gym", "Regaderas", "Coach"] }
         ],
         services: ["Sauna", "Regaderas amplias", "Coach certificado", "Mega zona cardio", "Zona pesas", "Café gratis"]
       },
@@ -131,34 +130,33 @@ import { fetchActiveBranches } from './src/services/branchService.js';
         dir: "Plaza Tudanca, Matamoros 1, Chalco Centro.",
         hours: { week: "06:00 - 22:00", weekend: "08:00 - 18:00" },
         prices: [
-          { type: "Anualidad", price: "$4,200" },
-          { type: "VIP", price: "$550" },
-          { type: "Regular", price: "$490" },
-          { type: "Pareja", price: "$890" },
-          { type: "Trimestre", price: "$1,290" },
-          { type: "Estudiante", price: "$390" },
-          { type: "Restringido", price: "$290" },
-          { type: "Semana", price: "$150" },
-          { type: "Visita", price: "$50" }
+          { type: "Anualidad", price: "$4,200", tag: "Elite", benefits: ["Acceso a todas las sucursales", "Vapor", "Sauna", "Regaderas", "Nutriólogo", "Café gratis", "Coach"] },
+          { type: "Mensualidad", price: "$550", tag: "Full", benefits: ["Acceso a todas las sucursales", "Vapor", "Sauna", "Regaderas", "Nutriólogo", "Café gratis", "Coach"] },
+          { type: "Trimestre", price: "$1,290", tag: "Quarter", benefits: ["Vapor", "Sauna", "Regaderas", "Nutriólogo", "Café gratis", "Coach"] },
+          { type: "Pareja", price: "$890", tag: "Duo", benefits: ["Regaderas", "Nutriólogo", "Café gratis", "Coach"] },
+          { type: "Estudiante", price: "$390", tag: "Scholar", benefits: ["Nutriólogo", "Regaderas", "Coach"] },
+          { type: "Restringido", note: "11:00 am a 4:00 pm", price: "$290", tag: "Morning", benefits: ["Regaderas", "Coach"] },
+          { type: "Semana", price: "$150", tag: "Short", benefits: ["Coach", "Regaderas"] },
+          { type: "Visita", price: "$50", tag: "One Day", benefits: ["Coach", "Regaderas"] }
         ],
-        services: ["Sauna", "Vapor", "Área Infantil", "Café sin costo"]
+        services: ["Vapor & Sauna", "Nutriólogo", "Regaderas", "Coach Certificado", "Café gratuito"]
       },
       "nezavip": {
         name: "NEZA VIP",
         dir: "Esq. Calle Adelita y Cama de piedra, Col. Benito Juárez.",
         hours: { week: "06:00 - 23:00", weekend: "08:00 - 15:00" },
         prices: [
-          { type: "Anualidad", price: "$4,200", tag: "Elite" },
-          { type: "VIP", price: "$550", tag: "Full" },
-          { type: "Regular", price: "$390", tag: "Basic" },
-          { type: "Trimestre", price: "$1,090", tag: "3 Months" },
-          { type: "Pareja", price: "$750", tag: "Duo" },
-          { type: "Estudiante", price: "$330", tag: "Scholar" },
-          { type: "Restringido", price: "$290", tag: "Morning" },
-          { type: "Semana", price: "$150", tag: "Short" },
-          { type: "Visita", price: "$50", tag: "One Day" }
+          { type: "Anualidad", price: "$4,200", tag: "Elite", benefits: ["Regaderas", "Pesas", "Cardio", "Coach", "Nutriólogo", "Acceso a todas las sucursales"] },
+          { type: "Mes VIP", price: "$550", tag: "Full", benefits: ["Regaderas", "Pesas", "Cardio", "Coach", "Nutriólogo", "Acceso a todas las sucursales"] },
+          { type: "Regular", price: "$390", tag: "Basic", benefits: ["Pesas", "Cardio", "Coach", "Nutriólogo"] },
+          { type: "Trimestre", price: "$1,090", tag: "3 Months", benefits: ["Pesas", "Cardio", "Coach", "Nutriólogo"] },
+          { type: "Pareja", price: "$750", tag: "Duo", benefits: ["Pesas", "Cardio", "Coach", "Nutriólogo"] },
+          { type: "Estudiante", note: "Credencial vigente, no mayor a 22 años", price: "$330", tag: "Scholar", benefits: ["Pesas", "Cardio", "Coach"] },
+          { type: "Mes Restringido", note: "Acceso solo de 11:00 AM a 4:00 PM", price: "$290", tag: "Morning", benefits: ["Pesas", "Cardio", "Coach"] },
+          { type: "Semana", price: "$150", tag: "Short", benefits: ["Regaderas", "Coach", "Lockers", "Cardio"] },
+          { type: "Visita", price: "$50", tag: "One Day", benefits: ["Regaderas", "Coach", "Lockers", "Cardio"] }
         ],
-        services: ["Zona VIP exclusiva", "Coach personalizado", "Regaderas premium", "Café gratuito"]
+        services: ["Zona VIP exclusiva", "Coach personalizado", "Regaderas premium", "Lockers & Vestidores", "Nutriólogo"]
       },
       "pinkneza": {
         name: "PINK NEZA",
@@ -232,25 +230,25 @@ import { fetchActiveBranches } from './src/services/branchService.js';
         dir: "Av. Alfredo del Mazo #132, col. Jardín, Valle de Chalco.",
         hours: { week: "06:00 - 00:00", weekend: "08:00 - 20:00" },
         prices: [
-          { type: "Anualidad", price: "$4,200", tag: "Elite" },
-          { type: "VIP", price: "$550", tag: "Full" },
-          { type: "Regular", price: "$390", tag: "Basic" },
-          { type: "Trimestre", price: "$1,090", tag: "3 Months" },
-          { type: "Pareja", price: "$750", tag: "Duo" },
-          { type: "Estudiante", price: "$330", tag: "Scholar" },
-          { type: "Restringido", price: "$290", tag: "Morning" },
-          { type: "Semana", price: "$150", tag: "Short" },
-          { type: "Visita", price: "$50", tag: "One Day" }
+          { type: "Anualidad", price: "$4,200", tag: "Elite", benefits: ["Acceso a todas las sucursales Gyman", "Sauna y Vapor", "Nutriólogo", "Regaderas", "Asesoría de Coach"] },
+          { type: "VIP", price: "$550", tag: "Full", benefits: ["Acceso a todas las sucursales Gyman", "Sauna y Vapor", "Nutriólogo", "Regaderas", "Asesoría de Coach"] },
+          { type: "Regular", price: "$390", tag: "Basic", benefits: ["Coach", "Cardio", "Regaderas", "Nutriólogo", "Café"] },
+          { type: "Trimestre", price: "$1,090", tag: "3 Months", benefits: ["Pesas", "Cardio", "Coach", "Regaderas", "Nutriólogo", "Café"] },
+          { type: "Pareja", price: "$750", tag: "Duo", benefits: ["Pesas", "Coach", "Cardio", "Regaderas", "Nutriólogo", "Café"] },
+          { type: "Estudiante", price: "$330", tag: "Scholar", benefits: ["Coach", "Cardio", "Regaderas"] },
+          { type: "Restringido", note: "12:00 pm a 4:00 pm", price: "$290", tag: "Morning", benefits: ["Coach", "Cardio", "Regaderas"] },
+          { type: "Semana", price: "$150", tag: "Short", benefits: ["Coach", "Regaderas"] },
+          { type: "Visita", price: "$50", tag: "One Day", benefits: ["Coach", "Regaderas"] }
         ],
-        services: ["Sauna", "Regaderas", "Coach", "Zona cardio", "Zona pesas", "Café gratuito"]
+        services: ["Sauna & Vapor", "Nutriólogo", "Coach Certificado", "Regaderas", "Zona Cardio & Pesas", "Café gratuito"]
       },
       "valle2": {
         name: "VALLE II",
         dir: "Av Cuautemoc, San Miguel Xico 3ra sección, Valle de Chalco.",
         hours: { week: "06:00 - 22:00", weekend: "09:00 - 15:00" },
         prices: [
-          { type: "Mensualidad VIP", price: "$550", tag: "Elite", benefits: ["Acceso a todas las sucursales", "Sauna & Vapor", "Nutriólogo", "Entrenador", "Regadera", "Pesas / Cardio"] },
-          { type: "Mensualidad Pareja", price: "$600", tag: "Duo", benefits: ["Nutriólogo", "Entrenador", "Regadera", "Acceso libre", "Pesas / Cardio"] },
+          { type: "Mensualidad VIP", price: "$550", tag: "Elite", benefits: ["Nutriólogo", "Entrenador", "Acceso a todas las sucursales", "Regadera", "Vapor", "Sauna", "Pesas / Cardio"] },
+          { type: "Mensualidad Pareja", price: "$600", tag: "Duo", benefits: ["Regadera", "Nutriólogo", "Entrenador", "Acceso libre", "Pesas / Cardio"] },
           { type: "Mensualidad Hombre", price: "$350", tag: "Standard", benefits: ["Nutriólogo", "Regadera", "Entrenador", "Pesas / Cardio", "Acceso Libre"] },
           { type: "Mensualidad Mujer", price: "$200", tag: "Standard", benefits: ["Nutriólogo", "Regadera", "Entrenador", "Pesas / Cardio", "Acceso Libre"] },
           { type: "Estudiante", price: "$250", tag: "Scholar", benefits: ["Entrenador", "Regaderas", "Acceso libre", "Pesas / Cardio"] },
@@ -449,17 +447,17 @@ import { fetchActiveBranches } from './src/services/branchService.js';
               <!-- Derecha: Dossier de Membresías -->
               <div class="lg:col-span-7">
                 <h4 class="text-[10px] font-black text-zinc-500 tracking-[.3em] uppercase mb-6">Dossier de Membresías</h4>
-                <div class="grid grid-cols-2 gap-3 items-start">
+                <div class="grid grid-cols-2 gap-3 items-stretch">
                   ${data.prices.map(p => `
-                    <div class="price-card relative bg-zinc-900 border ${p.isHighlighted ? 'border-primary shadow-[0_0_15px_rgba(233,196,0,0.2)] col-span-2' : 'border-white/10'} rounded-xl p-3 sm:p-5 hover:border-primary hover:shadow-[0_0_20px_rgba(233,196,0,0.1)] transition-all ${p.benefits ? 'cursor-pointer' : ''} group overflow-hidden">
+                    <div class="price-card relative flex flex-col justify-center bg-zinc-900 border ${p.isHighlighted ? 'border-primary shadow-[0_0_15px_rgba(233,196,0,0.2)] col-span-2' : 'border-white/10'} rounded-xl p-3 sm:p-5 hover:border-primary hover:shadow-[0_0_20px_rgba(233,196,0,0.1)] transition-all ${p.benefits ? 'cursor-pointer' : ''} group overflow-hidden">
                       ${p.benefits ? `
                       <div class="absolute top-0 right-0 p-2 opacity-30 group-hover:opacity-100 transition-all">
                          <span class="material-symbols-outlined text-primary toggle-icon" style="font-size:18px">expand_more</span>
                       </div>` : ''}
                       <p class="text-[9px] font-black ${p.isHighlighted ? 'text-primary' : 'text-zinc-600'} uppercase mb-1">${p.tag || 'Standard'}</p>
                       <h5 class="text-sm sm:text-lg font-headline font-black text-white uppercase group-hover:text-primary transition-colors leading-tight">${p.type}</h5>
-                      ${p.note ? `<p class="text-zinc-400 font-medium normal-case mt-1 font-body text-[10px] sm:text-xs tracking-wide">${p.note}</p>` : ''}
-                      <div class="mt-2 sm:mt-4 flex items-baseline gap-1">
+                      ${p.note ? `<p class="text-zinc-400 font-medium normal-case mt-1 font-body text-[10px] sm:text-xs tracking-wide leading-tight">${p.note}</p>` : ''}
+                      <div class="mt-2 flex items-baseline gap-1">
                         <span class="text-lg sm:text-2xl font-headline font-black ${p.isHighlighted ? 'text-primary' : 'text-white'}">${p.price}</span>
                         <span class="text-zinc-500 text-[9px] font-bold">MXN</span>
                       </div>
@@ -491,10 +489,35 @@ import { fetchActiveBranches } from './src/services/branchService.js';
               const container = card.querySelector('.benefits-container');
               const icon = card.querySelector('.toggle-icon');
               const legend = card.querySelector('.toggle-legend');
-              if(container && icon) {
-                const isHidden = container.classList.toggle('hidden');
-                icon.textContent = isHidden ? 'expand_more' : 'expand_less';
-                if(legend) legend.textContent = isHidden ? 'Ver beneficios' : 'Ocultar beneficios';
+              if (container && icon) {
+                // Find sibling card in the same grid row
+                const grid = card.closest('.grid');
+                const allCards = grid ? Array.from(grid.querySelectorAll('.price-card:not(.col-span-2)')) : [];
+                const idx = allCards.indexOf(card);
+                const rowStart = Math.floor(idx / 2) * 2;
+                const sibling = allCards[rowStart === idx ? rowStart + 1 : rowStart];
+
+                const isNowOpen = !container.classList.contains('hidden');
+
+                if (isNowOpen) {
+                  // Currently open: CLOSING
+                  container.classList.add('hidden');
+                  card.classList.add('justify-center');
+                  // Remove align-self overrides so grid stretch re-equalizes the row
+                  card.style.alignSelf = '';
+                  if (sibling) sibling.style.alignSelf = '';
+                  icon.textContent = 'expand_more';
+                  if (legend) legend.textContent = 'Ver beneficios';
+                } else {
+                  // Currently closed: OPENING
+                  container.classList.remove('hidden');
+                  card.classList.remove('justify-center');
+                  // Break both cards free from grid stretch so only this one grows
+                  card.style.alignSelf = 'start';
+                  if (sibling) sibling.style.alignSelf = 'start';
+                  icon.textContent = 'expand_less';
+                  if (legend) legend.textContent = 'Ocultar beneficios';
+                }
               }
             });
           });
