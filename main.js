@@ -59,6 +59,23 @@ import { fetchActiveBranches } from './src/services/branchService.js';
       }
     }
 
+    // ── 1.5 SCROLL TO CARDS ─────────────────────────────────────
+    const scrollDownBtn = document.getElementById('scrollDownBtn');
+    const cardsGrid = document.getElementById('cards-grid');
+    if (scrollDownBtn && cardsGrid) {
+      scrollDownBtn.addEventListener('click', () => {
+        // Offset for the fixed navigation bar
+        const navHeight = nav ? nav.offsetHeight : 80;
+        const rect = cardsGrid.getBoundingClientRect();
+        const offset = window.scrollY + rect.top - navHeight - 20; // 20px extra breathing room
+        
+        window.scrollTo({
+          top: offset,
+          behavior: 'smooth'
+        });
+      });
+    }
+
     // ── 2. TEMPLE DATA (CLEANED 24h) ───────────────────────────
     const templesData = {
       "chimalli": {
