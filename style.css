@@ -1,4 +1,4 @@
-/* GYMAN | Kinetic Sanctuary Styles */
+/* GYMAN Styles */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -93,7 +93,6 @@ body {
 }
 .temple-card:hover img {
     transform: scale(1.1);
-    opacity: 0.85;
 }
 
 /* Modal System */

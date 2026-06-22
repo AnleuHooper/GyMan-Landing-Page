@@ -14,7 +14,7 @@ export async function fetchActiveBranches() {
       .order('name'),
     supabase
       .from('landing_branch_cards')
-      .select('branch_id, image_url'),
+      .select('branch_id, image_url, video_url'),
     supabase
       .from('landing_branch_gallery')
       .select('branch_id, image_url, display_order')
@@ -31,7 +31,10 @@ export async function fetchActiveBranches() {
   // Build lookup maps for O(1) access by branch_id
   const cardMap = {};
   (cardsRes.data ?? []).forEach(card => {
-    cardMap[card.branch_id] = card.image_url;
+    cardMap[card.branch_id] = {
+      image_url: card.image_url,
+      video_url: card.video_url
+    };
   });
 
   const galleryMap = {};
@@ -43,7 +46,8 @@ export async function fetchActiveBranches() {
   // Enrich each branch with landing-page-specific images
   return branches.map(branch => ({
     ...branch,
-    card_image: cardMap[branch.id] ?? null,
+    card_image: cardMap[branch.id]?.image_url ?? null,
+    card_video: cardMap[branch.id]?.video_url ?? null,
     gallery_images: galleryMap[branch.id] ?? [],
   }));
 }
