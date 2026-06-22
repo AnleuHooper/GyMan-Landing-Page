@@ -2,7 +2,7 @@ import { fetchActiveBranches } from './src/services/branchService.js';
 
 // GyMan Landing Page - Sync Update v1.0.2
 // ════════════════════════════════════════════════════════════
-//  GYMAN | KINETIC SANCTUARY — main.js
+//  GYMAN — main.js
 //  Landing Page Interactivity & Animations
 // ════════════════════════════════════════════════════════════
 
@@ -92,23 +92,24 @@ import { fetchActiveBranches } from './src/services/branchService.js';
           { type: "Acceso Restringido", note: "Horario de 11:00 AM a 4:00 PM", price: "$290", tag: "Morning", benefits: ["Acceso al área de cardio", "Instructor", "Regaderas", "Pesas"] },
           { type: "Semana", price: "$150", tag: "Short", benefits: ["Acceso al área de cardio", "Instructor", "Regaderas", "Pesas"] }
         ],
-        services: ["Regaderas con shampoo", "Coach certificado", "Zona cardio variada", "Amplia zona de pesas", "Café sin costo"]
+        services: ["Regaderas con shampoo", "Coach certificado", "Zona cardio variada", "Amplia zona de pesas", "Café sin costo"],
+        phone: "55 9498 5173"
       },
       "fortaleza": {
         name: "FORTALEZA",
         dir: "Av. Chimalhuacán Esq. con Caballo bayo, Nezahualcóyotl.",
         hours: { week: "05:00 - 00:00", weekend: "08:00 - 21:00" },
         prices: [
-          { type: "Anualidad", price: "$4,200" },
-          { type: "VIP", price: "$550" },
-          { type: "Pareja", price: "$890" },
-          { type: "Trimestre", price: "$1,290" },
-          { type: "Estudiante", price: "$390" },
-          { type: "Restringido", price: "$390" },
-          { type: "Semana", price: "$150" },
-          { type: "Visita", price: "$50" }
+          { type: "Anualidad", price: "$4,200", tag: "Platinum", benefits: ["Acceso a todas las sucursales", "Sauna", "Regaderas", "Lockers & Vestidores", "Nutriólogo", "Café gratis", "Coach"] },
+          { type: "Mensualidad VIP", price: "$550", tag: "Full", benefits: ["Acceso a todas las sucursales", "Sauna", "Regaderas", "Lockers & Vestidores", "Nutriólogo", "Café gratis", "Coach"] },
+          { type: "Trimestre", price: "$1,290", tag: "Quarter", benefits: ["Regaderas", "Lockers & Vestidores", "Nutriólogo", "Café gratis", "Coach"] },
+          { type: "Pareja", price: "$890", tag: "Duo", benefits: ["Regaderas", "Lockers & Vestidores", "Nutriólogo", "Café gratis", "Coach"] },
+          { type: "Estudiante", price: "$390", tag: "Scholar", benefits: ["Nutriólogo", "Regaderas", "Coach"] },
+          { type: "Semana", price: "$150", tag: "Short", benefits: ["Coach", "Regaderas"] },
+          { type: "Visita", price: "$50", tag: "One Day", benefits: ["Coach", "Regaderas"] }
         ],
-        services: ["Sauna", "Área de funcional", "Área de comida", "Tienda suplementos", "Tienda Ropa", "Café gratis"]
+        services: ["Sauna", "Regaderas", "Lockers & Vestidores", "Nutriólogo", "Café gratis", "Coach"],
+        phone: "55 9202 3444"
       },
       "huehuetoca": {
         name: "HUEHUETOCA",
@@ -124,7 +125,8 @@ import { fetchActiveBranches } from './src/services/branchService.js';
           { type: "Semana", price: "$150", tag: "Short", benefits: ["Gym", "Regaderas", "Coach"] },
           { type: "Visita", price: "$50", tag: "One Day", benefits: ["Gym", "Regaderas", "Coach"] }
         ],
-        services: ["Sauna", "Regaderas amplias", "Coach certificado", "Mega zona cardio", "Zona pesas", "Café gratis"]
+        services: ["Sauna", "Regaderas amplias", "Coach certificado", "Mega zona cardio", "Zona pesas", "Café gratis"],
+        phone: "55 9664 2430"
       },
       "ixtapaluca": {
         name: "IXTAPALUCA",
@@ -140,7 +142,8 @@ import { fetchActiveBranches } from './src/services/branchService.js';
           { type: "Semana", price: "$150", tag: "Short", benefits: ["Coach", "Regaderas"] },
           { type: "Visita", price: "$50", tag: "One Day", benefits: ["Coach", "Regaderas"] }
         ],
-        services: ["Sauna & Vapor", "Regaderas", "Lockers", "Vestidores", "Nutriólogo", "Café gratis", "Coach"]
+        services: ["Sauna & Vapor", "Regaderas", "Lockers", "Vestidores", "Nutriólogo", "Café gratis", "Coach"],
+        phone: "55 9386 2086"
       },
       "maxximus": {
         name: "MAXXIMUS",
@@ -156,7 +159,8 @@ import { fetchActiveBranches } from './src/services/branchService.js';
           { type: "Semana", price: "$150", tag: "Short", benefits: ["Coach", "Regaderas"] },
           { type: "Visita", price: "$50", tag: "One Day", benefits: ["Coach", "Regaderas"] }
         ],
-        services: ["Vapor & Sauna", "Nutriólogo", "Regaderas", "Coach Certificado", "Café gratuito"]
+        services: ["Vapor & Sauna", "Nutriólogo", "Regaderas", "Coach Certificado", "Café gratuito"],
+        phone: "55 9378 5241"
       },
       "nezavip": {
         name: "NEZA VIP",
@@ -173,23 +177,25 @@ import { fetchActiveBranches } from './src/services/branchService.js';
           { type: "Semana", price: "$150", tag: "Short", benefits: ["Regaderas", "Coach", "Lockers", "Cardio"] },
           { type: "Visita", price: "$50", tag: "One Day", benefits: ["Regaderas", "Coach", "Lockers", "Cardio"] }
         ],
-        services: ["Zona VIP exclusiva", "Coach personalizado", "Regaderas premium", "Lockers & Vestidores", "Nutriólogo"]
+        services: ["Zona VIP exclusiva", "Coach personalizado", "Regaderas premium", "Lockers & Vestidores", "Nutriólogo"],
+        phone: "55 9026 1498"
       },
       "pinkneza": {
         name: "PINK NEZA",
         dir: "La Mariquita #211, Colonia Benito Juárez, Nezahualcóyotl.",
         hours: { week: "06:00 - 22:00", weekend: "09:00 - 15:00" },
         prices: [
-          { type: "Anualidad", price: "$4,200", tag: "Elite" },
-          { type: "VIP", price: "$550", tag: "Full" },
-          { type: "Pareja", price: "$890", tag: "Duo" },
-          { type: "Trimestre", price: "$1,290", tag: "3 Months" },
-          { type: "Estudiante", price: "$390", tag: "Scholar" },
-          { type: "Restringido", price: "$290", tag: "Morning" },
-          { type: "Semana", price: "$150", tag: "Short" },
-          { type: "Visita", price: "$50", tag: "One Day" }
+          { type: "Anualidad", price: "$4,200", tag: "Elite", benefits: ["Acceso a todas las sucursales", "Sauna", "Regaderas", "Lockers & Vestidores", "Nutrióloga", "Café gratis", "Coach", "Pesas & Cardio", "Área de niños", "Dcto. Pilates & Spa"] },
+          { type: "Mensualidad VIP", price: "$550", tag: "Full", benefits: ["Acceso a todas las sucursales", "Sauna", "Regaderas", "Lockers & Vestidores", "Nutrióloga", "Café gratis", "Coach", "Pesas & Cardio", "Área de niños", "Dcto. Pilates & Spa"] },
+          { type: "Trimestre", price: "$1,290", tag: "3 Months", benefits: ["Regaderas", "Lockers & Vestidores", "Nutrióloga", "Café gratis", "Coach", "Área de niños", "Pesas & Cardio", "Dcto. Pilates & Spa"] },
+          { type: "Pareja", price: "$890", tag: "Duo", benefits: ["Regaderas", "Lockers & Vestidores", "Nutrióloga", "Café gratis", "Coach", "Área de niños", "Pesas & Cardio", "Dcto. Pilates & Spa"] },
+          { type: "Estudiante", price: "$390", tag: "Scholar", benefits: ["Regaderas", "Coach", "Área de niños", "Pesas & Cardio", "Dcto. Pilates & Spa", "Café gratis", "Lockers & Vestidores"] },
+          { type: "Restringido", note: "11:00 am a 4:00 pm", price: "$290", tag: "Morning", benefits: ["Regaderas", "Coach", "Área de niños", "Pesas & Cardio", "Dcto. Pilates & Spa", "Café gratis", "Lockers & Vestidores"] },
+          { type: "Semana", price: "$150", tag: "Short", benefits: ["Coach", "Regaderas", "Área de niños", "Pesas & Cardio", "Café gratis", "Lockers & Vestidores"] },
+          { type: "Visita", price: "$50", tag: "One Day", benefits: ["Coach", "Regaderas", "Área de niños", "Pesas & Cardio", "Café gratis", "Lockers & Vestidores"] }
         ],
-        services: ["Área infantil", "Regaderas", "Café gratis"]
+        services: ["Sauna", "Nutrióloga Certificada", "Área Infantil", "Pilates & Spa", "Regaderas & Lockers", "Café gratuito"],
+        phone: "55 9386 5657"
       },
       "pinkreyes": {
         name: "PINK REYES",
@@ -205,7 +211,8 @@ import { fetchActiveBranches } from './src/services/branchService.js';
           { type: "Semana", price: "$150", tag: "Short", benefits: ["Coach", "Regaderas", "Estancia para niños"] },
           { type: "Día", price: "$50", tag: "One Day", benefits: ["Coach", "Regaderas", "Estancia para niños"] }
         ],
-        services: ["Estancia para Niños", "Nutriólogo", "Regaderas Amplias", "Coach Certificado", "Café Gratuito"]
+        services: ["Estancia para Niños", "Nutriólogo", "Regaderas Amplias", "Coach Certificado", "Café Gratuito"],
+        phone: "55 9757 8090"
       },
       "tezontle": {
         name: "TEZONTLE",
@@ -223,7 +230,8 @@ import { fetchActiveBranches } from './src/services/branchService.js';
           { type: "Semana", price: "$250", tag: "Short" },
           { type: "Visita", price: "$50", tag: "One Day" }
         ],
-        services: ["Sauna", "Regaderas", "Amplia zona pesas", "Café gratuito"]
+        services: ["Sauna", "Regaderas", "Amplia zona pesas", "Café gratuito"],
+        phone: "55 9056 1942"
       },
       "tlapala": {
         name: "TLAPALA",
@@ -240,7 +248,8 @@ import { fetchActiveBranches } from './src/services/branchService.js';
           { type: "Semana", price: "$150", tag: "Short", benefits: ["Coach", "Regaderas"] },
           { type: "Visita", price: "$50", tag: "One Day", benefits: ["Coach", "Regaderas"] }
         ],
-        services: ["Sauna & Vapor", "Nutrióloga", "Lockers & Vestidores", "Coach Certificado", "Regaderas", "Café gratuito"]
+        services: ["Sauna & Vapor", "Nutrióloga", "Lockers & Vestidores", "Coach Certificado", "Regaderas", "Café gratuito"],
+        phone: "55 9714 5994"
       },
       "vallechalco": {
         name: "VALLE DE CHALCO",
@@ -257,7 +266,8 @@ import { fetchActiveBranches } from './src/services/branchService.js';
           { type: "Semana", price: "$150", tag: "Short", benefits: ["Coach", "Regaderas"] },
           { type: "Visita", price: "$50", tag: "One Day", benefits: ["Coach", "Regaderas"] }
         ],
-        services: ["Sauna & Vapor", "Nutriólogo", "Coach Certificado", "Regaderas", "Zona Cardio & Pesas", "Café gratuito"]
+        services: ["Sauna & Vapor", "Nutriólogo", "Coach Certificado", "Regaderas", "Zona Cardio & Pesas", "Café gratuito"],
+        phone: "55 9355 0633"
       },
       "valle2": {
         name: "VALLE II",
@@ -272,23 +282,26 @@ import { fetchActiveBranches } from './src/services/branchService.js';
           { type: "Semana", price: "$150", tag: "Short", benefits: ["Regadera", "Entrenador", "Horario Libre", "Pesas / Cardio"] },
           { type: "Visita", price: "$50", tag: "One Day", benefits: ["Regadera", "Entrenador", "Pesas / Cardio"] }
         ],
-        services: ["Sauna & Vapor", "Nutriólogo", "Entrenador Personal", "Regaderas", "Zona de Pesas & Cardio"]
+        services: ["Sauna & Vapor", "Nutriólogo", "Entrenador Personal", "Regaderas", "Zona de Pesas & Cardio"],
+        phone: "55 9716 7028"
       },
       "zapata": {
         name: "ZAPATA",
         dir: "Av Tierra y Libertad 120, Emiliano Zapata, Chalco.",
         hours: { week: "06:00 - 00:00", weekend: "08:00 - 21:00" },
         prices: [
-          { type: "Anualidad", price: "$4,200", tag: "Elite" },
-          { type: "VIP", price: "$550", tag: "Full" },
-          { type: "Regular", price: "$490", tag: "Basic" },
-          { type: "Pareja", price: "$890", tag: "Duo" },
-          { type: "Estudiante", price: "$390", tag: "Scholar" },
-          { type: "Restringido", price: "$290", tag: "Morning" },
-          { type: "Semana", price: "$150", tag: "Short" },
-          { type: "Visita", price: "$50", tag: "One Day" }
+          { type: "Anualidad VIP", price: "$4,200", tag: "Elite", benefits: ["Acceso a todas las sucursales", "Sauna", "Regaderas", "Lockers", "Vestidores", "Nutriólogo", "Café gratis", "Coach"] },
+          { type: "Mensualidad VIP", price: "$550", tag: "Full", benefits: ["Acceso a todas las sucursales", "Sauna", "Regaderas", "Lockers", "Vestidores", "Nutriólogo", "Café gratis", "Coach"] },
+          { type: "Mensualidad", price: "$490", tag: "Basic", benefits: ["Vestidores", "Lockers", "Regaderas", "Coach", "Café gratis"] },
+          { type: "Trimestre", price: "$1,290", tag: "Quarter", benefits: ["Sauna", "Regaderas", "Lockers", "Vestidores", "Café gratis", "Coach"] },
+          { type: "Pareja", price: "$890", tag: "Duo", benefits: ["Sauna", "Regaderas", "Lockers", "Vestidores", "Nutriólogo", "Café"] },
+          { type: "Estudiante", note: "No mayor a 23 años con credencial vigente", price: "$390", tag: "Scholar", benefits: ["Regaderas", "Coach", "Vestidores", "Café gratis"] },
+          { type: "Restringido", note: "Horario 11:00 am a 4:00 pm", price: "$290", tag: "Morning", benefits: ["Lockers", "Vestidores", "Café gratis", "Coach"] },
+          { type: "Semana", price: "$150", tag: "Short", benefits: ["Coach", "Vestidores", "Café gratis", "Regaderas"] },
+          { type: "Visita", note: "Presentar identificación oficial", price: "$50", tag: "One Day", benefits: ["Coach", "Vestidores"] }
         ],
-        services: ["Zona Launge", "Sauna", "Regaderas amplias", "Coach", "Zona pesas", "Café gratis"]
+        services: ["Sauna", "Coach Certificado", "Nutriólogo", "Lockers & Vestidores", "Regaderas", "Café gratuito"],
+        phone: "55 8984 3169"
       },
       "gold": {
         name: "GOLD",
@@ -303,7 +316,8 @@ import { fetchActiveBranches } from './src/services/branchService.js';
           { type: "Semana", note: "(no pagan inscripción)", price: "$290", tag: "Short", benefits: ["GyM", "Regaderas", "Coach", "(no pagan inscripción)"] },
           { type: "Visita", note: "(no pagan inscripción)", price: "$100", tag: "Single", benefits: ["GyM", "Regaderas", "Coach", "(no pagan inscripción)"] }
         ],
-        services: ["GyM Tech-Zone", "Nutricionista Certificada", "Sauna & Vapor", "Regaderas Climatizadas", "Coach Master", "Acceso Total a Sucursales"]
+        services: ["GyM Tech-Zone", "Nutricionista Certificada", "Sauna & Vapor", "Regaderas Climatizadas", "Coach Master", "Acceso Total a Sucursales"],
+        phone: "55 9664 2430"
       }
     };
 
@@ -409,19 +423,36 @@ import { fetchActiveBranches } from './src/services/branchService.js';
             <div class="mb-8 border-b border-primary/20 pb-6">
               <div class="flex flex-wrap items-start justify-between gap-3 mb-2">
                 <h2 class="text-3xl sm:text-5xl md:text-6xl font-headline font-black text-white tracking-tighter uppercase leading-none">GYMAN <span class="text-primary">${data.name}</span></h2>
-                ${data.maps_url ? `
-                  <a href="${data.maps_url}" target="_blank" 
-                     class="group/maps flex items-center gap-2 bg-zinc-900 border border-white/10 px-4 py-2 rounded-full 
-                            text-[10px] font-black uppercase tracking-[0.15em] text-zinc-400
-                            hover:border-primary/50 hover:text-primary transition-all duration-500 
-                            shadow-xl hover:shadow-primary/5 active:scale-95 flex-none">
-                    <span class="material-symbols-outlined text-[16px] transition-transform group-hover/maps:scale-110">location_on</span>
-                    <span class="hidden sm:inline">ver en google maps</span>
-                    <span class="sm:hidden">Maps</span>
-                  </a>
-                ` : ''}
+                <div class="flex flex-wrap gap-2 items-center">
+                  ${data.video_url ? `
+                    <button class="branch-video-trigger group/vid flex items-center gap-2 bg-zinc-900 border border-primary/40 px-4 py-2 rounded-full text-[10px] font-black uppercase tracking-[0.15em] text-primary hover:bg-primary/10 transition-all duration-500 shadow-xl shadow-primary/10 active:scale-95 flex-none" data-video-url="${data.video_url}">
+                      <span class="material-symbols-outlined text-[16px] transition-transform group-hover/vid:scale-110" style="font-variation-settings: 'FILL' 1;">play_circle</span>
+                      <span class="hidden sm:inline">Ver Video</span>
+                      <span class="sm:hidden">Video</span>
+                    </button>
+                  ` : ''}
+                  ${data.maps_url ? `
+                    <a href="${data.maps_url}" target="_blank" 
+                       class="group/maps flex items-center gap-2 bg-zinc-900 border border-white/10 px-4 py-2 rounded-full 
+                              text-[10px] font-black uppercase tracking-[0.15em] text-zinc-400
+                              hover:border-primary/50 hover:text-primary transition-all duration-500 
+                              shadow-xl hover:shadow-primary/5 active:scale-95 flex-none">
+                      <span class="material-symbols-outlined text-[16px] transition-transform group-hover/maps:scale-110">location_on</span>
+                      <span class="hidden sm:inline">ver en google maps</span>
+                      <span class="sm:hidden">Maps</span>
+                    </a>
+                  ` : ''}
+                </div>
               </div>
               <p class="text-zinc-500 font-body text-xs sm:text-sm tracking-widest uppercase">${data.dir}</p>
+              ${data.phone ? `
+                <div class="flex items-center gap-2 mt-4 text-primary group/phone">
+                  <div class="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center border border-primary/20 group-hover/phone:bg-primary/20 transition-all">
+                    <span class="material-symbols-outlined text-[18px]">call</span>
+                  </div>
+                  <a href="tel:${data.phone.replace(/\s/g, '')}" class="text-sm font-black tracking-[0.2em] hover:underline">${data.phone}</a>
+                </div>
+              ` : ''}
             </div>
 
             <!-- Galería Interior (solo si hay fotos) -->
@@ -584,6 +615,15 @@ import { fetchActiveBranches } from './src/services/branchService.js';
               const panel = modalContent.querySelector('#' + gid);
               const images = panel ? JSON.parse(panel.dataset.images) : [];
               openLightbox(images, idx);
+            });
+          });
+
+          // ── Video lightbox trigger ─────────────────────
+          modalContent.querySelectorAll('.branch-video-trigger').forEach(btn => {
+            btn.addEventListener('click', () => {
+              if (window.openVideoLightbox) {
+                window.openVideoLightbox(btn.dataset.videoUrl);
+              }
             });
           });
 
@@ -785,6 +825,62 @@ import { fetchActiveBranches } from './src/services/branchService.js';
       };
     })();
 
+    // ── VIDEO LIGHTBOX ──────────────────────────────
+    (function buildVideoLightbox() {
+      let vlbx = document.getElementById('gy-video-lightbox');
+      if (!vlbx) {
+        vlbx = document.createElement('div');
+        vlbx.id = 'gy-video-lightbox';
+        vlbx.innerHTML = `
+          <div id="vlbx-overlay" class="fixed inset-0 z-[100000] hidden flex-col items-center justify-center opacity-0 transition-opacity duration-500 ease-out bg-black/95 backdrop-blur-3xl">
+            <!-- Elite Close Button -->
+            <button id="vlbx-close" class="absolute top-6 right-6 sm:top-8 sm:right-8 w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-white/5 border border-white/10 text-white flex items-center justify-center cursor-pointer z-[100] transition-all duration-300 hover:bg-primary/20 hover:text-primary hover:border-primary/50 hover:scale-105 active:scale-95 group shadow-2xl backdrop-blur-md">
+              <span class="material-symbols-outlined text-[24px] sm:text-[28px] font-light transition-transform duration-500 group-hover:rotate-90">close</span>
+            </button>
+            
+            <!-- Video Container: Edge-to-edge mobile, floating modal desktop -->
+            <div id="vlbx-container" class="relative w-full h-full sm:w-[90vw] sm:max-w-6xl sm:h-[85vh] flex items-center justify-center sm:rounded-[40px] overflow-hidden shadow-[0_0_100px_rgba(0,0,0,0.8)] sm:shadow-primary/10 bg-black/50 scale-95 transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]">
+              <!-- Subtle glassmorphism border ring (desktop only) -->
+              <div class="hidden sm:block absolute inset-0 pointer-events-none border border-white/10 rounded-[40px] z-10"></div>
+              <video id="vlbx-video" class="w-full h-full object-contain sm:object-cover" controls playsinline preload="auto"></video>
+            </div>
+          </div>
+        `;
+        document.body.appendChild(vlbx);
+        
+        const overlay = document.getElementById('vlbx-overlay');
+        const container = document.getElementById('vlbx-container');
+        const video = document.getElementById('vlbx-video');
+        const closeBtn = document.getElementById('vlbx-close');
+        
+        function close() {
+          overlay.style.opacity = '0';
+          container.style.transform = 'scale(0.95)';
+          video.pause();
+          setTimeout(() => { 
+            overlay.classList.remove('flex'); 
+            overlay.classList.add('hidden'); 
+            video.src = ''; 
+          }, 500);
+        }
+        
+        closeBtn.addEventListener('click', close);
+        overlay.addEventListener('click', (e) => { if(e.target === overlay) close(); });
+        document.addEventListener('keydown', (e) => { if(!overlay.classList.contains('hidden') && e.key === 'Escape') close(); });
+        
+        window.openVideoLightbox = function(url) {
+          video.src = url;
+          overlay.classList.remove('hidden');
+          overlay.classList.add('flex');
+          // force reflow
+          overlay.offsetHeight;
+          overlay.style.opacity = '1';
+          container.style.transform = 'scale(1)';
+          video.play().catch(console.error);
+        };
+      }
+    })();
+
     // ── 3. SCROLL REVEALS ──────────────────────────────────────
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
@@ -843,7 +939,7 @@ import { fetchActiveBranches } from './src/services/branchService.js';
               img.src = imageToUse;
             } else {
               img = document.createElement('img');
-              img.className = "absolute inset-0 w-full h-full object-cover opacity-50 transition-all duration-700";
+              img.className = "absolute inset-0 w-full h-full object-cover transition-all duration-700";
               img.src = imageToUse;
               card.insertBefore(img, card.firstChild);
             }
@@ -856,6 +952,45 @@ import { fetchActiveBranches } from './src/services/branchService.js';
             templesData[key].latitude = branch.latitude;
             templesData[key].longitude = branch.longitude;
             templesData[key].id = branch.id;
+            if (branch.card_video) {
+              templesData[key].video_url = branch.card_video;
+              
+              // Inyectar el video para el autoplay on hover
+              let video = card.querySelector('video.hover-video');
+              if (!video) {
+                video = document.createElement('video');
+                video.className = "hover-video absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-700 pointer-events-none";
+                // El video no tiene z-index alto para quedar detrás del texto y gradientes, pero encima de la imagen
+                video.style.zIndex = "1";
+                video.muted = true;
+                video.loop = true;
+                video.playsInline = true;
+                video.preload = "none";
+                
+                // Asegurarnos que el gradiente quede encima del video
+                let gradient = card.querySelector('.bg-gradient-to-t');
+                if (gradient) {
+                  gradient.style.zIndex = "2";
+                  card.insertBefore(video, gradient);
+                } else {
+                  card.appendChild(video);
+                }
+                
+                // Lazy load: solo cargar cuando el usuario interactúa
+                card.addEventListener('mouseenter', () => {
+                  if (!video.src) video.src = branch.card_video;
+                  video.play().catch(e => console.log("Autoplay evitado por navegador", e));
+                  video.classList.remove('opacity-0');
+                  video.classList.add('opacity-100');
+                });
+                
+                card.addEventListener('mouseleave', () => {
+                  video.pause();
+                  video.classList.remove('opacity-100');
+                  video.classList.add('opacity-0');
+                });
+              }
+            }
           }
         }
       });
