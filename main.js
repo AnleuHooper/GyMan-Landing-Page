@@ -952,43 +952,98 @@ import { fetchActiveBranches } from './src/services/branchService.js';
             templesData[key].latitude = branch.latitude;
             templesData[key].longitude = branch.longitude;
             templesData[key].id = branch.id;
+            
             if (branch.card_video) {
               templesData[key].video_url = branch.card_video;
               
-              // Inyectar el video para el autoplay on hover
               let video = card.querySelector('video.hover-video');
               if (!video) {
                 video = document.createElement('video');
                 video.className = "hover-video absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-700 pointer-events-none";
-                // El video no tiene z-index alto para quedar detrás del texto y gradientes, pero encima de la imagen
-                video.style.zIndex = "1";
                 video.muted = true;
                 video.loop = true;
                 video.playsInline = true;
                 video.preload = "none";
                 
-                // Asegurarnos que el gradiente quede encima del video
-                let gradient = card.querySelector('.bg-gradient-to-t');
+                let gradient = card.querySelector('.bg-gradient-to-t') || card.querySelector('.bg-gradient-to-br') || card.querySelector('[class*="bg-gradient"]');
+                let textContent = card.querySelector('.absolute.bottom-0');
+                
                 if (gradient) {
-                  gradient.style.zIndex = "2";
                   card.insertBefore(video, gradient);
+                } else if (textContent) {
+                  card.insertBefore(video, textContent);
                 } else {
                   card.appendChild(video);
                 }
                 
-                // Lazy load: solo cargar cuando el usuario interactúa
-                card.addEventListener('mouseenter', () => {
-                  if (!video.src) video.src = branch.card_video;
-                  video.play().catch(e => console.log("Autoplay evitado por navegador", e));
-                  video.classList.remove('opacity-0');
-                  video.classList.add('opacity-100');
-                });
+                // Asegurar que el texto esté por encima de todo
+                if (textContent) textContent.style.zIndex = "10";
+                if (gradient) gradient.style.zIndex = "5";
                 
-                card.addEventListener('mouseleave', () => {
-                  video.pause();
-                  video.classList.remove('opacity-100');
-                  video.classList.add('opacity-0');
-                });
+                const isTouchDevice = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
+                
+                if (isTouchDevice) {
+                  // Botón de volumen para móvil
+                  const volBtn = document.createElement('button');
+                  volBtn.className = "absolute top-4 right-4 z-20 w-10 h-10 rounded-full bg-black/40 border border-white/20 flex items-center justify-center text-white backdrop-blur-md opacity-0 transition-all duration-500 scale-90 pointer-events-auto hover:bg-primary/20 hover:border-primary/50 hover:text-primary video-sound-btn";
+                  volBtn.innerHTML = '<span class="material-symbols-outlined text-[20px]">volume_off</span>';
+                  
+                  // Detener propagación para que no abra el modal
+                  volBtn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    if (video.muted) {
+                      video.muted = false;
+                      volBtn.innerHTML = '<span class="material-symbols-outlined text-[20px]">volume_up</span>';
+                      volBtn.classList.add('text-primary', 'border-primary/50');
+                    } else {
+                      video.muted = true;
+                      volBtn.innerHTML = '<span class="material-symbols-outlined text-[20px]">volume_off</span>';
+                      volBtn.classList.remove('text-primary', 'border-primary/50');
+                    }
+                  });
+                  card.appendChild(volBtn);
+                  
+                  const io = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                      if (entry.isIntersecting) {
+                        if (!video.src) video.src = branch.card_video;
+                        video.play().catch(e => console.log("Autoplay evitado por navegador", e));
+                        video.classList.remove('opacity-0');
+                        video.classList.add('opacity-100');
+                        volBtn.classList.remove('opacity-0', 'scale-90');
+                        volBtn.classList.add('opacity-100', 'scale-100');
+                        card.classList.add('video-playing');
+                      } else {
+                        video.pause();
+                        video.classList.remove('opacity-100');
+                        video.classList.add('opacity-0');
+                        volBtn.classList.remove('opacity-100', 'scale-100');
+                        volBtn.classList.add('opacity-0', 'scale-90');
+                        card.classList.remove('video-playing');
+                        // Resetear mute si sale de pantalla
+                        video.muted = true;
+                        volBtn.innerHTML = '<span class="material-symbols-outlined text-[20px]">volume_off</span>';
+                        volBtn.classList.remove('text-primary', 'border-primary/50');
+                      }
+                    });
+                  }, { threshold: 0.6 });
+                  
+                  io.observe(card);
+                } else {
+                  // Comportamiento desktop normal
+                  card.addEventListener('mouseenter', () => {
+                    if (!video.src) video.src = branch.card_video;
+                    video.play().catch(e => console.log("Autoplay evitado por navegador", e));
+                    video.classList.remove('opacity-0');
+                    video.classList.add('opacity-100');
+                  });
+                  
+                  card.addEventListener('mouseleave', () => {
+                    video.pause();
+                    video.classList.remove('opacity-100');
+                    video.classList.add('opacity-0');
+                  });
+                }
               }
             }
           }

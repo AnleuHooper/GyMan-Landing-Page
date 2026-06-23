@@ -136,3 +136,18 @@ body {
   50% { box-shadow: 0 0 30px rgba(233, 196, 0, 0.8); transform: scale(1.05); }
   100% { box-shadow: 0 0 0 rgba(233, 196, 0, 0); transform: scale(1); }
 }
+
+/* Video Card States */
+@keyframes volumePulse {
+  0% { box-shadow: 0 0 0 0 rgba(233, 196, 0, 0.7); }
+  70% { box-shadow: 0 0 0 10px rgba(233, 196, 0, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(233, 196, 0, 0); }
+}
+
+.video-sound-btn {
+  animation: volumePulse 2s infinite;
+}
+
+.video-playing {
+  border-color: rgba(233, 196, 0, 0.3) !important;
+}
