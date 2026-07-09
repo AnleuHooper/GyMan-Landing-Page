@@ -185,8 +185,8 @@ import { fetchActiveBranches } from './src/services/branchService.js';
         dir: "La Mariquita #211, Colonia Benito Juárez, Nezahualcóyotl.",
         hours: { week: "06:00 - 22:00", weekend: "09:00 - 15:00" },
         prices: [
-          { type: "Anualidad", price: "$4,200", tag: "Elite", benefits: ["Acceso a todas las sucursales", "Sauna", "Regaderas", "Lockers & Vestidores", "Nutrióloga", "Café gratis", "Coach", "Pesas & Cardio", "Área de niños", "Dcto. Pilates & Spa"] },
-          { type: "Mensualidad VIP", price: "$550", tag: "Full", benefits: ["Acceso a todas las sucursales", "Sauna", "Regaderas", "Lockers & Vestidores", "Nutrióloga", "Café gratis", "Coach", "Pesas & Cardio", "Área de niños", "Dcto. Pilates & Spa"] },
+          { type: "Anualidad", price: "$4,200", tag: "Elite", benefits: ["Acceso a todas las sucursales", "Regaderas", "Lockers & Vestidores", "Nutrióloga", "Café gratis", "Coach", "Pesas & Cardio", "Área de niños", "Dcto. Pilates & Spa"] },
+          { type: "Mensualidad VIP", price: "$550", tag: "Full", benefits: ["Acceso a todas las sucursales", "Regaderas", "Lockers & Vestidores", "Nutrióloga", "Café gratis", "Coach", "Pesas & Cardio", "Área de niños", "Dcto. Pilates & Spa"] },
           { type: "Trimestre", price: "$1,290", tag: "3 Months", benefits: ["Regaderas", "Lockers & Vestidores", "Nutrióloga", "Café gratis", "Coach", "Área de niños", "Pesas & Cardio", "Dcto. Pilates & Spa"] },
           { type: "Pareja", price: "$890", tag: "Duo", benefits: ["Regaderas", "Lockers & Vestidores", "Nutrióloga", "Café gratis", "Coach", "Área de niños", "Pesas & Cardio", "Dcto. Pilates & Spa"] },
           { type: "Estudiante", price: "$390", tag: "Scholar", benefits: ["Regaderas", "Coach", "Área de niños", "Pesas & Cardio", "Dcto. Pilates & Spa", "Café gratis", "Lockers & Vestidores"] },
@@ -194,7 +194,7 @@ import { fetchActiveBranches } from './src/services/branchService.js';
           { type: "Semana", price: "$150", tag: "Short", benefits: ["Coach", "Regaderas", "Área de niños", "Pesas & Cardio", "Café gratis", "Lockers & Vestidores"] },
           { type: "Visita", price: "$50", tag: "One Day", benefits: ["Coach", "Regaderas", "Área de niños", "Pesas & Cardio", "Café gratis", "Lockers & Vestidores"] }
         ],
-        services: ["Sauna", "Nutrióloga Certificada", "Área Infantil", "Pilates & Spa", "Regaderas & Lockers", "Café gratuito"],
+        services: ["Nutrióloga Certificada", "Área Infantil", "Pilates & Spa", "Regaderas & Lockers", "Café gratuito"],
         phone: "55 9386 5657"
       },
       "pinkreyes": {
