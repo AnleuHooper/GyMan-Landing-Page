@@ -151,3 +151,63 @@ body {
 .video-playing {
   border-color: rgba(233, 196, 0, 0.3) !important;
 }
+
+/* Women Promotion - Pink Neon Aesthetic */
+:root {
+  --pink-neon: #ff2e93;
+  --pink-neon-glow: rgba(255, 46, 147, 0.4);
+}
+
+.pink-neon-glow {
+  text-shadow: 0 0 10px var(--pink-neon-glow), 0 0 20px rgba(255, 46, 147, 0.2);
+}
+
+.pink-neon-border {
+  border-color: var(--pink-neon) !important;
+  box-shadow: 0 0 15px var(--pink-neon-glow);
+}
+
+.pink-neon-border-subtle {
+  border-color: rgba(255, 46, 147, 0.2) !important;
+}
+
+.pink-neon-bg-shimmer {
+  background: linear-gradient(135deg, rgba(20, 20, 20, 0.95) 0%, rgba(35, 15, 25, 0.95) 100%);
+}
+
+.pink-neon-badge {
+  color: var(--pink-neon);
+  border-color: rgba(255, 46, 147, 0.4);
+  box-shadow: 0 0 10px rgba(255, 46, 147, 0.15);
+}
+
+@keyframes pulse-pink-neon {
+  0%, 100% {
+    box-shadow: 0 0 15px rgba(255, 46, 147, 0.2);
+    border-color: rgba(255, 46, 147, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 25px rgba(255, 46, 147, 0.5);
+    border-color: rgba(255, 46, 147, 0.8);
+  }
+}
+
+.animate-pulse-pink {
+  animation: pulse-pink-neon 3s infinite ease-in-out;
+}
+
+/* Toggle de Promoción del Hero */
+.promo-active .default-hero-content {
+  display: none;
+}
+.promo-active .promo-hero-content {
+  display: block;
+}
+.default-hero-content {
+  display: block;
+}
+.promo-hero-content {
+  display: none;
+}
+
+

@@ -319,6 +319,65 @@ import { fetchActiveBranches } from './src/services/branchService.js';
         services: ["GyM Tech-Zone", "Nutricionista Certificada", "Sauna & Vapor", "Regaderas Climatizadas", "Coach Master", "Acceso Total a Sucursales"]
       }
     };
+
+    // ── INJECT WOMEN PROMO & BADGES ─────────────────────────────
+    // 1. Inject promotion into templesData dynamic pricing
+    for (const key in templesData) {
+      const data = templesData[key];
+      let baseMembership = data.prices.find(p => p.type.toLowerCase().includes('estudiante') || p.tag?.toLowerCase().includes('scholar'));
+      
+      if (!baseMembership) {
+        const monthlyMemberships = data.prices.filter(p => 
+          !p.type.toLowerCase().includes('visita') && 
+          !p.type.toLowerCase().includes('semana') && 
+          !p.type.toLowerCase().includes('día') && 
+          !p.type.toLowerCase().includes('dia') && 
+          !p.type.toLowerCase().includes('inscripción') &&
+          !p.type.toLowerCase().includes('anualidad') &&
+          !p.type.toLowerCase().includes('trimestre') &&
+          !p.type.toLowerCase().includes('semestre')
+        );
+        
+        if (monthlyMemberships.length > 0) {
+          monthlyMemberships.sort((a, b) => {
+            const priceA = parseInt(a.price.replace(/[^0-9]/g, ''), 10);
+            const priceB = parseInt(b.price.replace(/[^0-9]/g, ''), 10);
+            return priceA - priceB;
+          });
+          baseMembership = monthlyMemberships[0];
+        }
+      }
+      
+      const benefits = baseMembership?.benefits ? [...baseMembership.benefits] : (data.services ? [...data.services] : ["Cardio", "Pesas", "Regaderas", "Coach"]);
+      
+      const promoItem = {
+        type: "Mensualidad Mujeres",
+        price: "$249",
+        tag: "Promo Julio",
+        note: "Mensualidad básica promocional de Julio para mujeres.",
+        isHighlighted: true,
+        isWomenPromo: true,
+        benefits: benefits
+      };
+      
+      data.prices.unshift(promoItem);
+    }
+
+    // 2. Inject neon pink badges into DOM temple cards
+    document.querySelectorAll('[data-temple]').forEach(card => {
+      const badge = document.createElement('div');
+      badge.className = "absolute top-4 right-4 z-20 flex flex-col gap-1 items-end pointer-events-none";
+      badge.innerHTML = `
+        <span class="bg-black/80 backdrop-blur-md border border-pink-500/50 text-pink-400 px-3 py-1 rounded-full text-[9px] font-black uppercase tracking-widest shadow-[0_0_15px_rgba(236,72,153,0.35)] flex items-center gap-1.5 animate-pulse-pink">
+          <span class="flex h-1.5 w-1.5 relative">
+            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-pink-400 opacity-75"></span>
+            <span class="relative inline-flex rounded-full h-1.5 w-1.5 bg-pink-500"></span>
+          </span>
+          Mujeres $249
+        </span>
+      `;
+      card.appendChild(badge);
+    });
  
     const modal = document.getElementById('templeModal');
     const modalContent = document.getElementById('modalDetails');
@@ -495,36 +554,56 @@ import { fetchActiveBranches } from './src/services/branchService.js';
                <div class="lg:col-span-7">
                  <h4 class="text-[10px] font-black text-zinc-500 tracking-[.3em] uppercase mb-6">Dossier de Membresías</h4>
                  <div class="grid grid-cols-2 gap-3 items-stretch">
-                   ${data.prices.map(p => `
-                     <div class="price-card relative flex flex-col justify-center bg-zinc-900 border ${p.isHighlighted ? 'border-primary shadow-[0_0_15px_rgba(233,196,0,0.2)] col-span-2' : 'border-white/10'} rounded-xl p-3 sm:p-5 hover:border-primary hover:shadow-[0_0_20px_rgba(233,196,0,0.1)] transition-all ${p.benefits ? 'cursor-pointer' : ''} group overflow-hidden">
-                       ${p.benefits ? `
-                       <div class="absolute top-0 right-0 p-2 opacity-30 group-hover:opacity-100 transition-all">
-                          <span class="material-symbols-outlined text-primary toggle-icon" style="font-size:18px">expand_more</span>
-                       </div>` : ''}
-                       <p class="text-[9px] font-black ${p.isHighlighted ? 'text-primary' : 'text-zinc-600'} uppercase mb-1">${p.tag || 'Standard'}</p>
-                       <h5 class="text-sm sm:text-lg font-headline font-black text-white uppercase group-hover:text-primary transition-colors leading-tight">${p.type}</h5>
-                       ${p.note ? `<p class="text-zinc-400 font-medium normal-case mt-1 font-body text-[10px] sm:text-xs tracking-wide leading-tight">${p.note}</p>` : ''}
-                       <div class="mt-2 flex items-baseline gap-1">
-                         <span class="text-lg sm:text-2xl font-headline font-black ${p.isHighlighted ? 'text-primary' : 'text-white'}">${p.price}</span>
-                         <span class="text-zinc-500 text-[9px] font-bold">MXN</span>
-                       </div>
-                       ${p.benefits && p.benefits.length > 0 ? `
-                       <p class="text-[8px] font-bold text-zinc-500 uppercase tracking-widest mt-2 group-hover:text-primary transition-colors toggle-legend">Ver beneficios</p>
-                       <div class="benefits-container hidden mt-2 border-t border-white/10 pt-3">
-                         <p class="text-[9px] font-black text-white uppercase tracking-widest mb-2">Beneficios Incluidos:</p>
-                         <ul class="grid grid-cols-1 gap-1.5">
-                           ${p.benefits.map(b => `
-                             <li class="flex items-center gap-2 text-xs text-zinc-400 font-medium">
-                               <div class="w-1 h-1 rounded-full bg-primary flex-shrink-0"></div>
-                               ${b}
-                             </li>
-                           `).join('')}
-                         </ul>
-                       </div>
-                       ` : ''}
-                     </div>
-                   `).join('')}
-                 </div>
+                    ${data.prices.map(p => {
+                      let borderClass = p.isHighlighted ? 'border-primary shadow-[0_0_15px_rgba(233,196,0,0.2)] col-span-2' : 'border-white/10';
+                      let hoverClass = 'hover:border-primary hover:shadow-[0_0_20px_rgba(233,196,0,0.1)]';
+                      let iconColor = 'text-primary';
+                      let tagColor = p.isHighlighted ? 'text-primary' : 'text-zinc-600';
+                      let hoverTextClass = 'group-hover:text-primary';
+                      let priceColor = p.isHighlighted ? 'text-primary' : 'text-white';
+                      let bulletColor = 'bg-primary';
+                      
+                      if (p.isWomenPromo) {
+                        borderClass = 'pink-neon-border col-span-2';
+                        hoverClass = 'hover:border-pink-400 hover:shadow-[0_0_20px_rgba(255,46,147,0.3)]';
+                        iconColor = 'text-pink-400';
+                        tagColor = 'text-pink-400';
+                        hoverTextClass = 'group-hover:text-pink-400';
+                        priceColor = 'text-pink-400 font-black pink-neon-glow';
+                        bulletColor = 'bg-pink-500 shadow-[0_0_6px_rgba(255,46,147,0.8)]';
+                      }
+
+                      return `
+                        <div class="price-card relative flex flex-col justify-center bg-zinc-900 border ${borderClass} rounded-xl p-3 sm:p-5 ${hoverClass} transition-all ${p.benefits ? 'cursor-pointer' : ''} group overflow-hidden">
+                          ${p.benefits ? `
+                          <div class="absolute top-0 right-0 p-2 opacity-30 group-hover:opacity-100 transition-all">
+                             <span class="material-symbols-outlined ${iconColor} toggle-icon" style="font-size:18px">expand_more</span>
+                          </div>` : ''}
+                          <p class="text-[9px] font-black ${tagColor} uppercase mb-1">${p.tag || 'Standard'}</p>
+                          <h5 class="text-sm sm:text-lg font-headline font-black text-white uppercase ${hoverTextClass} transition-colors leading-tight">${p.type}</h5>
+                          ${p.note ? `<p class="text-zinc-400 font-medium normal-case mt-1 font-body text-[10px] sm:text-xs tracking-wide leading-tight">${p.note}</p>` : ''}
+                          <div class="mt-2 flex items-baseline gap-1">
+                            <span class="text-lg sm:text-2xl font-headline font-black ${priceColor}">${p.price}</span>
+                            <span class="text-zinc-500 text-[9px] font-bold">MXN</span>
+                          </div>
+                          ${p.benefits && p.benefits.length > 0 ? `
+                          <p class="text-[8px] font-bold text-zinc-500 uppercase tracking-widest mt-2 ${hoverTextClass} transition-colors toggle-legend">Ver beneficios</p>
+                          <div class="benefits-container hidden mt-2 border-t border-white/10 pt-3">
+                            <p class="text-[9px] font-black text-white uppercase tracking-widest mb-2">Beneficios Incluidos:</p>
+                            <ul class="grid grid-cols-1 gap-1.5">
+                              ${p.benefits.map(b => `
+                                <li class="flex items-center gap-2 text-xs text-zinc-400 font-medium">
+                                  <div class="w-1.5 h-1.5 rounded-full ${bulletColor} flex-shrink-0"></div>
+                                  ${b}
+                                </li>
+                              `).join('')}
+                            </ul>
+                          </div>
+                          ` : ''}
+                        </div>
+                      `;
+                    }).join('')}
+                  </div>
                </div>
  
              </div>
