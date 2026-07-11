@@ -574,7 +574,7 @@ import { fetchActiveBranches } from './src/services/branchService.js';
                       }
 
                       return `
-                        <div class="price-card relative flex flex-col justify-center bg-zinc-900 border ${borderClass} rounded-xl p-3 sm:p-5 ${hoverClass} transition-all ${p.benefits ? 'cursor-pointer' : ''} group overflow-hidden">
+                        <div class="price-card relative flex flex-col justify-center bg-zinc-900 border ${borderClass} rounded-xl p-3 sm:p-5 ${hoverClass} transition-all ${p.benefits ? 'cursor-pointer' : ''} group overflow-hidden" data-promo="${p.isWomenPromo ? 'true' : 'false'}">
                           ${p.benefits ? `
                           <div class="absolute top-0 right-0 p-2 opacity-30 group-hover:opacity-100 transition-all">
                              <span class="material-symbols-outlined ${iconColor} toggle-icon" style="font-size:18px">expand_more</span>
@@ -612,6 +612,11 @@ import { fetchActiveBranches } from './src/services/branchService.js';
           // ── Benefits toggle ──────────────────────────────────
           modalContent.querySelectorAll('.price-card').forEach(card => {
             card.addEventListener('click', () => {
+              // Meta Pixel: Track 'Lead' when the Promo Julio card is interacted with
+              if (card.dataset.promo === 'true' && typeof fbq !== 'undefined') {
+                fbq('track', 'Lead');
+              }
+              
               const container = card.querySelector('.benefits-container');
               const icon = card.querySelector('.toggle-icon');
               const legend = card.querySelector('.toggle-legend');
