@@ -1287,8 +1287,53 @@ import { fetchActiveBranches } from './src/services/branchService.js';
       });
     }
  
+    function initCountdown() {
+      const countdownContainer = document.getElementById('countdown-ecatepec');
+      if (!countdownContainer) return;
+
+      const targetDate = new Date('2026-07-13T18:00:00');
+
+      function updateCountdown() {
+        const now = new Date();
+        const diff = targetDate - now;
+
+        if (diff <= 0) {
+          const cdHours = document.getElementById('cd-hours');
+          const cdMins = document.getElementById('cd-mins');
+          const cdSecs = document.getElementById('cd-secs');
+          if (cdHours) cdHours.textContent = '00';
+          if (cdMins) cdMins.textContent = '00';
+          if (cdSecs) cdSecs.textContent = '00';
+          
+          const label = countdownContainer.previousElementSibling;
+          if (label) {
+            label.textContent = "¡YA INAUGURADO!";
+            label.classList.remove('text-zinc-500');
+            label.classList.add('text-primary');
+          }
+          return;
+        }
+
+        const hours = Math.floor(diff / (1000 * 60 * 60));
+        const mins = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+        const secs = Math.floor((diff % (1000 * 60)) / 1000);
+
+        const cdHours = document.getElementById('cd-hours');
+        const cdMins = document.getElementById('cd-mins');
+        const cdSecs = document.getElementById('cd-secs');
+
+        if (cdHours) cdHours.textContent = String(hours).padStart(2, '0');
+        if (cdMins) cdMins.textContent = String(mins).padStart(2, '0');
+        if (cdSecs) cdSecs.textContent = String(secs).padStart(2, '0');
+      }
+
+      updateCountdown();
+      setInterval(updateCountdown, 1000);
+    }
+
     // No skeletons needed as we use static DOM
     // renderSkeletons();
+    initCountdown();
     initCounters();
     initReveals();
  
