@@ -317,6 +317,21 @@ import { fetchActiveBranches } from './src/services/branchService.js';
           { type: "Visita", note: "(no pagan inscripción)", price: "$100", tag: "Single", benefits: ["GyM", "Regaderas", "Coach", "(no pagan inscripción)"] }
         ],
         services: ["GyM Tech-Zone", "Nutricionista Certificada", "Sauna & Vapor", "Regaderas Climatizadas", "Coach Master", "Acceso Total a Sucursales"]
+      },
+      "ecatepec": {
+        name: "ECATEPEC",
+        dir: "Citlaltépetl Manzana 632 Lote 18, Ciudad Azteca, 55120 Ecatepec de Morelos, Méx.",
+        hours: { week: "05:00 - 00:00", weekend: "09:00 - 21:00" },
+        prices: [
+          { type: "Anualidad", price: "$2,490", tag: "Elite", benefits: ["Cardio Area", "Certified Coaches", "Showers & Lockers", "Weight Zone", "Total Access to all Branches"] },
+          { type: "Trimestre", price: "$650", tag: "3 Months", benefits: ["Cardio Area", "Certified Coaches", "Showers & Lockers", "Weight Zone"] },
+          { type: "Pareja", price: "$450", tag: "Duo", benefits: ["Cardio Area", "Certified Coaches", "Showers & Lockers", "Weight Zone"] }
+        ],
+        services: ["Showers & Lockers", "Certified Coach", "Cardio Zone", "Weight Training Area", "Free Coffee"],
+        phone: "55 9688 5412",
+        latitude: 19.533625,
+        longitude: -99.026718,
+        maps_url: "https://maps.app.goo.gl/upJUZ3zWtxuBt9ZY6?g_st=ic"
       }
     };
 
@@ -1337,14 +1352,29 @@ import { fetchActiveBranches } from './src/services/branchService.js';
     initCounters();
     initReveals();
  
+    function ensureEcatepecCoords() {
+      const ecatepecInCoords = branchesWithCoords.some(b => normalizeKey(b.name) === 'ecatepec');
+      if (!ecatepecInCoords && templesData['ecatepec']) {
+        branchesWithCoords.push({
+          id: 'ecatepec-static',
+          name: templesData['ecatepec'].name,
+          latitude: templesData['ecatepec'].latitude,
+          longitude: templesData['ecatepec'].longitude,
+          maps_url: templesData['ecatepec'].maps_url
+        });
+      }
+    }
+
     fetchActiveBranches().then(branches => {
       if (branches && branches.length > 0) {
         branchesWithCoords = branches.filter(b => b.latitude && b.longitude);
         renderBranchCards(branches);
       }
+      ensureEcatepecCoords();
       attachModalListeners();
     }).catch(err => {
       console.error('[GyMan] Fallback to static data due to error:', err);
+      ensureEcatepecCoords();
       attachModalListeners();
     });
  

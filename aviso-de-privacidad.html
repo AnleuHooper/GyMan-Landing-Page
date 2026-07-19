@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html class="dark" lang="es">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Aviso de Privacidad — GYMAN</title>
+    
+    <!-- Service Worker Cleanup -->
+    <script>
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.getRegistrations().then(function(registrations) {
+          for(let registration of registrations) {
+            registration.unregister();
+          }
+        });
+      }
+    </script>
+    
+    <!-- Tailwind & Plugins -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;900&family=Manrope:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://use.typekit.net/afw2mds.css">
+    
+    <!-- Local Styles -->
+    <link rel="stylesheet" href="./style.css">
+ 
+    <!-- Tailwind Config -->
+    <script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                "primary": "#e9c400",
+                "on-primary": "#3a3000",
+                "background": "#131313",
+                "surface": "#1b1b1b"
+              },
+              "fontFamily": {
+                "headline": ["Space Grotesk"],
+                "body": ["Manrope"],
+                "mendl": ["mendl-sans-dusk"],
+                "gear": ["gear-wide"],
+                "tiffin": ["tiffin-latin-variable"],
+                "meursault": ["meursault-variable"],
+                "rothwood": ["rothwood"],
+                "quatro": ["quatro-slab"]
+              }
+            },
+          }
+        }
+    </script>
+    <!-- Meta Pixel Code -->
+    <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '977610231927047');
+    fbq('track', 'PageView');
+    </script>
+    <!-- End Meta Pixel Code -->
+</head>
+<body class="bg-background text-zinc-300 font-body selection:bg-primary selection:text-on-primary overflow-x-hidden">
+    <!-- Meta Pixel NoScript -->
+    <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=977610231927047&ev=PageView&noscript=1"
+    /></noscript>
+    <!-- End Meta Pixel NoScript -->
+ 
+    <!-- TopNavBar -->
+    <nav class="fixed top-0 w-full z-50 bg-[#131313]/60 backdrop-blur-xl transition-all duration-300" id="mainNav">
+        <div class="flex justify-between items-center w-full px-8 py-6 max-w-[1920px] mx-auto font-['Space_Grotesk'] tracking-tighter">
+            <div class="flex gap-10 items-center">
+                <a href="./index.html" class="text-primary font-headline text-2xl font-black tracking-tighter hover:scale-105 transition-transform">GYMAN</a>
+            </div>
+            <div class="flex items-center gap-6">
+                <a href="./index.html" class="text-zinc-400 text-xs hover:text-white uppercase tracking-wider transition-colors">Volver al Inicio</a>
+            </div>
+        </div>
+    </nav>
+ 
+    <main class="relative min-h-screen pt-32 pb-20 w-full flex items-center justify-center overflow-hidden bg-background">
+        <!-- Glow Effect -->
+        <div class="absolute inset-0 z-0">
+            <div class="absolute inset-0 bg-gradient-to-b from-[#e9c400]/5 via-background to-background"></div>
+        </div>
+        
+        <div class="relative z-10 w-full max-w-4xl mx-auto px-6">
+            <div class="glass-panel border border-white/10 rounded-2xl p-8 md:p-12 shadow-2xl">
+                <h1 class="font-headline text-4xl md:text-5xl font-black text-white tracking-tighter uppercase mb-8 border-b border-white/5 pb-4">
+                    Aviso de <span class="text-primary">Privacidad</span>
+                </h1>
+                
+                <div class="space-y-6 text-zinc-400 text-sm md:text-base font-light leading-relaxed">
+                    <p>
+                        En cumplimiento con la Ley Federal de Protección de Datos Personales en Posesión de los Particulares (LFPDPPP) de México, <strong class="text-white">GYMAN</strong>, con domicilio para oír y recibir notificaciones en territorio mexicano, pone a su disposición el presente Aviso de Privacidad.
+                    </p>
+
+                    <h2 class="font-headline text-xl font-bold text-white uppercase tracking-wider pt-4 border-t border-white/5">1. Datos Personales Recabados</h2>
+                    <p>
+                        GYMAN le informa de manera transparente que esta landing page es de carácter estrictamente informativo. <strong class="text-white">Este sitio web no recopila, almacena ni procesa ningún tipo de dato personal de forma directa</strong>, debido a que no cuenta con formularios de contacto, registros de membresía en línea, boletines de noticias ni bases de datos activas en el servidor web.
+                    </p>
+
+                    <h2 class="font-headline text-xl font-bold text-white uppercase tracking-wider pt-4 border-t border-white/5">2. Cookies, Tecnologías de Seguimiento y Píxel de Meta</h2>
+                    <p>
+                        A pesar de no recabar datos a través de formularios, este sitio web utiliza cookies y herramientas de seguimiento de terceros, específicamente el <strong class="text-white">Píxel de Meta (Meta Ads)</strong> y herramientas de análisis web.
+                    </p>
+                    <p>
+                        Estas herramientas recopilan datos de carácter no sensible y de forma agregada, tales como:
+                    </p>
+                    <ul class="list-disc pl-6 space-y-2">
+                        <li>Dirección IP (anonimizada o procesada por el proveedor).</li>
+                        <li>Tipo de navegador y sistema operativo utilizado.</li>
+                        <li>Páginas visitadas dentro del sitio y la duración de la visita.</li>
+                        <li>Interacciones y clics realizados en la landing page.</li>
+                    </ul>
+                    <p>
+                        La finalidad de este procesamiento es exclusivamente medir el rendimiento de nuestras campañas de publicidad digital (Meta Ads) y optimizar la experiencia de usuario dentro de la web.
+                    </p>
+
+                    <h2 class="font-headline text-xl font-bold text-white uppercase tracking-wider pt-4 border-t border-white/5">3. Finalidades del Tratamiento de Datos</h2>
+                    <p>
+                        Los datos no sensibles recopilados por las cookies y herramientas de analítica se utilizarán para las siguientes finalidades primarias:
+                    </p>
+                    <ul class="list-disc pl-6 space-y-2">
+                        <li>Optimizar y personalizar la publicidad de GYMAN mostrada en las plataformas de Meta (Facebook, Instagram).</li>
+                        <li>Estadísticas de navegación y medición del rendimiento publicitario.</li>
+                        <li>Monitoreo de seguridad y prevención de abusos en el sitio web.</li>
+                    </ul>
+
+                    <h2 class="font-headline text-xl font-bold text-white uppercase tracking-wider pt-4 border-t border-white/5">4. Consentimiento y Desactivación de Tecnologías</h2>
+                    <p>
+                        Al navegar en este sitio web, usted acepta el uso de cookies y el Píxel de Meta. Si desea restringir o bloquear este seguimiento, puede configurarlo a través de los ajustes de privacidad de su navegador de internet, o bien gestionar sus preferencias de anuncios directamente en su perfil de Meta (Facebook/Instagram).
+                    </p>
+
+                    <h2 class="font-headline text-xl font-bold text-white uppercase tracking-wider pt-4 border-t border-white/5">5. Cambios al Aviso de Privacidad</h2>
+                    <p>
+                        GYMAN se reserva el derecho de modificar o actualizar este Aviso de Privacidad en cualquier momento para adaptarlo a novedades legislativas o políticas internas de cumplimiento corporativo. Cualquier modificación será publicada directamente en este sitio web.
+                    </p>
+                    
+                    <p class="text-xs text-zinc-500 pt-6">
+                        Última actualización: Julio 2026.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </main>
+ 
+    <!-- Footer -->
+    <footer class="bg-[#0a0a0a] border-t border-white/5 py-20 px-8">
+        <div class="max-w-[1400px] mx-auto">
+            <div class="grid md:grid-cols-3 gap-16 mb-16">
+                <div>
+                    <h5 class="text-primary font-headline text-2xl font-black tracking-tighter mb-6">GYMAN</h5>
+                    <p class="text-zinc-600 text-sm font-light leading-relaxed">Red de Sucursales de Evolución. 14 nodos de alto rendimiento diseñados para tu transformación biológica.</p>
+                </div>
+                <div>
+                    <h6 class="text-zinc-500 font-headline font-bold text-xs tracking-[0.3em] uppercase mb-6">Red de Sucursales</h6>
+                    <div class="grid grid-cols-2 gap-2">
+                        <a href="./index.html#templos" class="text-zinc-600 text-xs hover:text-primary transition-colors">Chimalli</a>
+                        <a href="./index.html#templos" class="text-zinc-600 text-xs hover:text-primary transition-colors">Fortaleza</a>
+                        <a href="./index.html#templos" class="text-zinc-600 text-xs hover:text-primary transition-colors">Huehuetoca</a>
+                        <a href="./index.html#templos" class="text-zinc-600 text-xs hover:text-primary transition-colors">Ixtapaluca</a>
+                        <a href="./index.html#templos" class="text-zinc-600 text-xs hover:text-primary transition-colors">Maxximus</a>
+                        <a href="./index.html#templos" class="text-zinc-600 text-xs hover:text-primary transition-colors">Neza VIP</a>
+                        <a href="./index.html#templos" class="text-zinc-600 text-xs hover:text-primary transition-colors">Pink Neza</a>
+                        <a href="./index.html#templos" class="text-zinc-600 text-xs hover:text-primary transition-colors">Pink Reyes</a>
+                        <a href="./index.html#templos" class="text-zinc-600 text-xs hover:text-primary transition-colors">Tezontle</a>
+                        <a href="./index.html#templos" class="text-zinc-600 text-xs hover:text-primary transition-colors">Tlapala</a>
+                        <a href="./index.html#templos" class="text-zinc-600 text-xs hover:text-primary transition-colors">Valle de Chalco</a>
+                        <a href="./index.html#templos" class="text-zinc-600 text-xs hover:text-primary transition-colors">Valle II</a>
+                        <a href="./index.html#templos" class="text-zinc-600 text-xs hover:text-primary transition-colors">Zapata</a>
+                        <a href="./index.html#templos" class="text-zinc-600 text-xs hover:text-primary transition-colors font-bold text-primary/60">Gold ★</a>
+                    </div>
+                </div>
+                <div>
+                    <h6 class="text-zinc-500 font-headline font-bold text-xs tracking-[0.3em] uppercase mb-6">Protocolos</h6>
+                    <a href="./index.html#templos" class="block text-zinc-600 text-xs hover:text-primary transition-colors mb-2">Localizar Sucursal</a>
+                    <a href="./index.html#network" class="block text-zinc-600 text-xs hover:text-primary transition-colors mb-2">Red GyMan</a>
+                </div>
+            </div>
+            <div class="border-t border-white/5 pt-10 flex flex-col md:flex-row justify-between items-center gap-4 text-center md:text-left">
+                <p class="text-zinc-700 text-[10px] tracking-widest uppercase">© 2026 GYMAN — Red de Sucursales de Evolución</p>
+                <div class="flex gap-6 my-2 md:my-0">
+                    <a href="./aviso-de-privacidad.html" class="text-zinc-600 text-[10px] tracking-widest uppercase hover:text-primary transition-colors">Aviso de Privacidad</a>
+                    <a href="./solicitud-borrado-datos.html" class="text-zinc-600 text-[10px] tracking-widest uppercase hover:text-primary transition-colors">Eliminación de Datos</a>
+                </div>
+                <p class="text-zinc-700 text-[10px] tracking-widest uppercase">Diseñado con Precisión Cinética</p>
+            </div>
+        </div>
+    </footer>
+ 
+    <!-- SideDrawer (Profile Panel) -->
+    <div id="sideDrawer" class="fixed inset-0 z-[100] invisible">
+        <div id="drawerOverlay" class="absolute inset-0 bg-black/80 backdrop-blur-sm opacity-0 transition-opacity duration-300"></div>
+        <div id="drawerPanel" class="absolute h-full w-80 right-0 bg-[#0e0e0e] flex flex-col shadow-2xl translate-x-full duration-300 border-l border-white/5">
+            <div class="p-10 border-b border-white/5 bg-surface/30">
+                <div class="w-16 h-16 rounded-full bg-primary/20 flex items-center justify-center mb-6">
+                    <span class="material-symbols-outlined text-primary text-4xl">account_circle</span>
+                </div>
+                <h6 class="text-white font-headline font-black text-xl uppercase tracking-tighter">Acceso Miembro</h6>
+                <p class="text-[10px] text-zinc-500 tracking-widest uppercase mt-1">Estatus: Conectando...</p>
+            </div>
+            <div class="flex-grow py-8 bg-black/20">
+                <a class="flex items-center gap-4 text-zinc-500 px-10 py-6 hover:text-primary transition-all font-headline font-bold uppercase text-sm tracking-widest" href="./index.html#templos">
+                    <span class="material-symbols-outlined">location_on</span> Sucursales
+                </a>
+            </div>
+            <div class="p-10">
+                <!-- Sign in button removed per user request -->
+            </div>
+        </div>
+    </div>
+ 
+    <!-- Google Maps SDK -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAAPrud_eaCI9xjUtmnUMu5OFNryJI8SCA"></script>
+    <script type="module" src="./main.js"></script>
+</body>
+</html>

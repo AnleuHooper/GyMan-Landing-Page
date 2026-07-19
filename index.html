@@ -345,41 +345,17 @@
                     </div>
                 </div>
  
-                <!-- 13.5: Ecatepec (Upcoming) -->
-                <div class="group relative aspect-[9/16] bg-surface rounded-2xl overflow-hidden reveal border border-dashed border-zinc-800 hover:border-primary/50 transition-all duration-500 flex flex-col justify-between p-8 text-center" id="card-ecatepec">
-                    <!-- El badge de "INAGURACIÓN HOY" -->
-                    <div class="absolute top-4 right-4 z-20">
-                        <span class="bg-primary/95 text-black px-3 py-1 rounded-full text-[9px] font-black uppercase tracking-widest shadow-[0_0_15px_rgba(233,196,0,0.35)] animate-pulse">
-                            Inauguración hoy
-                        </span>
-                    </div>
-                    
-                    <div class="flex-1 flex flex-col items-center justify-center pt-8">
-                        <!-- Signo de interrogación tipo "upcoming" con resplandor -->
-                        <div class="w-24 h-24 rounded-full bg-zinc-900 border-2 border-primary/20 flex items-center justify-center mb-6 group-hover:scale-110 group-hover:border-primary/60 group-hover:shadow-[0_0_30px_rgba(233,196,0,0.2)] transition-all duration-500">
-                            <span class="material-symbols-outlined text-primary text-5xl font-light" style="font-variation-settings: 'FILL' 0, 'wght' 200;">help</span>
-                        </div>
-                        <h3 class="font-headline text-3xl font-black tracking-tighter text-white uppercase mb-2">ECATEPEC</h3>
-                        <p class="text-zinc-500 text-xs max-w-[200px] mx-auto font-light leading-relaxed">Próximamente más información sobre horarios, membresías e instalaciones.</p>
-                    </div>
-
-                    <!-- Cuenta regresiva -->
-                    <div class="mt-auto bg-zinc-900/90 border border-white/[0.05] rounded-xl p-4 backdrop-blur-sm relative z-10">
-                        <p class="text-zinc-500 text-[9px] font-black uppercase tracking-[0.2em] mb-2 text-center">Inicia en:</p>
-                        <div class="grid grid-cols-3 gap-2 text-center" id="countdown-ecatepec">
-                            <div>
-                                <span class="block text-2xl font-headline font-black text-primary leading-none" id="cd-hours">00</span>
-                                <span class="text-[8px] text-zinc-500 font-bold uppercase tracking-wider">Hrs</span>
-                            </div>
-                            <div>
-                                <span class="block text-2xl font-headline font-black text-primary leading-none" id="cd-mins">00</span>
-                                <span class="text-[8px] text-zinc-500 font-bold uppercase tracking-wider">Min</span>
-                            </div>
-                            <div>
-                                <span class="block text-2xl font-headline font-black text-primary leading-none" id="cd-secs">00</span>
-                                <span class="text-[8px] text-zinc-500 font-bold uppercase tracking-wider">Seg</span>
-                            </div>
-                        </div>
+                <!-- 13.5: Ecatepec -->
+                <div class="group temple-card relative aspect-[9/16] bg-surface rounded-2xl overflow-hidden reveal" data-temple="ecatepec">
+                    <img class="absolute inset-0 w-full h-full object-cover transition-all duration-700" src="assets/ecatepec_card.png"/>
+                    <div class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent"></div>
+                    <div class="absolute bottom-0 left-0 w-full p-8 transition-transform group-hover:-translate-y-4 text-white">
+                        <h3 class="font-headline text-3xl font-black tracking-tighter mb-2 uppercase">ECATEPEC</h3>
+                        <p class="text-zinc-400 text-xs line-clamp-2">Citlaltépetl Manzana 632 Lote 18, Ciudad Azteca, 55120 Ecatepec de Morelos, Méx.</p>
+                        <p class="text-zinc-500 text-[10px] font-bold uppercase mt-2 flex items-center gap-1.5 group-hover:text-primary/80 transition-colors">
+                            <span class="material-symbols-outlined text-[14px]">call</span>
+                            55 9688 5412
+                        </p>
                     </div>
                 </div>
 
@@ -455,8 +431,12 @@
                     <a href="#network" class="block text-zinc-600 text-xs hover:text-primary transition-colors mb-2">Red GyMan</a>
                 </div>
             </div>
-            <div class="border-t border-white/5 pt-10 flex flex-col md:flex-row justify-between items-center gap-4">
+            <div class="border-t border-white/5 pt-10 flex flex-col md:flex-row justify-between items-center gap-4 text-center md:text-left">
                 <p class="text-zinc-700 text-[10px] tracking-widest uppercase">© 2026 GYMAN — Red de Sucursales de Evolución</p>
+                <div class="flex gap-6 my-2 md:my-0">
+                    <a href="./aviso-de-privacidad.html" class="text-zinc-600 text-[10px] tracking-widest uppercase hover:text-primary transition-colors">Aviso de Privacidad</a>
+                    <a href="./solicitud-borrado-datos.html" class="text-zinc-600 text-[10px] tracking-widest uppercase hover:text-primary transition-colors">Eliminación de Datos</a>
+                </div>
                 <p class="text-zinc-700 text-[10px] tracking-widest uppercase">Diseñado con Precisión Cinética</p>
             </div>
         </div>
