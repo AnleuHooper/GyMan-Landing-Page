@@ -130,6 +130,8 @@ import { fetchActiveBranches } from './src/services/branchService.js';
       },
       "ixtapaluca": {
         name: "IXTAPALUCA",
+        latitude: 19.293453,
+        longitude: -98.903762,
         dir: "Av. del canal esq. calle caoba, Col. Alfredo del mazo.",
         hours: { week: "06:00 - 22:00", weekend: "09:00 - 15:00" },
         prices: [
@@ -725,6 +727,7 @@ import { fetchActiveBranches } from './src/services/branchService.js';
             });
           });
  
+          document.body.style.overflow = 'hidden';
           modal.classList.remove('invisible', 'opacity-0');
           modal.querySelector('.modal-panel').style.transform = 'scale(1)';
         });
@@ -737,6 +740,7 @@ import { fetchActiveBranches } from './src/services/branchService.js';
     }
  
     function closeModal() {
+      document.body.style.overflow = '';
       modal.classList.add('opacity-0');
       modal.querySelector('.modal-panel').style.transform = 'scale(0.95)';
       setTimeout(() => modal.classList.add('invisible'), 300);
@@ -1152,7 +1156,7 @@ import { fetchActiveBranches } from './src/services/branchService.js';
     // ── 5. BUSCAR MI TEMPLO (GEOLOCATION + DISTANCE MATRIX) ──────
     const findMyTempleBtn = document.getElementById('findMyTempleBtn');
     let branchesWithCoords = [];
- 
+
     if (findMyTempleBtn) {
       findMyTempleBtn.addEventListener('click', (e) => {
         e.preventDefault();
@@ -1161,17 +1165,17 @@ import { fetchActiveBranches } from './src/services/branchService.js';
           alert('Tu navegador no soporta geolocalización.');
           return;
         }
- 
+
         findMyTempleBtn.innerText = 'LOCALIZANDO...';
         findMyTempleBtn.classList.add('opacity-50', 'pointer-events-none');
- 
+
         navigator.geolocation.getCurrentPosition(
           async (position) => {
             const userLoc = {
               lat: position.coords.latitude,
               lng: position.coords.longitude
             };
- 
+
             try {
               await calculateDistances(userLoc);
             } catch (err) {
@@ -1188,30 +1192,64 @@ import { fetchActiveBranches } from './src/services/branchService.js';
         );
       });
     }
- 
+
     function resetFindBtn() {
       if (!findMyTempleBtn) return;
       findMyTempleBtn.innerText = 'Busca el gimnasio más cercano';
       findMyTempleBtn.classList.remove('opacity-50', 'pointer-events-none');
     }
  
-    async function calculateDistances(userLoc) {
-      if (!window.google || !window.google.maps) {
-        alert('La librería de mapas no se cargó correctamente.');
-        resetFindBtn();
-        return;
-      }
- 
-      const service = new google.maps.DistanceMatrixService();
-      
-      const origins = [new google.maps.LatLng(userLoc.lat, userLoc.lng)];
-      const destinations = branchesWithCoords.map(b => new google.maps.LatLng(b.latitude, b.longitude));
- 
-      if (destinations.length === 0) {
+    function haversineDistance(lat1, lon1, lat2, lon2) {
+      const R = 6371;
+      const dLat = (lat2 - lat1) * Math.PI / 180;
+      const dLon = (lon2 - lon1) * Math.PI / 180;
+      const a = Math.sin(dLat/2) * Math.sin(dLat/2) +
+                Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) *
+                Math.sin(dLon/2) * Math.sin(dLon/2);
+      const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+      return R * c;
+    }
+
+    function calculateHaversineFallback(userLoc) {
+      if (!branchesWithCoords || branchesWithCoords.length === 0) {
         alert('No hay sucursales con coordenadas configuradas.');
         resetFindBtn();
         return;
       }
+      const recos = branchesWithCoords.map(branch => {
+        const distKm = haversineDistance(userLoc.lat, userLoc.lng, branch.latitude, branch.longitude);
+        const durationMin = Math.max(1, Math.round(distKm * 2.5));
+        return {
+          ...branch,
+          distanceText: distKm < 1 ? `${Math.round(distKm * 1000)} m` : `${distKm.toFixed(1)} km`,
+          distanceValue: distKm * 1000,
+          durationText: `${durationMin} min`
+        };
+      })
+      .sort((a, b) => a.distanceValue - b.distanceValue)
+      .slice(0, 3);
+
+      renderRecommendations(recos);
+      resetFindBtn();
+    }
+
+    async function calculateDistances(userLoc) {
+      if (!window.google || !window.google.maps) {
+        console.warn('Google Maps API no disponible, usando cálculo alternativo');
+        calculateHaversineFallback(userLoc);
+        return;
+      }
+
+      if (branchesWithCoords.length === 0) {
+        alert('No hay sucursales con coordenadas configuradas.');
+        resetFindBtn();
+        return;
+      }
+
+      const service = new google.maps.DistanceMatrixService();
+      
+      const origins = [new google.maps.LatLng(userLoc.lat, userLoc.lng)];
+      const destinations = branchesWithCoords.map(b => new google.maps.LatLng(b.latitude, b.longitude));
  
       service.getDistanceMatrix({
         origins: origins,
