@@ -32,33 +32,30 @@ export default function SolicitudBorradoDatos() {
             
             <div className="space-y-6 text-zinc-400 text-sm md:text-base font-light leading-relaxed">
               <p>
-                En GYMAN valoramos la privacidad y la transparencia en el manejo de la información. Con el objetivo de cumplir plenamente con las políticas de plataformas asociadas (como Meta for Developers) y la legislación mexicana aplicable, ponemos a su disposición los detalles sobre la retención de datos en nuestro sitio web.
+                En GYMAN valoramos la privacidad y la transparencia en el manejo de la información. Con el objetivo de cumplir plenamente con las políticas de plataformas asociadas (como Meta for Developers) y la legislación mexicana aplicable (LFPDPPP), ponemos a su disposición el procedimiento para solicitar el borrado de sus datos personales.
               </p>
 
-              <h2 className="font-headline text-xl font-bold text-white uppercase tracking-wider pt-4 border-t border-white/5">1. Inexistencia de Perfiles Digitales en la Web</h2>
+              <h2 className="font-headline text-xl font-bold text-white uppercase tracking-wider pt-4 border-t border-white/5">1. Tratamiento y Retención de Datos</h2>
               <p>
-                Le informamos de forma clara y explícita que <strong className="text-white">este sitio web no cuenta con registros de usuarios, creación de cuentas ni bases de datos para perfiles digitales</strong>. Al no existir un sistema de login o inicio de sesión en esta landing page, GYMAN no almacena credenciales ni información de identificación personal en ningún servidor web asociado a este sitio informativo.
+                GYMAN informa a sus usuarios que los datos de contacto (Nombre y WhatsApp) recolectados a través de nuestro formulario de Pase VIP son almacenados de forma segura con el único fin de coordinar visitas a sucursales y brindar atención comercial vía WhatsApp.
               </p>
 
-              <h2 className="font-headline text-xl font-bold text-white uppercase tracking-wider pt-4 border-t border-white/5">2. Ejercicio de Derechos ARCO</h2>
+              <h2 className="font-headline text-xl font-bold text-white uppercase tracking-wider pt-4 border-t border-white/5">2. Procedimiento de Solicitud de Eliminación (Derechos ARCO)</h2>
               <p>
-                Usted tiene en todo momento el derecho de acceder, rectificar, cancelar u oponerse al tratamiento de sus datos personales (Derechos ARCO). 
+                Si usted desea que su número de WhatsApp, nombre o registros de atribución publicitaria sean eliminados permanentemente de nuestros sistemas de prospectos y bases de datos, puede solicitar la baja total mediante el siguiente procedimiento:
               </p>
-              <p>
-                Si desea ejercer estos derechos para eliminar o modificar cualquier información que pudiese haberse vinculado a usted a través de campañas publicitarias digitales (Meta Ads) o en los sistemas de registro físicos de nuestras sucursales, puede realizar el siguiente procedimiento:
-              </p>
+              
               <div className="bg-surface/50 border border-white/5 rounded-xl p-6 space-y-4 my-4">
                 <p className="font-bold text-white uppercase tracking-wider text-xs">Procedimiento de Solicitud:</p>
                 <ol className="list-decimal pl-6 space-y-2 text-zinc-400">
-                  <li>Envíe un correo electrónico formal a la dirección: <a href="mailto:anleu3@gmail.com" className="text-primary hover:underline">anleu3@gmail.com</a>.</li>
-                  <li>En el asunto indique: <strong className="text-white">&quot;Solicitud de Derechos ARCO - Eliminación de Datos&quot;</strong>.</li>
-                  <li>En el cuerpo del mensaje, describa claramente los datos que desea que sean eliminados o modificados (por ejemplo, correos asociados a públicos personalizados de publicidad o datos de membresía en sucursales físicas).</li>
+                  <li>Envíe un correo electrónico formal a: <a href="mailto:anleu3@gmail.com" className="text-primary hover:underline font-bold">anleu3@gmail.com</a></li>
+                  <li>Asunto: <strong className="text-white">&quot;Solicitud de Derechos ARCO - Eliminación de Datos&quot;</strong></li>
+                  <li>En el cuerpo del mensaje, proporcione el número de WhatsApp con el que solicitó su Pase VIP para proceder con la purga inmediata de su registro.</li>
                 </ol>
               </div>
 
-              <h2 className="font-headline text-xl font-bold text-white uppercase tracking-wider pt-4 border-t border-white/5">3. Plazos de Respuesta</h2>
               <p>
-                Una vez recibida su solicitud por correo electrónico con todos los detalles necesarios, GYMAN procesará su requerimiento e implementará la eliminación o modificación correspondiente de forma oportuna. Le confirmaremos la resolución de su solicitud en un plazo <strong className="text-white">no mayor a 20 días hábiles</strong> contados a partir de la fecha de recepción de su correo.
+                Una vez recibida la solicitud, GYMAN eliminará sus datos en un plazo no mayor a <strong className="text-white">20 días hábiles</strong> y le enviará la confirmación por correo.
               </p>
               
               <p className="text-xs text-zinc-500 pt-6">

@@ -341,6 +341,20 @@ import { fetchActiveBranches } from './src/services/branchService.js';
     // 1. Inject promotion into templesData dynamic pricing
     for (const key in templesData) {
       const data = templesData[key];
+      
+      let promoPrice = "$249";
+      let promoType = "Mensualidad Mujeres";
+      let promoNote = "Mensualidad básica promocional de Julio para mujeres.";
+
+      if (key === 'gold') {
+        promoPrice = "$390";
+        promoNote = "Mensualidad básica promocional de Julio para mujeres en sucursal Gold.";
+      } else if (key === 'ecatepec') {
+        promoPrice = "$249";
+        promoType = "Promoción Hombres & Mujeres";
+        promoNote = "Promoción especial de Julio válida para hombres y mujeres.";
+      }
+
       let baseMembership = data.prices.find(p => p.type.toLowerCase().includes('estudiante') || p.tag?.toLowerCase().includes('scholar'));
       
       if (!baseMembership) {
@@ -365,23 +379,33 @@ import { fetchActiveBranches } from './src/services/branchService.js';
         }
       }
       
-      const benefits = baseMembership?.benefits ? [...baseMembership.benefits] : (data.services ? [...data.services] : ["Cardio", "Pesas", "Regaderas", "Coach"]);
+      const benefits = (key === 'ecatepec') ? undefined : (baseMembership?.benefits ? [...baseMembership.benefits] : (data.services ? [...data.services] : ["Cardio", "Pesas", "Regaderas", "Coach"]));
       
       const promoItem = {
-        type: "Mensualidad Mujeres",
-        price: "$249",
+        type: promoType,
+        price: promoPrice,
         tag: "Promo Julio",
-        note: "Mensualidad básica promocional de Julio para mujeres.",
+        note: promoNote,
         isHighlighted: true,
-        isWomenPromo: true,
-        benefits: benefits
+        isWomenPromo: true
       };
+      if (benefits) {
+        promoItem.benefits = benefits;
+      }
       
       data.prices.unshift(promoItem);
     }
 
     // 2. Inject neon pink badges into DOM temple cards
     document.querySelectorAll('[data-temple]').forEach(card => {
+      const templeKey = card.getAttribute('data-temple');
+      let badgeText = "Mujeres $249";
+      if (templeKey === 'gold') {
+        badgeText = "Mujeres $390";
+      } else if (templeKey === 'ecatepec') {
+        badgeText = "Hombres & Mujeres $249";
+      }
+
       const badge = document.createElement('div');
       badge.className = "absolute top-4 right-4 z-20 flex flex-col gap-1 items-end pointer-events-none";
       badge.innerHTML = `
@@ -390,7 +414,7 @@ import { fetchActiveBranches } from './src/services/branchService.js';
             <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-pink-400 opacity-75"></span>
             <span class="relative inline-flex rounded-full h-1.5 w-1.5 bg-pink-500"></span>
           </span>
-          Mujeres $249
+          ${badgeText}
         </span>
       `;
       card.appendChild(badge);
@@ -406,6 +430,11 @@ import { fetchActiveBranches } from './src/services/branchService.js';
           const key = card.getAttribute('data-temple');
           const data = templesData[key];
           if (!data) return;
+ 
+          // Meta Pixel: Habilidad 2 — ViewContent al explorar una sucursal
+          if (typeof window !== 'undefined' && typeof fbq !== 'undefined') {
+            fbq('track', 'ViewContent', { content_name: data.name });
+          }
  
           // ── GALLERY SYSTEM: trigger button + panel grid + lightbox ──
           const galleryImages = data.gallery_images ?? [];
@@ -629,10 +658,6 @@ import { fetchActiveBranches } from './src/services/branchService.js';
           // ── Benefits toggle ──────────────────────────────────
           modalContent.querySelectorAll('.price-card').forEach(card => {
             card.addEventListener('click', () => {
-              // Meta Pixel: Track 'Lead' when the Promo Julio card is interacted with
-              if (card.dataset.promo === 'true' && typeof fbq !== 'undefined') {
-                fbq('track', 'Lead');
-              }
               
               const container = card.querySelector('.benefits-container');
               const icon = card.querySelector('.toggle-icon');

@@ -2,6 +2,8 @@ import Hero from "@/components/Hero";
 import BranchGrid from "@/components/BranchGrid";
 import Footer from "@/components/Footer";
 import Script from "next/script";
+import LeadCaptureModal from "@/components/LeadCaptureModal";
+import { Suspense } from "react";
 
 export default function Home() {
   return (
@@ -22,6 +24,9 @@ export default function Home() {
       <main>
         <Hero />
         <BranchGrid />
+        <Suspense fallback={null}>
+          <LeadCaptureModal />
+        </Suspense>
 
         {/* Section 4: Network Stats */}
         <section id="network" className="py-32 bg-background relative overflow-hidden">
@@ -87,7 +92,7 @@ export default function Home() {
       </div>
 
       {/* Legacy main.js — runs all interactivity */}
-      <Script src="/legacy/main.js" strategy="afterInteractive" type="module" />
+      <Script id="legacy-main-js" src="/legacy/main.js" strategy="afterInteractive" type="module" />
     </>
   );
 }

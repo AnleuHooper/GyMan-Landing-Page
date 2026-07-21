@@ -44,13 +44,15 @@ export default function Hero() {
                   Promoción de Julio
                 </span>
                 <h1 className="font-headline text-3xl md:text-5xl font-black text-white tracking-tighter uppercase leading-none mb-3 pink-neon-glow">
-                  Mujeres por $249
+                  Promoción Mensualidad $249
                 </h1>
-                <p className="font-body text-base md:text-xl text-zinc-400 font-light max-w-xl mx-auto leading-relaxed">
-                  Todas las mujeres pueden adquirir la <strong className="text-pink-400 font-bold">Mensualidad Básica</strong> en cualquier sucursal por solo <strong className="text-white font-black text-2xl md:text-3xl pink-neon-glow">$249 MXN</strong>.
+                <p className="font-body text-sm md:text-base text-zinc-300 font-normal max-w-xl mx-auto leading-relaxed">
+                  <strong className="text-pink-400 font-bold">Mujeres:</strong> Mensualidad básica por solo <strong className="text-white font-black text-lg md:text-xl pink-neon-glow">$249 MXN</strong> en todas las sucursales <span className="text-zinc-400 text-xs font-semibold">(*excepto Gold: $390 MXN)</span>.
+                  <br />
+                  <strong className="text-primary font-bold">Ecatepec:</strong> ¡Promoción especial de <strong className="text-white font-black text-lg md:text-xl pink-neon-glow">$249 MXN</strong> para <span className="text-pink-400 font-bold">Hombres y Mujeres</span>!
                 </p>
-                <p className="text-[10px] text-zinc-600 font-bold uppercase tracking-widest mt-4">
-                  *Beneficios y amenidades equivalentes a la membresía más básica de cada sucursal. Válido solo en Julio.
+                <p className="text-[10px] text-zinc-500 font-bold uppercase tracking-widest mt-4">
+                  *Beneficios y amenidades equivalentes a la membresía más básica de cada sucursal. Válido durante Julio.
                 </p>
               </div>
             </div>

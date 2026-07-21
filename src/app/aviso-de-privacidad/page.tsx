@@ -37,39 +37,35 @@ export default function AvisoDePrivacidad() {
 
               <h2 className="font-headline text-xl font-bold text-white uppercase tracking-wider pt-4 border-t border-white/5">1. Datos Personales Recabados</h2>
               <p>
-                GYMAN le informa de manera transparente que esta landing page es de carácter strictly informativo. <strong className="text-white">Este sitio web no recopila, almacena ni procesa ningún tipo de dato personal de forma directa</strong>, debido a que no cuenta con formularios de contacto, registros de membresía en línea, boletines de noticias ni bases de datos activas en el servidor web.
-              </p>
-
-              <h2 className="font-headline text-xl font-bold text-white uppercase tracking-wider pt-4 border-t border-white/5">2. Cookies, Tecnologías de Seguimiento y Píxel de Meta</h2>
-              <p>
-                A pesar de no recabar datos a través de formularios, este sitio web utiliza cookies y herramientas de seguimiento de terceros, específicamente el <strong className="text-white">Píxel de Meta (Meta Ads)</strong> y herramientas de análisis web.
-              </p>
-              <p>
-                Estas herramientas recopilan datos de carácter no sensible y de forma agregada, tales como:
+                GYMAN le informa de manera transparente que a través de nuestros formularios interactivos de solicitud de Pase VIP y reservación de tarifas, recopilamos de forma directa los siguientes datos personales:
               </p>
               <ul className="list-disc pl-6 space-y-2">
-                <li>Dirección IP (anonimizada o procesada por el proveedor).</li>
-                <li>Tipo de navegador y sistema operativo utilizado.</li>
-                <li>Páginas visitadas dentro del sitio y la duración de la visita.</li>
-                <li>Interacciones y clics realizados en la landing page.</li>
+                <li>Nombre completo.</li>
+                <li>Número de teléfono celular / WhatsApp (formato E.164).</li>
+                <li>Parámetros de atribución publicitaria y navegación (identificador <code className="text-primary bg-white/5 px-1 py-0.5 rounded">fbclid</code> de Meta Ads, URL de origen y fecha de registro).</li>
               </ul>
-              <p>
-                La finalidad de este procesamiento es exclusivamente medir el rendimiento de nuestras campañas de publicidad digital (Meta Ads) y optimizar la experiencia de usuario dentro de la web.
-              </p>
 
-              <h2 className="font-headline text-xl font-bold text-white uppercase tracking-wider pt-4 border-t border-white/5">3. Finalidades del Tratamiento de Datos</h2>
+              <h2 className="font-headline text-xl font-bold text-white uppercase tracking-wider pt-4 border-t border-white/5">2. Finalidades del Tratamiento de Datos</h2>
               <p>
-                Los datos no sensibles recopilados por las cookies y herramientas de analítica se utilizarán para las siguientes finalidades primarias:
+                Los datos personales recabados serán utilizados para las siguientes finalidades:
               </p>
               <ul className="list-disc pl-6 space-y-2">
-                <li>Optimizar y personalizar la publicidad de GYMAN mostrada en las plataformas de Meta (Facebook, Instagram).</li>
-                <li>Estadísticas de navegación y medición del rendimiento publicitario.</li>
-                <li>Monitoreo de seguridad y prevención de abusos en el sitio web.</li>
+                <li>
+                  <strong className="text-white">Finalidades Primarias:</strong> Contactar al titular vía WhatsApp para enviarle su Pase VIP de acceso a la sucursal seleccionada, agendar su visita a las instalaciones y congelar su tarifa preferencial para pago directo en recepción.
+                </li>
+                <li>
+                  <strong className="text-white">Finalidades Secundarias:</strong> Medición del rendimiento publicitario en Meta Ads, atribución de conversiones mediante la API de Conversiones (CAPI) de Meta y prevención de abusos en el sitio web.
+                </li>
               </ul>
+
+              <h2 className="font-headline text-xl font-bold text-white uppercase tracking-wider pt-4 border-t border-white/5">3. Cookies, Píxel de Meta y Atribución</h2>
+              <p>
+                Este sitio utiliza cookies, el Píxel de Meta y la captura del parámetro <code className="text-primary bg-white/5 px-1 py-0.5 rounded">fbclid</code> para medir la efectividad de nuestros anuncios digitales y permitir que nuestro sistema identifique de qué campaña publicitaria proviene la solicitud de Pase VIP.
+              </p>
 
               <h2 className="font-headline text-xl font-bold text-white uppercase tracking-wider pt-4 border-t border-white/5">4. Consentimiento y Desactivación de Tecnologías</h2>
               <p>
-                Al navegar en este sitio web, usted acepta el uso de cookies y el Píxel de Meta. Si desea restringir o bloquear este seguimiento, puede configurarlo a través de los ajustes de privacidad de su navegador de internet, o bien gestionar sus preferencias de anuncios directamente en su perfil de Meta (Facebook/Instagram).
+                Al utilizar nuestro formulario de solicitud de Pase VIP y enviar sus datos, usted acepta el tratamiento de sus datos personales conforme a este Aviso de Privacidad. Si desea restringir o bloquear el seguimiento de cookies, puede configurarlo a través de los ajustes de privacidad de su navegador de internet, o bien gestionar sus preferencias de anuncios directamente en su perfil de Meta (Facebook/Instagram).
               </p>
 
               <h2 className="font-headline text-xl font-bold text-white uppercase tracking-wider pt-4 border-t border-white/5">5. Cambios al Aviso de Privacidad</h2>

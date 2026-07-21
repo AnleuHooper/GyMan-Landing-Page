@@ -73,6 +73,7 @@ export default function RootLayout({
 
         {/* Google Maps SDK */}
         <Script
+          id="google-maps"
           src={`https://maps.googleapis.com/maps/api/js?key=${process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY}`}
           strategy="afterInteractive"
         />

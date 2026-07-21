@@ -83,6 +83,20 @@ import { fetchActiveBranches } from './src/services/branchService.js';
     // 1. Inject promotion into templesData dynamic pricing
     for (const key in templesData) {
       const data = templesData[key];
+      
+      let promoPrice = "$249";
+      let promoType = "Mensualidad Mujeres";
+      let promoNote = "Mensualidad básica promocional de Julio para mujeres.";
+
+      if (key === 'gold') {
+        promoPrice = "$390";
+        promoNote = "Mensualidad básica promocional de Julio para mujeres en sucursal Gold.";
+      } else if (key === 'ecatepec') {
+        promoPrice = "$249";
+        promoType = "Promoción Hombres & Mujeres";
+        promoNote = "Promoción especial de Julio válida para hombres y mujeres.";
+      }
+
       let baseMembership = data.prices.find(p => p.type.toLowerCase().includes('estudiante') || p.tag?.toLowerCase().includes('scholar'));
       
       if (!baseMembership) {
@@ -107,23 +121,33 @@ import { fetchActiveBranches } from './src/services/branchService.js';
         }
       }
       
-      const benefits = baseMembership?.benefits ? [...baseMembership.benefits] : (data.services ? [...data.services] : ["Cardio", "Pesas", "Regaderas", "Coach"]);
+      const benefits = (key === 'ecatepec') ? undefined : (baseMembership?.benefits ? [...baseMembership.benefits] : (data.services ? [...data.services] : ["Cardio", "Pesas", "Regaderas", "Coach"]));
       
       const promoItem = {
-        type: "Mensualidad Mujeres",
-        price: "$249",
+        type: promoType,
+        price: promoPrice,
         tag: "Promo Julio",
-        note: "Mensualidad básica promocional de Julio para mujeres.",
+        note: promoNote,
         isHighlighted: true,
-        isWomenPromo: true,
-        benefits: benefits
+        isWomenPromo: true
       };
+      if (benefits) {
+        promoItem.benefits = benefits;
+      }
       
       data.prices.unshift(promoItem);
     }
 
     // 2. Inject neon pink badges into DOM temple cards
     document.querySelectorAll('[data-temple]').forEach(card => {
+      const templeKey = card.getAttribute('data-temple');
+      let badgeText = "Mujeres $249";
+      if (templeKey === 'gold') {
+        badgeText = "Mujeres $390";
+      } else if (templeKey === 'ecatepec') {
+        badgeText = "Hombres & Mujeres $249";
+      }
+
       const badge = document.createElement('div');
       badge.className = "absolute top-4 right-4 z-20 flex flex-col gap-1 items-end pointer-events-none";
       badge.innerHTML = `
@@ -132,7 +156,7 @@ import { fetchActiveBranches } from './src/services/branchService.js';
             <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-pink-400 opacity-75"></span>
             <span class="relative inline-flex rounded-full h-1.5 w-1.5 bg-pink-500"></span>
           </span>
-          Mujeres $249
+          ${badgeText}
         </span>
       `;
       card.appendChild(badge);
@@ -148,6 +172,11 @@ import { fetchActiveBranches } from './src/services/branchService.js';
           const key = card.getAttribute('data-temple');
           const data = templesData[key];
           if (!data) return;
+ 
+          // Meta Pixel: Habilidad 2 — ViewContent al explorar una sucursal
+          if (typeof window !== 'undefined' && typeof fbq !== 'undefined') {
+            fbq('track', 'ViewContent', { content_name: data.name });
+          }
  
           // ── GALLERY SYSTEM: trigger button + panel grid + lightbox ──
           const galleryImages = data.gallery_images ?? [];
@@ -312,6 +341,12 @@ import { fetchActiveBranches } from './src/services/branchService.js';
                <!-- Derecha: Dossier de Membresías -->
                <div class="lg:col-span-7">
                  <h4 class="text-[10px] font-black text-zinc-500 tracking-[.3em] uppercase mb-6">Dossier de Membresías</h4>
+                 ${data.benefitsNotice ? `
+                   <div class="mb-5 p-4 bg-pink-500/10 border border-pink-500/30 rounded-xl flex items-start gap-3 text-zinc-300 text-xs shadow-lg">
+                     <span class="material-symbols-outlined text-pink-400 text-lg flex-shrink-0 mt-0.5" style="font-variation-settings: 'FILL' 1;">info</span>
+                     <span class="font-medium leading-relaxed">${data.benefitsNotice}</span>
+                   </div>
+                 ` : ''}
                  <div class="grid grid-cols-2 gap-3 items-stretch">
                     ${data.prices.map(p => {
                       let borderClass = p.isHighlighted ? 'border-primary shadow-[0_0_15px_rgba(233,196,0,0.2)] col-span-2' : 'border-white/10';
@@ -357,6 +392,12 @@ import { fetchActiveBranches } from './src/services/branchService.js';
                                 </li>
                               `).join('')}
                             </ul>
+                            <button class="lead-cta-btn w-full mt-4 py-2.5 bg-primary/10 border border-primary/40 text-primary text-[11px] font-black uppercase tracking-[0.2em] rounded-lg hover:bg-primary/20 hover:border-primary transition-all duration-300"
+                              data-branch="${data.name}" 
+                              data-type="${p.type}" 
+                              data-price="${p.price}">
+                              Me interesa &rarr;
+                            </button>
                           </div>
                           ` : ''}
                         </div>
@@ -371,10 +412,6 @@ import { fetchActiveBranches } from './src/services/branchService.js';
           // ── Benefits toggle ──────────────────────────────────
           modalContent.querySelectorAll('.price-card').forEach(card => {
             card.addEventListener('click', () => {
-              // Meta Pixel: Track 'Lead' when the Promo Julio card is interacted with
-              if (card.dataset.promo === 'true' && typeof fbq !== 'undefined') {
-                fbq('track', 'Lead');
-              }
               
               const container = card.querySelector('.benefits-container');
               const icon = card.querySelector('.toggle-icon');
@@ -412,6 +449,32 @@ import { fetchActiveBranches } from './src/services/branchService.js';
             });
           });
  
+          // ── Lead CTA trigger button ───────────────────────────
+          modalContent.addEventListener('click', (e) => {
+            const ctaBtn = e.target.closest('.lead-cta-btn');
+            if (!ctaBtn) return;
+            e.stopPropagation(); // Evitar propagación para no colapsar la tarjeta
+            
+            // Cerrar modal actual de sucursal
+            const currentModal = document.getElementById('templeModal');
+            if(currentModal) {
+              currentModal.classList.remove('opacity-100');
+              currentModal.classList.add('opacity-0', 'invisible');
+              const scrollableContainer = currentModal.querySelector('.overflow-y-auto');
+              if (scrollableContainer) scrollableContainer.scrollTop = 0;
+              document.body.style.overflow = 'auto'; // Permitir scroll momentáneamente
+            }
+
+            // Disparar evento para abrir modal de leads
+            window.dispatchEvent(new CustomEvent('gyman:open-lead-modal', {
+              detail: {
+                branchName: ctaBtn.dataset.branch,
+                membershipType: ctaBtn.dataset.type,
+                membershipPrice: ctaBtn.dataset.price,
+              }
+            }));
+          });
+
           // ── Gallery trigger button ────────────────────────────
           modalContent.querySelectorAll('.gallery-trigger').forEach(btn => {
             // Pre-carga en hover para ganar tiempo de respuesta
@@ -469,6 +532,8 @@ import { fetchActiveBranches } from './src/services/branchService.js';
             });
           });
  
+          const scrollableContainer = modal.querySelector('.overflow-y-auto');
+          if (scrollableContainer) scrollableContainer.scrollTop = 0;
           document.body.style.overflow = 'hidden';
           modal.classList.remove('invisible', 'opacity-0');
           modal.querySelector('.modal-panel').style.transform = 'scale(1)';
@@ -485,7 +550,11 @@ import { fetchActiveBranches } from './src/services/branchService.js';
       document.body.style.overflow = '';
       modal.classList.add('opacity-0');
       modal.querySelector('.modal-panel').style.transform = 'scale(0.95)';
-      setTimeout(() => modal.classList.add('invisible'), 300);
+      setTimeout(() => {
+        modal.classList.add('invisible');
+        const scrollableContainer = modal.querySelector('.overflow-y-auto');
+        if (scrollableContainer) scrollableContainer.scrollTop = 0;
+      }, 300);
     }
  
     // ── LIGHTBOX (Photoshop-style) ──────────────────────────────

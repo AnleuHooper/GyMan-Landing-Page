@@ -17,6 +17,7 @@ export interface Temple {
   name: string;
   dir: string;
   hours: Hours;
+  benefitsNotice?: string;
   prices: Price[];
   services: string[];
   phone?: string;
@@ -275,12 +276,14 @@ export const templesData: Record<string, Temple> = {
     name: "ECATEPEC",
     dir: "Citlaltépetl Manzana 632 Lote 18, Ciudad Azteca, 55120 Ecatepec de Morelos, Méx.",
     hours: { week: "05:00 - 00:00", weekend: "09:00 - 21:00" },
+    benefitsNotice: "Al ser una sucursal de nueva apertura, próximamente añadiremos el desglose de los beneficios específicos de cada membresía.",
     prices: [
-      { type: "Anualidad", price: "$2,490", tag: "Elite", benefits: ["Cardio Area", "Certified Coaches", "Showers & Lockers", "Weight Zone", "Total Access to all Branches"] },
-      { type: "Trimestre", price: "$650", tag: "3 Months", benefits: ["Cardio Area", "Certified Coaches", "Showers & Lockers", "Weight Zone"] },
-      { type: "Pareja", price: "$450", tag: "Duo", benefits: ["Cardio Area", "Certified Coaches", "Showers & Lockers", "Weight Zone"] }
+      { type: "Mensualidad VIP", price: "$550", tag: "Full" },
+      { type: "Anualidad", price: "$2,490", tag: "Elite" },
+      { type: "Trimestre", price: "$650", tag: "3 Months" },
+      { type: "Pareja", price: "$450", tag: "Duo" }
     ],
-    services: ["Showers & Lockers", "Certified Coach", "Cardio Zone", "Weight Training Area", "Free Coffee"],
+    services: ["Regaderas & Lockers", "Coach Certificado", "Zona de Cardio", "Área de Pesas", "Café Gratuito"],
     phone: "55 9688 5412",
     latitude: 19.533625,
     longitude: -99.026718,
