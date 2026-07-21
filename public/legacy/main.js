@@ -304,62 +304,100 @@ import { fetchActiveBranches } from './src/services/branchService.js';
              <!-- Galería Interior (solo si hay fotos) -->
              ${galleryHTML}
              
-             <!-- Módulos de Sucursal (4 Módulos Rediseñados) -->
-             <div class="space-y-4">
+             <div class="grid lg:grid-cols-12 gap-8 lg:gap-12">
                
-               <!-- 1. MÓDULO: HORARIOS -->
-               <div class="module-card bg-zinc-900/90 border border-white/10 rounded-2xl overflow-hidden shadow-xl transition-all">
-                 <button class="module-toggle w-full p-4 sm:p-5 flex items-center justify-between text-left group hover:bg-white/5 transition-colors" data-target="module-hours">
-                   <div class="flex items-center gap-3.5 min-w-0">
-                     <div class="w-10 h-10 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center flex-shrink-0 text-primary group-hover:scale-105 transition-transform">
-                       <span class="material-symbols-outlined text-xl">schedule</span>
-                     </div>
-                     <div class="min-w-0">
-                       <h4 class="font-headline font-black text-white text-base sm:text-lg uppercase tracking-wide group-hover:text-primary transition-colors">1. Horarios</h4>
-                       <p class="text-zinc-400 text-xs mt-0.5 tracking-wide line-clamp-1 font-body">Consulta los horarios de operación y atención de GYMAN ${data.name}</p>
-                     </div>
+               <!-- Izquierda: Horarios & Servicios -->
+               <div class="lg:col-span-5 space-y-12">
+                 
+                 <!-- Vanguard Hours -->
+                 <div class="bg-primary/5 border-l-4 border-primary p-6 rounded-r-xl">
+                   <h4 class="text-[10px] font-black text-primary tracking-[.3em] uppercase mb-6 flex items-center gap-2">
+                      <span class="material-symbols-outlined text-sm">schedule</span> Sistema Horario 24H
+                   </h4>
+                   <div class="flex justify-between items-end mb-4">
+                     <span class="text-zinc-500 text-[10px] font-bold uppercase">Lunes - Viernes</span>
+                     <span class="text-xl sm:text-3xl font-headline font-black text-white leading-none">${data.hours.week}</span>
                    </div>
-                   <span class="material-symbols-outlined text-zinc-500 group-hover:text-primary transition-transform duration-300 toggle-chevron text-2xl">expand_more</span>
-                 </button>
-                 <div id="module-hours" class="module-content hidden border-t border-white/5 p-5 bg-black/40">
-                   <div class="bg-primary/5 border-l-4 border-primary p-5 rounded-r-xl space-y-4">
-                     <div class="flex justify-between items-end">
-                       <span class="text-zinc-400 text-xs font-bold uppercase">Lunes - Viernes</span>
-                       <span class="text-xl sm:text-3xl font-headline font-black text-white leading-none">${data.hours.week}</span>
-                     </div>
-                     <div class="flex justify-between items-end border-t border-white/5 pt-4">
-                       <span class="text-zinc-400 text-xs font-bold uppercase">Fin de Semana</span>
-                       <span class="text-xl sm:text-3xl font-headline font-black text-zinc-300 leading-none">${data.hours.weekend}</span>
-                     </div>
+                   <div class="flex justify-between items-end border-t border-white/5 pt-4">
+                     <span class="text-zinc-500 text-[10px] font-bold uppercase">Fin de Semana</span>
+                     <span class="text-xl sm:text-3xl font-headline font-black text-zinc-400 leading-none">${data.hours.weekend}</span>
                    </div>
                  </div>
-               </div>
-
-               <!-- 2. MÓDULO: AMENIDADES -->
-               <div class="module-card bg-zinc-900/90 border border-white/10 rounded-2xl overflow-hidden shadow-xl transition-all">
-                 <button class="module-toggle w-full p-4 sm:p-5 flex items-center justify-between text-left group hover:bg-white/5 transition-colors" data-target="module-amenities">
-                   <div class="flex items-center gap-3.5 min-w-0">
-                     <div class="w-10 h-10 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center flex-shrink-0 text-primary group-hover:scale-105 transition-transform">
-                       <span class="material-symbols-outlined text-xl">fitness_center</span>
-                     </div>
-                     <div class="min-w-0">
-                       <h4 class="font-headline font-black text-white text-base sm:text-lg uppercase tracking-wide group-hover:text-primary transition-colors">2. Amenidades</h4>
-                       <p class="text-zinc-400 text-xs mt-0.5 tracking-wide line-clamp-1 font-body">Conoce las amenidades que ofrece la sucursal GYMAN ${data.name}</p>
-                     </div>
-                   </div>
-                   <span class="material-symbols-outlined text-zinc-500 group-hover:text-primary transition-transform duration-300 toggle-chevron text-2xl">expand_more</span>
-                 </button>
-                 <div id="module-amenities" class="module-content hidden border-t border-white/5 p-5 bg-black/40">
-                   <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+ 
+                 <!-- Vanguard Services -->
+                 <div>
+                   <h4 class="text-[10px] font-black text-zinc-500 tracking-[.3em] uppercase mb-6">Amenidades & Activos Técnicos</h4>
+                   <div class="grid grid-cols-1 gap-3">
                      ${data.services.map(s => `
-                       <div class="flex items-center gap-3.5 bg-white/5 p-3.5 rounded-xl border border-white/5 group hover:border-primary/30 transition-all">
+                       <div class="flex items-center gap-4 bg-white/5 p-4 rounded-lg border border-white/5 group hover:border-primary/30 transition-all">
                          <div class="w-2 h-2 rounded-full bg-primary shadow-[0_0_8px_rgba(233,196,0,0.8)]"></div>
-                         <span class="text-xs sm:text-sm font-bold text-zinc-200 uppercase tracking-wide group-hover:text-white">${s}</span>
+                         <span class="text-sm font-bold text-zinc-300 uppercase tracking-wide group-hover:text-white">${s}</span>
                        </div>
                      `).join('')}
                    </div>
                  </div>
                </div>
+ 
+               <!-- Derecha: Dossier de Membresías -->
+               <div class="lg:col-span-7">
+                 <h4 class="text-[10px] font-black text-zinc-500 tracking-[.3em] uppercase mb-6">Dossier de Membresías</h4>
+                 ${data.benefitsNotice ? `
+                   <div class="mb-5 p-4 bg-pink-500/10 border border-pink-500/30 rounded-xl flex items-start gap-3 text-zinc-300 text-xs shadow-lg">
+                     <span class="material-symbols-outlined text-pink-400 text-lg flex-shrink-0 mt-0.5" style="font-variation-settings: 'FILL' 1;">info</span>
+                     <span class="font-medium leading-relaxed">${data.benefitsNotice}</span>
+                   </div>
+                 ` : ''}
+                 <div class="grid grid-cols-2 gap-3 items-stretch">
+                    ${data.prices.map(p => {
+                      let borderClass = p.isHighlighted ? 'border-primary shadow-[0_0_15px_rgba(233,196,0,0.2)] col-span-2' : 'border-white/10';
+                      let hoverClass = 'hover:border-primary hover:shadow-[0_0_20px_rgba(233,196,0,0.1)]';
+                      let iconColor = 'text-primary';
+                      let tagColor = p.isHighlighted ? 'text-primary' : 'text-zinc-600';
+                      let hoverTextClass = 'group-hover:text-primary';
+                      let priceColor = p.isHighlighted ? 'text-primary' : 'text-white';
+                      let bulletColor = 'bg-primary';
+                      
+                      if (p.isWomenPromo) {
+                        borderClass = 'pink-neon-border col-span-2';
+                        hoverClass = 'hover:border-pink-400 hover:shadow-[0_0_20px_rgba(255,46,147,0.3)]';
+                        iconColor = 'text-pink-400';
+                        tagColor = 'text-pink-400';
+                        hoverTextClass = 'group-hover:text-pink-400';
+                        priceColor = 'text-pink-400 font-black pink-neon-glow';
+                        bulletColor = 'bg-pink-500 shadow-[0_0_6px_rgba(255,46,147,0.8)]';
+                      }
+
+                      return `
+                        <div class="price-card relative flex flex-col justify-center bg-zinc-900 border ${borderClass} rounded-xl p-3 sm:p-5 ${hoverClass} transition-all ${p.benefits ? 'cursor-pointer' : ''} group overflow-hidden" data-promo="${p.isWomenPromo ? 'true' : 'false'}">
+                          ${p.benefits ? `
+                          <div class="absolute top-0 right-0 p-2 opacity-30 group-hover:opacity-100 transition-all">
+                             <span class="material-symbols-outlined ${iconColor} toggle-icon" style="font-size:18px">expand_more</span>
+                          </div>` : ''}
+                          <p class="text-[9px] font-black ${tagColor} uppercase mb-1">${p.tag || 'Standard'}</p>
+                          <h5 class="text-sm sm:text-lg font-headline font-black text-white uppercase ${hoverTextClass} transition-colors leading-tight">${p.type}</h5>
+                          ${p.note ? `<p class="text-zinc-400 font-medium normal-case mt-1 font-body text-[10px] sm:text-xs tracking-wide leading-tight">${p.note}</p>` : ''}
+                          <div class="mt-2 flex items-baseline gap-1">
+                            <span class="text-lg sm:text-2xl font-headline font-black ${priceColor}">${p.price}</span>
+                            <span class="text-zinc-500 text-[9px] font-bold">MXN</span>
+                          </div>
+                          ${p.benefits && p.benefits.length > 0 ? `
+                          <p class="text-[8px] font-bold text-zinc-500 uppercase tracking-widest mt-2 ${hoverTextClass} transition-colors toggle-legend">Ver beneficios</p>
+                          <div class="benefits-container hidden mt-2 border-t border-white/10 pt-3">
+                            <p class="text-[9px] font-black text-white uppercase tracking-widest mb-2">Beneficios Incluidos:</p>
+                            <ul class="grid grid-cols-1 gap-1.5">
+                              ${p.benefits.map(b => `
+                                <li class="flex items-center gap-2 text-xs text-zinc-400 font-medium">
+                                  <div class="w-1.5 h-1.5 rounded-full ${bulletColor} flex-shrink-0"></div>
+                                  ${b}
+                                </li>
+                              `).join('')}
+                            </ul>
+                            <button class="lead-cta-btn w-full mt-4 py-2.5 bg-primary/10 border border-primary/40 text-primary text-[11px] font-black uppercase tracking-[0.2em] rounded-lg hover:bg-primary/20 hover:border-primary transition-all duration-300"
+                              data-branch="${data.name}" 
+                              data-type="${p.type}" 
+                              data-price="${p.price}">
+                              Me interesa &rarr;
+                            </button>
                           </div>
                           ` : ''}
                         </div>
@@ -411,51 +449,6 @@ import { fetchActiveBranches } from './src/services/branchService.js';
             });
           });
  
-          // ── Accordion Module Toggles (Horarios, Amenidades, Membresías) ──
-          modalContent.querySelectorAll('.module-toggle').forEach(btn => {
-            btn.addEventListener('click', (e) => {
-              e.preventDefault();
-              const targetId = btn.dataset.target;
-              const content = modalContent.querySelector('#' + targetId);
-              const chevron = btn.querySelector('.toggle-chevron');
-              if (!content) return;
-
-              const isHidden = content.classList.contains('hidden');
-              if (isHidden) {
-                content.classList.remove('hidden');
-                if (chevron) chevron.textContent = 'expand_less';
-              } else {
-                content.classList.add('hidden');
-                if (chevron) chevron.textContent = 'expand_more';
-              }
-            });
-          });
-
-          // ── Módulo 4: VIP Pass Trigger ──
-          modalContent.querySelectorAll('.vip-pass-module-btn').forEach(btn => {
-            btn.addEventListener('click', (e) => {
-              e.preventDefault();
-              e.stopPropagation();
-
-              const currentModal = document.getElementById('templeModal');
-              if (currentModal) {
-                currentModal.classList.remove('opacity-100');
-                currentModal.classList.add('opacity-0', 'invisible');
-                const scrollableContainer = currentModal.querySelector('.overflow-y-auto');
-                if (scrollableContainer) scrollableContainer.scrollTop = 0;
-                document.body.style.overflow = 'auto';
-              }
-
-              window.dispatchEvent(new CustomEvent('gyman:open-lead-modal', {
-                detail: {
-                  branchName: btn.dataset.branch,
-                  membershipType: 'Pase VIP Acceso Gratis',
-                  membershipPrice: '$0',
-                }
-              }));
-            });
-          });
-
           // ── Lead CTA trigger button ───────────────────────────
           modalContent.addEventListener('click', (e) => {
             const ctaBtn = e.target.closest('.lead-cta-btn');
