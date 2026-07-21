@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Script from "next/script";
+import { templesData } from "@/lib/templesData";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -15,6 +16,11 @@ export default function RootLayout({
   return (
     <html className="dark" lang="es">
       <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `window.templesData = ${JSON.stringify(templesData)};`,
+          }}
+        />
         {/* Fonts */}
         <link
           href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;900&family=Manrope:wght@200;300;400;500;600;700;800&display=swap"
