@@ -92,7 +92,7 @@ export default function Home() {
       </div>
 
       {/* Legacy main.js — runs all interactivity */}
-      <Script id="legacy-main-js" src="/legacy/main.js" strategy="afterInteractive" type="module" />
+      <Script id="legacy-main-js" src={`/legacy/main.js?v=${Date.now()}`} strategy="afterInteractive" type="module" />
     </>
   );
 }

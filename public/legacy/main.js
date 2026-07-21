@@ -409,6 +409,22 @@ import { fetchActiveBranches } from './src/services/branchService.js';
              </div>
 
              <div class="sm:hidden flex flex-col gap-3 mt-2">
+                <button class="mobile-vip-cta w-full flex items-center gap-3 p-4 rounded-xl text-left relative overflow-hidden"
+                  style="background:linear-gradient(135deg,#E9C400 0%,#C9A600 55%,#A07800 100%);box-shadow:0 0 28px rgba(233,196,0,0.4),0 4px 16px rgba(0,0,0,0.45)"
+                  data-branch="${data.name}"
+                  data-type="${data.prices[0] ? data.prices[0].type : 'Membresía'}"
+                  data-price="${data.prices[0] ? data.prices[0].price : '$299'}">
+                  <span class="pointer-events-none absolute inset-0" style="background:linear-gradient(105deg,transparent 35%,rgba(255,255,255,0.25) 50%,transparent 65%)"></span>
+                  <div class="w-11 h-11 rounded-xl flex items-center justify-center flex-shrink-0" style="background:rgba(0,0,0,0.18);border:1px solid rgba(0,0,0,0.12)">
+                    <span class="material-symbols-outlined text-black" style="font-size:24px;font-variation-settings:'FILL' 1">workspace_premium</span>
+                  </div>
+                  <div class="flex-1 min-w-0">
+                    <p class="text-[9px] font-black uppercase tracking-[0.2em] mb-0.5" style="color:rgba(0,0,0,0.55)">Acceso Exclusivo &bull; Sin Compromiso</p>
+                    <p class="text-[15px] font-black text-black uppercase tracking-tight leading-tight">Obtener Pase VIP Gratis</p>
+                    <p class="text-[11px] font-semibold mt-0.5" style="color:rgba(0,0,0,0.65)">Congela tu precio especial hoy</p>
+                  </div>
+                  <span class="material-symbols-outlined text-black flex-shrink-0" style="font-size:20px;opacity:0.6">arrow_forward</span>
+                </button>
                 <div class="mobile-accordion-item rounded-xl overflow-hidden border border-white/[0.07]" style="background:#1a1a1a">
                   <button class="mobile-accordion-trigger w-full flex items-center gap-3 p-4 text-left">
                     <div class="w-9 h-9 rounded-lg flex items-center justify-center flex-shrink-0" style="background:rgba(233,196,0,0.1);border:1px solid rgba(233,196,0,0.2)">
@@ -467,22 +483,7 @@ import { fetchActiveBranches } from './src/services/branchService.js';
                     </div>
                   </div>
                 </div>
-                <button class="mobile-vip-cta w-full flex items-center gap-3 p-4 rounded-xl text-left relative overflow-hidden"
-                  style="background:linear-gradient(135deg,#E9C400 0%,#C9A600 55%,#A07800 100%);box-shadow:0 0 28px rgba(233,196,0,0.4),0 4px 16px rgba(0,0,0,0.45)"
-                  data-branch="${data.name}"
-                  data-type="${data.prices[0] ? data.prices[0].type : 'Membresía'}"
-                  data-price="${data.prices[0] ? data.prices[0].price : '$299'}">
-                  <span class="pointer-events-none absolute inset-0" style="background:linear-gradient(105deg,transparent 35%,rgba(255,255,255,0.25) 50%,transparent 65%)"></span>
-                  <div class="w-11 h-11 rounded-xl flex items-center justify-center flex-shrink-0" style="background:rgba(0,0,0,0.18);border:1px solid rgba(0,0,0,0.12)">
-                    <span class="material-symbols-outlined text-black" style="font-size:24px;font-variation-settings:'FILL' 1">workspace_premium</span>
-                  </div>
-                  <div class="flex-1 min-w-0">
-                    <p class="text-[9px] font-black uppercase tracking-[0.2em] mb-0.5" style="color:rgba(0,0,0,0.55)">Acceso Exclusivo &bull; Sin Compromiso</p>
-                    <p class="text-[15px] font-black text-black uppercase tracking-tight leading-tight">Obtener Pase VIP Gratis</p>
-                    <p class="text-[11px] font-semibold mt-0.5" style="color:rgba(0,0,0,0.65)">Congela tu precio especial hoy</p>
-                  </div>
-                  <span class="material-symbols-outlined text-black flex-shrink-0" style="font-size:20px;opacity:0.6">arrow_forward</span>
-                </button>
+                
               </div>
             `;
           

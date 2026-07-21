@@ -16,6 +16,9 @@ export default function RootLayout({
   return (
     <html className="dark" lang="es">
       <head>
+        <meta httpEquiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+        <meta httpEquiv="Pragma" content="no-cache" />
+        <meta httpEquiv="Expires" content="0" />
         <script
           dangerouslySetInnerHTML={{
             __html: `window.templesData = ${JSON.stringify(templesData)};`,
