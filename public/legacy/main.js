@@ -304,7 +304,7 @@ import { fetchActiveBranches } from './src/services/branchService.js';
              <!-- Galería Interior (solo si hay fotos) -->
              ${galleryHTML}
              
-             <div class="grid lg:grid-cols-12 gap-8 lg:gap-12">
+             <div class="hidden sm:grid lg:grid-cols-12 gap-8 lg:gap-12">
                
                <!-- Izquierda: Horarios & Servicios -->
                <div class="lg:col-span-5 space-y-12">
@@ -407,7 +407,84 @@ import { fetchActiveBranches } from './src/services/branchService.js';
                </div>
  
              </div>
-           `;
+
+             <div class="sm:hidden flex flex-col gap-3 mt-2">
+                <div class="mobile-accordion-item rounded-xl overflow-hidden border border-white/[0.07]" style="background:#1a1a1a">
+                  <button class="mobile-accordion-trigger w-full flex items-center gap-3 p-4 text-left">
+                    <div class="w-9 h-9 rounded-lg flex items-center justify-center flex-shrink-0" style="background:rgba(233,196,0,0.1);border:1px solid rgba(233,196,0,0.2)">
+                      <span class="material-symbols-outlined text-primary" style="font-size:18px;font-variation-settings:'FILL' 1">schedule</span>
+                    </div>
+                    <div class="flex-1 min-w-0">
+                      <p class="text-[13px] font-black text-white uppercase tracking-wide leading-tight">Horarios</p>
+                      <p class="text-[11px] text-zinc-500 font-medium mt-0.5">Consulta los horarios de apertura y cierre</p>
+                    </div>
+                    <span class="material-symbols-outlined text-zinc-600 accordion-chevron flex-shrink-0" style="font-size:20px">chevron_right</span>
+                  </button>
+                  <div class="mobile-accordion-body hidden px-4 pb-4">
+                    <div class="border-l-4 border-primary p-4 rounded-r-xl" style="background:rgba(233,196,0,0.05)">
+                      <div class="flex justify-between items-center mb-3">
+                        <span class="text-zinc-500 text-[10px] font-bold uppercase tracking-wider">Lunes - Viernes</span>
+                        <span class="text-xl font-headline font-black text-white">${data.hours.week}</span>
+                      </div>
+                      <div class="flex justify-between items-center border-t border-white/5 pt-3">
+                        <span class="text-zinc-500 text-[10px] font-bold uppercase tracking-wider">Fin de Semana</span>
+                        <span class="text-xl font-headline font-black text-zinc-400">${data.hours.weekend}</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="mobile-accordion-item rounded-xl overflow-hidden border border-white/[0.07]" style="background:#1a1a1a">
+                  <button class="mobile-accordion-trigger w-full flex items-center gap-3 p-4 text-left">
+                    <div class="w-9 h-9 rounded-lg flex items-center justify-center flex-shrink-0" style="background:rgba(233,196,0,0.1);border:1px solid rgba(233,196,0,0.2)">
+                      <span class="material-symbols-outlined text-primary" style="font-size:18px;font-variation-settings:'FILL' 1">fitness_center</span>
+                    </div>
+                    <div class="flex-1 min-w-0">
+                      <p class="text-[13px] font-black text-white uppercase tracking-wide leading-tight">Amenidades</p>
+                      <p class="text-[11px] text-zinc-500 font-medium mt-0.5">Conoce el equipamiento de ${data.name}</p>
+                    </div>
+                    <span class="material-symbols-outlined text-zinc-600 accordion-chevron flex-shrink-0" style="font-size:20px">chevron_right</span>
+                  </button>
+                  <div class="mobile-accordion-body hidden px-4 pb-4">
+                    <div class="flex flex-col gap-2">
+                      ${data.services.map(s => '<div class="flex items-center gap-3 px-4 py-3 rounded-lg border border-white/5" style="background:rgba(255,255,255,0.04)"><div class="w-2 h-2 rounded-full bg-primary shadow-[0_0_8px_rgba(233,196,0,0.8)] flex-shrink-0"></div><span class="text-[12px] font-bold text-zinc-300 uppercase tracking-wide">' + s + '</span></div>').join('')}
+                    </div>
+                  </div>
+                </div>
+                <div class="mobile-accordion-item rounded-xl overflow-hidden border border-white/[0.07]" style="background:#1a1a1a">
+                  <button class="mobile-accordion-trigger w-full flex items-center gap-3 p-4 text-left">
+                    <div class="w-9 h-9 rounded-lg flex items-center justify-center flex-shrink-0" style="background:rgba(233,196,0,0.1);border:1px solid rgba(233,196,0,0.2)">
+                      <span class="material-symbols-outlined text-primary" style="font-size:18px;font-variation-settings:'FILL' 1">credit_card</span>
+                    </div>
+                    <div class="flex-1 min-w-0">
+                      <p class="text-[13px] font-black text-white uppercase tracking-wide leading-tight">Membresías</p>
+                      <p class="text-[11px] text-zinc-500 font-medium mt-0.5">Planes, precios y beneficios incluidos</p>
+                    </div>
+                    <span class="material-symbols-outlined text-zinc-600 accordion-chevron flex-shrink-0" style="font-size:20px">chevron_right</span>
+                  </button>
+                  <div class="mobile-accordion-body hidden px-4 pb-4">
+                    <div class="flex flex-col gap-3">
+                      ${data.prices.map(p => { const isWP=p.isWomenPromo; const isHL=p.isHighlighted&&!isWP; const bs=isWP?'1px solid rgba(236,72,153,0.5)':(isHL?'1px solid rgba(233,196,0,0.5)':'1px solid rgba(255,255,255,0.08)'); const tc=isWP?'text-pink-400':(isHL?'text-primary':'text-zinc-600'); const pc=isWP?'text-pink-400 pink-neon-glow':(isHL?'text-primary':'text-white'); const bc=isWP?'bg-pink-500 shadow-[0_0_6px_rgba(255,46,147,0.8)]':'bg-primary'; const bg=isWP?'rgba(236,72,153,0.1)':'rgba(233,196,0,0.1)'; const cb=isWP?'rgba(236,72,153,0.4)':'rgba(233,196,0,0.4)'; const ctc=isWP?'text-pink-400':'text-primary'; return '<div class="rounded-xl p-4" style="background:#232323;border:'+bs+'"><div class="flex items-start justify-between gap-2 mb-1"><div class="flex-1 min-w-0"><p class="text-[9px] font-black '+tc+' uppercase tracking-wider mb-0.5">'+(p.tag||'Standard')+'</p><h5 class="text-sm font-headline font-black text-white uppercase leading-tight">'+p.type+'</h5></div><div class="text-right flex-shrink-0"><span class="text-xl font-headline font-black '+pc+'">'+p.price+'</span><span class="text-zinc-500 text-[9px] font-bold block">MXN</span></div></div>'+(p.note?'<p class="text-zinc-400 text-[10px] font-medium leading-tight mt-1 mb-2">'+p.note+'</p>':'')+(p.benefits&&p.benefits.length>0?'<ul class="flex flex-col gap-1.5 mt-2 mb-3">'+p.benefits.slice(0,4).map(b=>'<li class="flex items-center gap-2 text-[11px] text-zinc-400 font-medium"><div class="w-1.5 h-1.5 rounded-full '+bc+' flex-shrink-0"></div>'+b+'</li>').join('')+(p.benefits.length>4?'<li class="text-[10px] text-zinc-600 font-medium pl-3.5">+'+(p.benefits.length-4)+' beneficios más...</li>':'')+'</ul>':'')+'<button class="lead-cta-btn w-full py-2.5 text-[11px] font-black uppercase tracking-[0.2em] rounded-lg transition-all duration-300 '+ctc+'" style="background:'+bg+';border:1px solid '+cb+'" data-branch="'+data.name+'" data-type="'+p.type+'" data-price="'+p.price+'">Me interesa &rarr;</button></div>'; }).join('')}
+                    </div>
+                  </div>
+                </div>
+                <button class="mobile-vip-cta w-full flex items-center gap-3 p-4 rounded-xl text-left relative overflow-hidden"
+                  style="background:linear-gradient(135deg,#E9C400 0%,#C9A600 55%,#A07800 100%);box-shadow:0 0 28px rgba(233,196,0,0.4),0 4px 16px rgba(0,0,0,0.45)"
+                  data-branch="${data.name}"
+                  data-type="${data.prices[0] ? data.prices[0].type : 'Membresía'}"
+                  data-price="${data.prices[0] ? data.prices[0].price : '$299'}">
+                  <span class="pointer-events-none absolute inset-0" style="background:linear-gradient(105deg,transparent 35%,rgba(255,255,255,0.25) 50%,transparent 65%)"></span>
+                  <div class="w-11 h-11 rounded-xl flex items-center justify-center flex-shrink-0" style="background:rgba(0,0,0,0.18);border:1px solid rgba(0,0,0,0.12)">
+                    <span class="material-symbols-outlined text-black" style="font-size:24px;font-variation-settings:'FILL' 1">workspace_premium</span>
+                  </div>
+                  <div class="flex-1 min-w-0">
+                    <p class="text-[9px] font-black uppercase tracking-[0.2em] mb-0.5" style="color:rgba(0,0,0,0.55)">Acceso Exclusivo &bull; Sin Compromiso</p>
+                    <p class="text-[15px] font-black text-black uppercase tracking-tight leading-tight">Obtener Pase VIP Gratis</p>
+                    <p class="text-[11px] font-semibold mt-0.5" style="color:rgba(0,0,0,0.65)">Congela tu precio especial hoy</p>
+                  </div>
+                  <span class="material-symbols-outlined text-black flex-shrink-0" style="font-size:20px;opacity:0.6">arrow_forward</span>
+                </button>
+              </div>
+            `;
           
           // ── Benefits toggle ──────────────────────────────────
           modalContent.querySelectorAll('.price-card').forEach(card => {
@@ -449,6 +526,62 @@ import { fetchActiveBranches } from './src/services/branchService.js';
             });
           });
  
+          // ── Mobile accordion toggles ─────────────────────────
+          modalContent.querySelectorAll('.mobile-accordion-trigger').forEach(trigger => {
+            trigger.addEventListener('click', () => {
+              const item = trigger.closest('.mobile-accordion-item');
+              const body = item ? item.querySelector('.mobile-accordion-body') : null;
+              const chevron = trigger.querySelector('.accordion-chevron');
+              if (!body) return;
+              const isOpen = !body.classList.contains('hidden');
+              // Close all other accordions
+              modalContent.querySelectorAll('.mobile-accordion-item').forEach(other => {
+                const ob = other.querySelector('.mobile-accordion-body');
+                const oc = other.querySelector('.accordion-chevron');
+                if (ob && other !== item) {
+                  ob.classList.add('hidden');
+                  if (oc) oc.textContent = 'chevron_right';
+                  other.style.borderColor = '';
+                }
+              });
+              if (isOpen) {
+                body.classList.add('hidden');
+                if (chevron) chevron.textContent = 'chevron_right';
+                item.style.borderColor = '';
+              } else {
+                body.classList.remove('hidden');
+                if (chevron) chevron.textContent = 'expand_more';
+                item.style.borderColor = 'rgba(233,196,0,0.45)';
+                setTimeout(() => {
+                  const scrollable = modal.querySelector('.overflow-y-auto');
+                  if (scrollable) {
+                    const rect = item.getBoundingClientRect();
+                    const sr = scrollable.getBoundingClientRect();
+                    if (rect.bottom > sr.bottom - 20) scrollable.scrollBy({ top: rect.bottom - sr.bottom + 40, behavior: 'smooth' });
+                  }
+                }, 60);
+              }
+            });
+          });
+
+          // ── Mobile VIP CTA ───────────────────────────────────
+          const mobileVipBtn = modalContent.querySelector('.mobile-vip-cta');
+          if (mobileVipBtn) {
+            mobileVipBtn.addEventListener('click', () => {
+              const cm = document.getElementById('templeModal');
+              if (cm) {
+                cm.classList.remove('opacity-100');
+                cm.classList.add('opacity-0', 'invisible');
+                const sc = cm.querySelector('.overflow-y-auto');
+                if (sc) sc.scrollTop = 0;
+                document.body.style.overflow = 'auto';
+              }
+              window.dispatchEvent(new CustomEvent('gyman:open-lead-modal', {
+                detail: { branchName: mobileVipBtn.dataset.branch, membershipType: mobileVipBtn.dataset.type, membershipPrice: mobileVipBtn.dataset.price }
+              }));
+            });
+          }
+
           // ── Lead CTA trigger button ───────────────────────────
           modalContent.addEventListener('click', (e) => {
             const ctaBtn = e.target.closest('.lead-cta-btn');
