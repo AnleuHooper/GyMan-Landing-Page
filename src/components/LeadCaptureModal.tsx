@@ -110,7 +110,7 @@ export default function LeadCaptureModal() {
     };
 
     try {
-      const endpoint = process.env.NEXT_PUBLIC_LEAD_API_URL || "/api/lead";
+      const endpoint = "/api/lead";
       const response = await fetch(endpoint, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
