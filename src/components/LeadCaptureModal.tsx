@@ -105,12 +105,15 @@ export default function LeadCaptureModal() {
       name: name.trim(),
       whatsapp: formattedWhatsapp,
       privacy_consent: privacyConsent,
-      attribution: getAttribution(),
-      membership_interest: interest
+      membership_branch: interest?.branch || "Desconocida",
+      membership_type: interest?.type || "Desconocida",
+      membership_price: interest?.price || "0",
+      fbclid: getAttribution()?.fbclid || null,
+      landing_url: getAttribution()?.landing_url || "Directo"
     };
 
     try {
-      const endpoint = "/api/lead";
+      const endpoint = process.env.NEXT_PUBLIC_LEAD_API_URL || "https://lulrfbudxkswrlmmkyqq.supabase.co/functions/v1/lead-capture";
       const response = await fetch(endpoint, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
