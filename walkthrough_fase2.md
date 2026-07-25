@@ -155,3 +155,26 @@ Route (app)
 
 > [!NOTE]
 > El proyecto compila sin ningún error de TypeScript o sintaxis en los módulos de Next.js / React. El endpoint `/api/lead` se genera correctamente como ruta dinámica `ƒ`.
+
+---
+
+## 5. Rediseño Móvil del Modal de Sucursales y Despliegue (Hostinger)
+
+### Rediseño Móvil (Accordion UI & Orden Prioritario)
+Se transformó la vista del modal de sucursales en dispositivos móviles para maximizar la tasa de conversión:
+* **Orden de Módulos Móviles (De arriba hacia abajo)**:
+  1. **Obtener Pase VIP Gratis** (Botón dorado con acceso directo a captura de leads sin necesidad de desplegar el acordeón).
+  2. **Horarios**
+  3. **Amenidades**
+  4. **Membresías**
+* La vista de escritorio se conservó 100% intacta (`sm:hidden` para mobile y `hidden sm:grid` para desktop).
+
+### Estrategia Anti-Caché (Cache Busting)
+Para corregir el problema donde los celulares y navegadores móviles continuaban mostrando la versión antigua almacenada en caché local:
+1. **Meta Tags Anti-Caché**: Se insertaron cabeceras HTTP de inhabilitación de caché (`Cache-Control: no-cache, no-store, must-revalidate`, `Pragma: no-cache`, `Expires: 0`) dentro del `<head>` en `src/app/layout.tsx`.
+2. **Cache Busting Dinámico para Scripts**: Se añadió un query param dinámico de timestamp (`/legacy/main.js?v=TIMESTAMP`) en `src/app/page.tsx` para obligar al navegador a descargar la versión de JavaScript más reciente en cada carga.
+3. **Reglas de Servidor (.htaccess)**: Se generó el archivo `public/.htaccess` con instrucciones para el servidor LiteSpeed/Apache de Hostinger para que entregue todos los HTML/JS con cabeceras `no-cache, no-store`.
+
+### Despliegue en Producción
+* Se recompiló la aplicación estática de Next.js (`npm run build`).
+* Se empaquetaron los activos (`out/`) y se desplegó exitosamente a **Hostinger** (`gyman.com.mx`).
