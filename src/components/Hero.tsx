@@ -1,4 +1,31 @@
+"use client";
+import { useEffect, useState } from 'react';
+import { supabase } from '../lib/supabaseClient';
+
 export default function Hero() {
+  const [promoTitle, setPromoTitle] = useState("");
+  const [promoPrice, setPromoPrice] = useState<number | null>(null);
+
+  useEffect(() => {
+    async function loadPromo() {
+      const { data, error } = await supabase
+        .from('branch_memberships')
+        .select('name, price')
+        .ilike('name', '%Promoción%')
+        .eq('is_active', true)
+        .order('price', { ascending: true })
+        .limit(1);
+
+      if (data && data.length > 0) {
+        setPromoTitle(data[0].name);
+        setPromoPrice(data[0].price);
+      } else {
+        setPromoTitle("");
+        setPromoPrice(null);
+      }
+    }
+    loadPromo();
+  }, []);
   return (
     <section className="relative min-h-screen pt-24 pb-12 w-full flex items-center justify-center overflow-hidden bg-background">
       <div className="absolute inset-0 z-0">
@@ -28,36 +55,38 @@ export default function Hero() {
           </p>
         </div>
 
-        {/* Contenido de Promoción de Julio */}
-        <div className="promo-hero-content mb-10">
-          <div className="mx-auto max-w-md md:max-w-2xl p-[1px] rounded-2xl bg-gradient-to-r from-pink-500 via-purple-600 to-pink-500 shadow-[0_0_40px_rgba(255,46,147,0.35)] border border-pink-500/20 hover:scale-[1.01] transition-transform duration-500">
-            <div className="bg-background/95 backdrop-blur-xl px-8 py-8 rounded-2xl text-center relative overflow-hidden">
-              <div className="absolute -right-16 -top-16 w-44 h-44 bg-pink-500/20 rounded-full blur-3xl pointer-events-none"></div>
-              <div className="absolute -left-16 -bottom-16 w-44 h-44 bg-purple-500/20 rounded-full blur-3xl pointer-events-none"></div>
+        {/* Contenido de Promoción Dinámico */}
+        {promoTitle && promoPrice && (
+          <div className="promo-hero-content mb-10">
+            <div className="mx-auto max-w-md md:max-w-2xl p-[1px] rounded-2xl bg-gradient-to-r from-pink-500 via-purple-600 to-pink-500 shadow-[0_0_40px_rgba(255,46,147,0.35)] border border-pink-500/20 hover:scale-[1.01] transition-transform duration-500">
+              <div className="bg-background/95 backdrop-blur-xl px-8 py-8 rounded-2xl text-center relative overflow-hidden">
+                <div className="absolute -right-16 -top-16 w-44 h-44 bg-pink-500/20 rounded-full blur-3xl pointer-events-none"></div>
+                <div className="absolute -left-16 -bottom-16 w-44 h-44 bg-purple-500/20 rounded-full blur-3xl pointer-events-none"></div>
 
-              <div className="relative z-10 flex flex-col items-center">
-                <span className="inline-flex items-center gap-1.5 text-[10px] font-black tracking-[0.3em] text-pink-400 uppercase mb-3.5 border border-pink-500/30 px-3 py-1 rounded bg-pink-500/10 animate-pulse">
-                  <span className="flex h-2 w-2 relative">
-                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-pink-400 opacity-75"></span>
-                    <span className="relative inline-flex rounded-full h-2 w-2 bg-pink-500"></span>
+                <div className="relative z-10 flex flex-col items-center">
+                  <span className="inline-flex items-center gap-1.5 text-[10px] font-black tracking-[0.3em] text-pink-400 uppercase mb-3.5 border border-pink-500/30 px-3 py-1 rounded bg-pink-500/10 animate-pulse">
+                    <span className="flex h-2 w-2 relative">
+                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-pink-400 opacity-75"></span>
+                      <span className="relative inline-flex rounded-full h-2 w-2 bg-pink-500"></span>
+                    </span>
+                    {promoTitle}
                   </span>
-                  Promoción de Julio
-                </span>
-                <h1 className="font-headline text-3xl md:text-5xl font-black text-white tracking-tighter uppercase leading-none mb-3 pink-neon-glow">
-                  Promoción Mensualidad $249
-                </h1>
-                <p className="font-body text-sm md:text-base text-zinc-300 font-normal max-w-xl mx-auto leading-relaxed">
-                  <strong className="text-pink-400 font-bold">Mujeres:</strong> Mensualidad básica por solo <strong className="text-white font-black text-lg md:text-xl pink-neon-glow">$249 MXN</strong> en todas las sucursales <span className="text-zinc-400 text-xs font-semibold">(*excepto Gold: $390 MXN)</span>.
-                  <br />
-                  <strong className="text-primary font-bold">Ecatepec:</strong> ¡Promoción especial de <strong className="text-white font-black text-lg md:text-xl pink-neon-glow">$249 MXN</strong> para <span className="text-pink-400 font-bold">Hombres y Mujeres</span>!
-                </p>
-                <p className="text-[10px] text-zinc-500 font-bold uppercase tracking-widest mt-4">
-                  *Beneficios y amenidades equivalentes a la membresía más básica de cada sucursal. Válido durante Julio.
-                </p>
+                  <h1 className="font-headline text-3xl md:text-5xl font-black text-white tracking-tighter uppercase leading-none mb-3 pink-neon-glow">
+                    {promoTitle} ${promoPrice}
+                  </h1>
+                  <p className="font-body text-sm md:text-base text-zinc-300 font-normal max-w-xl mx-auto leading-relaxed">
+                    <strong className="text-pink-400 font-bold">Aprovecha:</strong> Mensualidad básica por solo <strong className="text-white font-black text-lg md:text-xl pink-neon-glow">${promoPrice} MXN</strong> <span className="text-zinc-400 text-xs font-semibold">(*Consulta excepciones de precio en tu sucursal)</span>.
+                    <br />
+                    <strong className="text-primary font-bold">Ecatepec:</strong> ¡Promoción especial para <span className="text-pink-400 font-bold">Hombres y Mujeres</span>!
+                  </p>
+                  <p className="text-[10px] text-zinc-500 font-bold uppercase tracking-widest mt-4">
+                    *Beneficios y amenidades equivalentes a la membresía más básica de cada sucursal.
+                  </p>
+                </div>
               </div>
             </div>
           </div>
-        </div>
+        )}
 
         <div className="flex flex-col items-center justify-center gap-8">
           <a
