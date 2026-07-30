@@ -13,6 +13,11 @@ export interface Hours {
   weekend: string;
 }
 
+export interface TempleClass {
+  id: string;
+  name: string;
+}
+
 export interface Temple {
   name: string;
   dir: string;
@@ -20,6 +25,7 @@ export interface Temple {
   benefitsNotice?: string;
   prices: Price[];
   services: string[];
+  classes?: TempleClass[];
   phone?: string;
   latitude?: number;
   longitude?: number;
@@ -61,6 +67,12 @@ export const templesData: Record<string, Temple> = {
       { type: "Visita", price: "$50", tag: "One Day", benefits: ["Coach", "Regaderas"] }
     ],
     services: ["Sauna", "Regaderas", "Lockers & Vestidores", "Nutriólogo", "Café gratis", "Coach"],
+    classes: [
+      { id: "8a54a180-1ea1-4431-b303-54b488650d07", name: "POLE DANCE" },
+      { id: "9f3a015c-5e60-4ff2-83be-d0581530e135", name: "EXOTIC POLE" },
+      { id: "8062ca3e-6e73-4551-aedd-10aede2320b5", name: "SPINNING" },
+      { id: "85fd5061-cd38-4a7a-936d-2a91367e0d1c", name: "TWERK" }
+    ],
     phone: "55 9202 3444"
   },
   "huehuetoca": {
@@ -114,6 +126,15 @@ export const templesData: Record<string, Temple> = {
       { type: "Visita", price: "$50", tag: "One Day", benefits: ["Coach", "Regaderas"] }
     ],
     services: ["Vapor & Sauna", "Nutriólogo", "Regaderas", "Coach Certificado", "Café gratuito"],
+    classes: [
+      { id: "5fd976a5-fd2c-4f38-8b47-302a013781fa", name: "Xtreme Box" },
+      { id: "8d0c5aef-a151-4bc4-abd5-00e1393b1ad1", name: "Step" },
+      { id: "e8ee32c2-557f-4a7b-a7dc-2c874db04275", name: "Danza Aérea" },
+      { id: "c1000000-0000-0000-0000-000000000005", name: "Pole Dance" },
+      { id: "ac6bf204-b6c3-4bc0-bb2c-8fe3436a0508", name: "ZUMBA" },
+      { id: "c1000000-0000-0000-0000-000000000006", name: "Pilates" },
+      { id: "c1000000-0000-0000-0000-000000000004", name: "Spinning" }
+    ],
     phone: "55 9378 5241"
   },
   "nezavip": {
@@ -149,6 +170,9 @@ export const templesData: Record<string, Temple> = {
       { type: "Visita", price: "$50", tag: "One Day", benefits: ["Coach", "Regaderas", "Área de niños", "Pesas & Cardio", "Café gratis", "Lockers & Vestidores"] }
     ],
     services: ["Nutrióloga Certificada", "Área Infantil", "Pilates & Spa", "Regaderas & Lockers", "Café gratuito"],
+    classes: [
+      { id: "621a5703-445a-4340-9154-68489931f4c5", name: "PILATES" }
+    ],
     phone: "55 9386 5657"
   },
   "pinkreyes": {

@@ -1,3 +1,5 @@
+"use client";
+
 export default function BranchGrid() {
   return (
     <section id="templos" className="py-32 px-8 bg-background">

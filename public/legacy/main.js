@@ -168,7 +168,8 @@ import { fetchActiveBranches } from './src/services/branchService.js';
  
     function attachModalListeners() {
       document.querySelectorAll('[data-temple]').forEach(card => {
-        card.addEventListener('click', () => {
+        card.addEventListener('click', (e) => {
+          if (e.target && (e.target.closest('button') || e.target.closest('a'))) return;
           const key = card.getAttribute('data-temple');
           const data = templesData[key];
           if (!data) return;
@@ -405,6 +406,29 @@ import { fetchActiveBranches } from './src/services/branchService.js';
                     }).join('')}
                   </div>
                </div>
+
+                 ${data.classes && data.classes.length > 0 ? `
+                   <!-- Vanguard Classes -->
+                   <div class="mt-8 pt-6 border-t border-white/10 col-span-full">
+                     <h4 class="text-[10px] font-black text-primary tracking-[.3em] uppercase mb-6 flex items-center gap-2">
+                       <span class="material-symbols-outlined text-sm">calendar_month</span> Clases Disponibles & Reservas
+                     </h4>
+                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                       ${data.classes.map(c => `
+                         <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-zinc-900/90 p-4 rounded-xl border border-white/10 group hover:border-primary/50 transition-all shadow-lg">
+                           <div class="flex items-center gap-3">
+                             <div class="w-2.5 h-2.5 rounded-full bg-primary shadow-[0_0_10px_rgba(233,196,0,0.9)]"></div>
+                             <span class="text-sm font-black text-white uppercase tracking-wide group-hover:text-primary transition-colors">${c.name}</span>
+                           </div>
+                           <a href="https://gymanclub.com/#/class/${c.id}/${encodeURIComponent(c.name)}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2 px-4 py-2 text-[10px] font-black uppercase tracking-wider text-black bg-primary rounded-lg hover:bg-yellow-400 active:scale-95 transition-all shadow-md shadow-primary/20">
+                             <span>Agenda una clase ahora</span>
+                             <span class="material-symbols-outlined text-sm">open_in_new</span>
+                           </a>
+                         </div>
+                       `).join('')}
+                     </div>
+                   </div>
+                 ` : ''}
  
              </div>
 
@@ -466,6 +490,36 @@ import { fetchActiveBranches } from './src/services/branchService.js';
                     </div>
                   </div>
                 </div>
+                ${data.classes && data.classes.length > 0 ? `
+                <div class="mobile-accordion-item rounded-xl overflow-hidden border border-white/[0.07]" style="background:#1a1a1a">
+                  <button class="mobile-accordion-trigger w-full flex items-center gap-3 p-4 text-left">
+                    <div class="w-9 h-9 rounded-lg flex items-center justify-center flex-shrink-0" style="background:rgba(233,196,0,0.1);border:1px solid rgba(233,196,0,0.2)">
+                      <span class="material-symbols-outlined text-primary" style="font-size:18px;font-variation-settings:'FILL' 1">calendar_month</span>
+                    </div>
+                    <div class="flex-1 min-w-0">
+                      <p class="text-[13px] font-black text-white uppercase tracking-wide leading-tight">Clases Disponibles</p>
+                      <p class="text-[11px] text-zinc-500 font-medium mt-0.5">Reserva tu lugar en nuestras disciplinas</p>
+                    </div>
+                    <span class="material-symbols-outlined text-zinc-600 accordion-chevron flex-shrink-0" style="font-size:20px">chevron_right</span>
+                  </button>
+                  <div class="mobile-accordion-body hidden px-4 pb-4">
+                    <div class="flex flex-col gap-3">
+                      ${data.classes.map(c => `
+                        <div class="flex flex-col gap-2 p-3 rounded-lg border border-white/5" style="background:rgba(255,255,255,0.04)">
+                          <div class="flex items-center gap-2">
+                            <div class="w-2 h-2 rounded-full bg-primary shadow-[0_0_8px_rgba(233,196,0,0.8)] flex-shrink-0"></div>
+                            <span class="text-[12px] font-bold text-zinc-300 uppercase tracking-wide">${c.name}</span>
+                          </div>
+                          <a href="https://gymanclub.com/#/class/${c.id}/${encodeURIComponent(c.name)}" target="_blank" rel="noopener noreferrer" class="w-full text-center py-2 text-[10px] font-black uppercase tracking-wider text-black bg-primary rounded-md hover:bg-primary/90 transition-all flex items-center justify-center gap-1">
+                            <span>Agenda una clase ahora</span>
+                            <span class="material-symbols-outlined" style="font-size:12px">open_in_new</span>
+                          </a>
+                        </div>
+                      `).join('')}
+                    </div>
+                  </div>
+                </div>
+                ` : ''}
                 <div class="mobile-accordion-item rounded-xl overflow-hidden border border-white/[0.07]" style="background:#1a1a1a">
                   <button class="mobile-accordion-trigger w-full flex items-center gap-3 p-4 text-left">
                     <div class="w-9 h-9 rounded-lg flex items-center justify-center flex-shrink-0" style="background:rgba(233,196,0,0.1);border:1px solid rgba(233,196,0,0.2)">
