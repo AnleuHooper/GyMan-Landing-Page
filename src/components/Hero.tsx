@@ -59,8 +59,8 @@ export default function Hero() {
         </p>
 
         {/* Tarjetas Apiladas Móvil Exclusivas */}
-        <div className="flex flex-col gap-2.5 w-full mb-6 text-left">
-          <div className="bg-[#141414]/90 p-3.5 rounded-xl border border-emerald-500/30 flex items-center gap-3 backdrop-blur-md shadow-lg">
+        <div className="flex flex-col gap-3 w-full mb-6 text-left">
+          <div className="bg-[#141414] p-3.5 rounded-none rounded-r-lg border-l-[3px] border-l-emerald-500 flex items-center gap-3">
             <span className="material-symbols-outlined text-emerald-400 text-xl shrink-0">check_circle</span>
             <div>
               <h3 className="text-[11px] font-headline font-bold text-white uppercase tracking-wider">Socio + Cliente Nuevo VIP</h3>
@@ -68,7 +68,7 @@ export default function Hero() {
             </div>
           </div>
 
-          <div className="bg-[#141414]/90 p-3.5 rounded-xl border border-emerald-500/30 flex items-center gap-3 backdrop-blur-md shadow-lg">
+          <div className="bg-[#141414] p-3.5 rounded-none rounded-r-lg border-l-[3px] border-l-emerald-500 flex items-center gap-3">
             <span className="material-symbols-outlined text-emerald-400 text-xl shrink-0">check_circle</span>
             <div>
               <h3 className="text-[11px] font-headline font-bold text-white uppercase tracking-wider">Dos Clientes Nuevos VIP</h3>
@@ -76,7 +76,7 @@ export default function Hero() {
             </div>
           </div>
 
-          <div className="bg-[#141414]/90 p-3 rounded-xl border border-rose-500/25 flex items-center gap-2.5 backdrop-blur-md">
+          <div className="bg-[#141414] p-3 rounded-none rounded-r-lg border-l-[3px] border-l-rose-600 flex items-center gap-2.5">
             <span className="material-symbols-outlined text-rose-400 text-lg shrink-0">cancel</span>
             <p className="text-[10px] text-zinc-400 leading-tight">
               <strong className="text-zinc-300 uppercase font-semibold">Exclusiones:</strong> No aplica entre 2 socios activos ni con ex-socios antiguos.
@@ -84,19 +84,23 @@ export default function Hero() {
           </div>
         </div>
 
-        {/* Botón CTA Táctil Móvil de Alto Impacto.
-            Antes solo decía la promesa y se perdía la instrucción de buscar
-            sucursal, que en escritorio sí aparecía: el usuario no sabía que el
-            botón lo llevaba al listado de gimnasios. */}
-        <a
-          href="#templos"
-          className="w-full block bg-primary text-on-primary py-4 font-headline font-black text-sm tracking-widest rounded-xl shadow-[0_0_30px_rgba(233,196,0,0.4)] active:scale-95 transition-all duration-200 uppercase text-center hover:bg-primary/90"
-        >
-          ¡Reclama tu visita GRATIS!
-          <span className="block font-body font-semibold text-[10px] tracking-normal normal-case opacity-80 mt-1">
+        {/* Botones CTA Táctiles Móvil */}
+        <div className="flex flex-col gap-3 w-full px-4">
+          <button
+            onClick={() => window.dispatchEvent(new CustomEvent('gyman:open-lead-modal', { detail: { branchName: undefined } }))}
+            className="w-full flex items-center justify-center gap-2 bg-primary text-on-primary min-h-[48px] py-3 px-4 font-headline font-black text-sm tracking-widest rounded-xl shadow-[0_0_15px_rgba(233,196,0,0.4)] active:scale-95 transition-all duration-200 uppercase text-center hover:bg-primary/90"
+          >
+            <span className="material-symbols-outlined text-xl">confirmation_number</span>
+            ¡Reclama tu visita GRATIS!
+          </button>
+          
+          <button
+            className="find-temple-btn w-full flex items-center justify-center gap-2 bg-transparent border border-primary text-primary min-h-[48px] py-3 px-4 font-headline font-bold text-xs tracking-wide rounded-xl active:scale-95 transition-all duration-200 uppercase text-center hover:bg-primary/10"
+          >
+            <span className="material-symbols-outlined text-lg">location_on</span>
             Busca la sucursal más cercana
-          </span>
-        </a>
+          </button>
+        </div>
       </div>
 
       {/* ─────────────────────────────────────────────────────────────
@@ -157,36 +161,39 @@ export default function Hero() {
                 </p>
 
                 {/* Grid de Reglas de Aplicación */}
-                <div className="grid grid-cols-2 gap-3 w-full max-w-2xl mb-6 text-left">
-                  <div className="bg-surface/80 p-4 rounded-xl border border-emerald-500/30 flex items-start gap-3">
-                    <span className="material-symbols-outlined text-emerald-400 text-xl shrink-0 mt-0.5">check_circle</span>
-                    <div>
-                      <h3 className="text-xs font-headline font-bold text-white uppercase tracking-wider">Socio + Cliente Nuevo</h3>
-                      <p className="text-[11px] text-zinc-400 leading-snug mt-0.5">Socio activo trae a un amigo sin registros previos en GyMan que compra VIP.</p>
+                <div className="w-full max-w-xl mx-auto mb-6 flex flex-col items-center">
+                  <h4 className="text-[10px] text-primary font-headline font-bold uppercase tracking-widest mb-3">Reglas de la Promoción</h4>
+                  <div className="grid grid-cols-2 gap-3 w-full text-left">
+                    <div className="bg-[#141414] p-4 rounded-none rounded-r-lg border-l-[3px] border-l-emerald-500 flex items-start gap-3">
+                      <span className="material-symbols-outlined text-emerald-400 text-xl shrink-0 mt-0.5">check_circle</span>
+                      <div>
+                        <h3 className="text-xs font-headline font-bold text-white uppercase tracking-wider">Socio + Cliente Nuevo</h3>
+                        <p className="text-[11px] text-zinc-400 leading-snug mt-0.5">Socio activo trae a un amigo sin registros previos en GyMan que compra VIP.</p>
+                      </div>
                     </div>
-                  </div>
 
-                  <div className="bg-surface/80 p-4 rounded-xl border border-emerald-500/30 flex items-start gap-3">
-                    <span className="material-symbols-outlined text-emerald-400 text-xl shrink-0 mt-0.5">check_circle</span>
-                    <div>
-                      <h3 className="text-xs font-headline font-bold text-white uppercase tracking-wider">Dos Clientes Nuevos</h3>
-                      <p className="text-[11px] text-zinc-400 leading-snug mt-0.5">Dos personas 100% nuevas se inscriben juntas al mismo tiempo en VIP.</p>
+                    <div className="bg-[#141414] p-4 rounded-none rounded-r-lg border-l-[3px] border-l-emerald-500 flex items-start gap-3">
+                      <span className="material-symbols-outlined text-emerald-400 text-xl shrink-0 mt-0.5">check_circle</span>
+                      <div>
+                        <h3 className="text-xs font-headline font-bold text-white uppercase tracking-wider">Dos Clientes Nuevos</h3>
+                        <p className="text-[11px] text-zinc-400 leading-snug mt-0.5">Dos personas 100% nuevas se inscriben juntas al mismo tiempo en VIP.</p>
+                      </div>
                     </div>
-                  </div>
 
-                  <div className="bg-surface/80 p-4 rounded-xl border border-rose-500/30 flex items-start gap-3">
-                    <span className="material-symbols-outlined text-rose-400 text-xl shrink-0 mt-0.5">cancel</span>
-                    <div>
-                      <h3 className="text-xs font-headline font-bold text-zinc-300 uppercase tracking-wider">No aplica entre socios</h3>
-                      <p className="text-[11px] text-zinc-500 leading-snug mt-0.5">No es válido si el referido ya es o fue socio activo reciente de GyMan.</p>
+                    <div className="bg-[#141414] p-4 rounded-none rounded-r-lg border-l-[3px] border-l-rose-600 flex items-start gap-3">
+                      <span className="material-symbols-outlined text-rose-400 text-xl shrink-0 mt-0.5">cancel</span>
+                      <div>
+                        <h3 className="text-xs font-headline font-bold text-zinc-400 uppercase tracking-wider">No aplica entre socios</h3>
+                        <p className="text-[11px] text-zinc-500 leading-snug mt-0.5">No es válido si el referido ya es o fue socio activo reciente de GyMan.</p>
+                      </div>
                     </div>
-                  </div>
 
-                  <div className="bg-surface/80 p-4 rounded-xl border border-rose-500/30 flex items-start gap-3">
-                    <span className="material-symbols-outlined text-rose-400 text-xl shrink-0 mt-0.5">cancel</span>
-                    <div>
-                      <h3 className="text-xs font-headline font-bold text-zinc-300 uppercase tracking-wider">No aplica con ex-socios</h3>
-                      <p className="text-[11px] text-zinc-500 leading-snug mt-0.5">No aplica para ex-socios que abandonaron su membresía en el pasado.</p>
+                    <div className="bg-[#141414] p-4 rounded-none rounded-r-lg border-l-[3px] border-l-rose-600 flex items-start gap-3">
+                      <span className="material-symbols-outlined text-rose-400 text-xl shrink-0 mt-0.5">cancel</span>
+                      <div>
+                        <h3 className="text-xs font-headline font-bold text-zinc-400 uppercase tracking-wider">No aplica con ex-socios</h3>
+                        <p className="text-[11px] text-zinc-500 leading-snug mt-0.5">No aplica para ex-socios que abandonaron su membresía en el pasado.</p>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -200,17 +207,21 @@ export default function Hero() {
         </div>
 
         {/* Botón de Acción Principal Desktop */}
-        <div className="flex flex-col items-center justify-center gap-8">
-          <a
-            id="findMyTempleBtn"
-            href="#templos"
-            className="bg-primary text-on-primary px-10 py-5 font-headline font-black tracking-widest rounded-sm shadow-[0_0_35px_rgba(233,196,0,0.4)] hover:scale-105 transition-transform text-center uppercase"
+        <div className="flex flex-col items-center justify-center gap-4">
+          <button
+            onClick={() => window.dispatchEvent(new CustomEvent('gyman:open-lead-modal', { detail: { branchName: undefined } }))}
+            className="flex items-center gap-2 bg-primary text-on-primary min-h-[56px] px-10 py-4 font-headline font-black text-lg tracking-widest rounded-xl shadow-[0_0_20px_rgba(233,196,0,0.4)] hover:scale-105 transition-transform text-center uppercase hover:bg-primary/90"
           >
+            <span className="material-symbols-outlined text-2xl">confirmation_number</span>
             ¡Reclama tu visita GRATIS!
-            <span className="block font-body font-semibold text-xs tracking-normal normal-case opacity-80 mt-1">
-              Busca la sucursal más cercana
-            </span>
-          </a>
+          </button>
+          
+          <button
+            className="find-temple-btn flex items-center gap-2 bg-transparent border border-primary text-primary min-h-[48px] px-8 py-3 font-headline font-bold text-sm tracking-wide rounded-xl hover:scale-105 transition-transform text-center uppercase hover:bg-primary/10"
+          >
+            <span className="material-symbols-outlined text-xl">location_on</span>
+            Busca la sucursal más cercana
+          </button>
         </div>
       </div>
     </section>

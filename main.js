@@ -1098,49 +1098,55 @@ import { fetchActiveBranches } from './src/services/branchService.js';
     }
  
     // ── 5. BUSCAR MI TEMPLO (GEOLOCATION + DISTANCE MATRIX) ──────
-    const findMyTempleBtn = document.getElementById('findMyTempleBtn');
+    const findMyTempleBtns = document.querySelectorAll('.find-temple-btn');
     let branchesWithCoords = [];
 
-    if (findMyTempleBtn) {
-      findMyTempleBtn.addEventListener('click', (e) => {
-        e.preventDefault();
-        
-        if (!navigator.geolocation) {
-          alert('Tu navegador no soporta geolocalización.');
-          return;
-        }
-
-        findMyTempleBtn.innerText = 'LOCALIZANDO...';
-        findMyTempleBtn.classList.add('opacity-50', 'pointer-events-none');
-
-        navigator.geolocation.getCurrentPosition(
-          async (position) => {
-            const userLoc = {
-              lat: position.coords.latitude,
-              lng: position.coords.longitude
-            };
-
-            try {
-              await calculateDistances(userLoc);
-            } catch (err) {
-              console.error('Error calculating distances:', err);
-              alert('Error al calcular las distancias.');
-              resetFindBtn();
-            }
-          },
-          (err) => {
-            console.error('Geolocation error:', err);
-            alert('No pudimos obtener tu ubicación. Por favor, activa los permisos.');
-            resetFindBtn();
+    if (findMyTempleBtns.length > 0) {
+      findMyTempleBtns.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          e.preventDefault();
+          
+          if (!navigator.geolocation) {
+            alert('Tu navegador no soporta geolocalización.');
+            return;
           }
-        );
+
+          findMyTempleBtns.forEach(b => {
+            b.innerText = 'LOCALIZANDO...';
+            b.classList.add('opacity-50', 'pointer-events-none');
+          });
+
+          navigator.geolocation.getCurrentPosition(
+            async (position) => {
+              const userLoc = {
+                lat: position.coords.latitude,
+                lng: position.coords.longitude
+              };
+
+              try {
+                await calculateDistances(userLoc);
+              } catch (err) {
+                console.error('Error calculating distances:', err);
+                alert('Error al calcular las distancias.');
+                resetFindBtns();
+              }
+            },
+            (err) => {
+              console.error('Geolocation error:', err);
+              alert('No pudimos obtener tu ubicación. Por favor, activa los permisos.');
+              resetFindBtns();
+            }
+          );
+        });
       });
     }
 
-    function resetFindBtn() {
-      if (!findMyTempleBtn) return;
-      findMyTempleBtn.innerText = 'Busca el gimnasio más cercano';
-      findMyTempleBtn.classList.remove('opacity-50', 'pointer-events-none');
+    function resetFindBtns() {
+      if (findMyTempleBtns.length === 0) return;
+      findMyTempleBtns.forEach(b => {
+        b.innerText = 'Busca el gimnasio más cercano';
+        b.classList.remove('opacity-50', 'pointer-events-none');
+      });
     }
  
     function haversineDistance(lat1, lon1, lat2, lon2) {

@@ -115,7 +115,7 @@ export default function LeadCaptureModal() {
       name: name.trim(),
       whatsapp: formattedWhatsapp,
       privacy_consent: privacyConsent,
-      membership_branch: interest?.branch || "Desconocida",
+      membership_branch: interest?.branch || "Por definir",
       membership_type: interest?.type || "Desconocida",
       membership_price: interest?.price || "0",
       fbclid: attribution.fbclid,
@@ -190,10 +190,18 @@ export default function LeadCaptureModal() {
 
         <div className="mb-6">
           <h3 className="font-headline text-2xl font-black text-white uppercase tracking-tighter leading-snug">
-            ¡Conoce GyMan <span className="text-primary">{interest?.branch}</span> y asegura tu tarifa!
+            {interest?.branch ? (
+              <>¡Conoce GyMan <span className="text-primary">{interest.branch}</span> y asegura tu tarifa!</>
+            ) : (
+              <>¡Tu pase de visita gratis a <span className="text-primary">cualquier GyMan</span>!</>
+            )}
           </h3>
           <p className="text-zinc-400 text-xs mt-2 leading-relaxed">
-            Déjanos tu WhatsApp para enviarte tu pase de visita gratis a <span className="font-bold text-white uppercase">{interest?.branch}</span>, conocer las instalaciones sin compromiso y congelar tu precio especial de <span className="font-bold text-primary">{interest?.type}</span> para pagar directamente en recepción.
+            {interest?.branch ? (
+              <>Déjanos tu WhatsApp para enviarte tu pase de visita gratis a <span className="font-bold text-white uppercase">{interest.branch}</span>, conocer las instalaciones sin compromiso y congelar tu precio especial de <span className="font-bold text-primary">{interest.type}</span> para pagar directamente en recepción.</>
+            ) : (
+              <>Déjanos tu WhatsApp para enviarte tu pase de visita gratis. Conoce nuestras instalaciones sin compromiso y asegura tu tarifa especial para pagar directamente en recepción.</>
+            )}
           </p>
         </div>
 
