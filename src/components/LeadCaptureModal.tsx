@@ -101,6 +101,16 @@ export default function LeadCaptureModal() {
     setStatus("loading");
     setErrorMsg("");
 
+    // Una sola lectura: dos llamadas separadas podían devolver valores distintos.
+    const attribution = getAttribution();
+
+    // Identificador compartido entre el evento del navegador y el del servidor.
+    // Sin él Meta cuenta el mismo lead dos veces: una por el Pixel y otra por CAPI.
+    const eventId =
+      typeof crypto !== "undefined" && "randomUUID" in crypto
+        ? crypto.randomUUID()
+        : `lead-${Date.now()}-${Math.random().toString(36).slice(2, 11)}`;
+
     const payload = {
       name: name.trim(),
       whatsapp: formattedWhatsapp,
@@ -108,8 +118,11 @@ export default function LeadCaptureModal() {
       membership_branch: interest?.branch || "Desconocida",
       membership_type: interest?.type || "Desconocida",
       membership_price: interest?.price || "0",
-      fbclid: getAttribution()?.fbclid || null,
-      landing_url: getAttribution()?.landing_url || "Directo"
+      fbclid: attribution.fbclid,
+      fbc: attribution.fbc,
+      fbp: attribution.fbp,
+      landing_url: attribution.landing_url || "Directo",
+      event_id: eventId
     };
 
     try {
@@ -133,12 +146,14 @@ export default function LeadCaptureModal() {
           fn: name.trim().split(" ")[0].toLowerCase(),
         });
         // Meta Pixel: Habilidad 3 — Evento de Conversión Real 'Lead'
+        // El cuarto argumento (eventID) debe coincidir con el event_id que el
+        // servidor manda a CAPI, o Meta contará este lead dos veces.
         (window as any).fbq("track", "Lead", {
           content_name: interest?.type,
           content_category: interest?.branch,
           value: parseFloat(interest?.price.replace(/[^0-9.]/g, "") || "0"),
           currency: "MXN",
-        });
+        }, { eventID: eventId });
       }
 
       // Auto close after 3 seconds
@@ -178,7 +193,7 @@ export default function LeadCaptureModal() {
             ¡Conoce GyMan <span className="text-primary">{interest?.branch}</span> y asegura tu tarifa!
           </h3>
           <p className="text-zinc-400 text-xs mt-2 leading-relaxed">
-            Déjanos tu WhatsApp para enviarte tu Pase VIP de Acceso a <span className="font-bold text-white uppercase">{interest?.branch}</span>, conocer las instalaciones sin compromiso y congelar tu precio especial de <span className="font-bold text-primary">{interest?.type}</span> para pagar directamente en recepción.
+            Déjanos tu WhatsApp para enviarte tu pase de visita gratis a <span className="font-bold text-white uppercase">{interest?.branch}</span>, conocer las instalaciones sin compromiso y congelar tu precio especial de <span className="font-bold text-primary">{interest?.type}</span> para pagar directamente en recepción.
           </p>
         </div>
 
@@ -188,7 +203,7 @@ export default function LeadCaptureModal() {
                 <span className="material-symbols-outlined text-primary text-4xl">check_circle</span>
              </div>
              <p className="font-headline font-bold text-white text-lg text-center uppercase tracking-wide">
-               ✓ ¡Listo! Te enviamos tu Pase VIP por WhatsApp.
+               ✓ ¡Listo! Te enviamos tu visita gratis por WhatsApp.
              </p>
           </div>
         ) : (
@@ -253,10 +268,10 @@ export default function LeadCaptureModal() {
               {status === "loading" ? (
                 <>
                   <div className="spinner"></div>
-                  <span>Generando tu Pase VIP...</span>
+                  <span>Generando tu visita gratis...</span>
                 </>
               ) : (
-                "Obtener Pase VIP por WhatsApp →"
+                "Obtener mi visita gratis por WhatsApp →"
               )}
             </button>
           </form>

@@ -84,12 +84,18 @@ export default function Hero() {
           </div>
         </div>
 
-        {/* Botón CTA Táctil Móvil de Alto Impacto */}
+        {/* Botón CTA Táctil Móvil de Alto Impacto.
+            Antes solo decía la promesa y se perdía la instrucción de buscar
+            sucursal, que en escritorio sí aparecía: el usuario no sabía que el
+            botón lo llevaba al listado de gimnasios. */}
         <a
           href="#templos"
           className="w-full block bg-primary text-on-primary py-4 font-headline font-black text-sm tracking-widest rounded-xl shadow-[0_0_30px_rgba(233,196,0,0.4)] active:scale-95 transition-all duration-200 uppercase text-center hover:bg-primary/90"
         >
-          ¡Quiero mi VIP Gratis!
+          ¡Reclama tu visita GRATIS!
+          <span className="block font-body font-semibold text-[10px] tracking-normal normal-case opacity-80 mt-1">
+            Busca la sucursal más cercana
+          </span>
         </a>
       </div>
 
@@ -200,7 +206,10 @@ export default function Hero() {
             href="#templos"
             className="bg-primary text-on-primary px-10 py-5 font-headline font-black tracking-widest rounded-sm shadow-[0_0_35px_rgba(233,196,0,0.4)] hover:scale-105 transition-transform text-center uppercase"
           >
-            ¡Quiero mi VIP Gratis! Busca tu gimnasio
+            ¡Reclama tu visita GRATIS!
+            <span className="block font-body font-semibold text-xs tracking-normal normal-case opacity-80 mt-1">
+              Busca la sucursal más cercana
+            </span>
           </a>
         </div>
       </div>

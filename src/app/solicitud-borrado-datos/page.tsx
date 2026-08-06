@@ -37,7 +37,7 @@ export default function SolicitudBorradoDatos() {
 
               <h2 className="font-headline text-xl font-bold text-white uppercase tracking-wider pt-4 border-t border-white/5">1. Tratamiento y Retención de Datos</h2>
               <p>
-                GYMAN informa a sus usuarios que los datos de contacto (Nombre y WhatsApp) recolectados a través de nuestro formulario de Pase VIP son almacenados de forma segura con el único fin de coordinar visitas a sucursales y brindar atención comercial vía WhatsApp.
+                GYMAN informa a sus usuarios que los datos de contacto (Nombre y WhatsApp) recolectados a través de nuestro formulario de visita gratis son almacenados de forma segura con el único fin de coordinar visitas a sucursales y brindar atención comercial vía WhatsApp.
               </p>
 
               <h2 className="font-headline text-xl font-bold text-white uppercase tracking-wider pt-4 border-t border-white/5">2. Procedimiento de Solicitud de Eliminación (Derechos ARCO)</h2>
@@ -50,7 +50,7 @@ export default function SolicitudBorradoDatos() {
                 <ol className="list-decimal pl-6 space-y-2 text-zinc-400">
                   <li>Envíe un correo electrónico formal a: <a href="mailto:anleu3@gmail.com" className="text-primary hover:underline font-bold">anleu3@gmail.com</a></li>
                   <li>Asunto: <strong className="text-white">&quot;Solicitud de Derechos ARCO - Eliminación de Datos&quot;</strong></li>
-                  <li>En el cuerpo del mensaje, proporcione el número de WhatsApp con el que solicitó su Pase VIP para proceder con la purga inmediata de su registro.</li>
+                  <li>En el cuerpo del mensaje, proporcione el número de WhatsApp con el que solicitó su visita gratis para proceder con la purga inmediata de su registro.</li>
                 </ol>
               </div>
 
