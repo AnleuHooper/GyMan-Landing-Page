@@ -38,6 +38,8 @@ export interface Temple {
 export const templesData: Record<string, Temple> = {
   "chimalli": {
     name: "CHIMALLI",
+    latitude: 19.429549687312775,
+    longitude: -98.93563965767127,
     dir: "Av. del Peñon, esq. Acuitlapilco, Chimalhuacán.",
     hours: { week: "06:00 - 22:00", weekend: "09:00 - 15:00" },
     prices: [
@@ -55,6 +57,8 @@ export const templesData: Record<string, Temple> = {
   },
   "fortaleza": {
     name: "FORTALEZA",
+    latitude: 19.407335267293977,
+    longitude: -99.01822218465743,
     dir: "Av. Chimalhuacán Esq. con Caballo bayo, Nezahualcóyotl.",
     hours: { week: "05:00 - 00:00", weekend: "08:00 - 21:00" },
     prices: [
@@ -77,6 +81,8 @@ export const templesData: Record<string, Temple> = {
   },
   "huehuetoca": {
     name: "HUEHUETOCA",
+    latitude: 19.831869224236485,
+    longitude: -99.24500429999998,
     dir: "Carretera Refinería Tula - Jorobas km 05, Huehuetoca.",
     hours: { week: "06:00 - 22:00", weekend: "09:00 - 15:00" },
     prices: [
@@ -94,8 +100,8 @@ export const templesData: Record<string, Temple> = {
   },
   "ixtapaluca": {
     name: "IXTAPALUCA",
-    latitude: 19.293453,
-    longitude: -98.903762,
+    latitude: 19.293504020533835,
+    longitude: -98.90372995767127,
     dir: "Av. del canal esq. calle caoba, Col. Alfredo del mazo.",
     hours: { week: "06:00 - 22:00", weekend: "09:00 - 15:00" },
     prices: [
@@ -113,6 +119,8 @@ export const templesData: Record<string, Temple> = {
   },
   "maxximus": {
     name: "MAXXIMUS",
+    latitude: 19.261344842938698,
+    longitude: -98.90013287116436,
     dir: "Plaza Tudanca, Matamoros 1, Chalco Centro.",
     hours: { week: "06:00 - 22:00", weekend: "08:00 - 18:00" },
     prices: [
@@ -139,6 +147,8 @@ export const templesData: Record<string, Temple> = {
   },
   "nezavip": {
     name: "NEZA VIP",
+    latitude: 19.398008738863883,
+    longitude: -99.00333372292742,
     dir: "Esq. Calle Adelita y Cama de piedra, Col. Benito Juárez.",
     hours: { week: "06:00 - 23:00", weekend: "08:00 - 15:00" },
     prices: [
@@ -157,6 +167,8 @@ export const templesData: Record<string, Temple> = {
   },
   "pinkneza": {
     name: "PINK NEZA",
+    latitude: 19.404962207854517,
+    longitude: -99.00159767791088,
     dir: "La Mariquita #211, Colonia Benito Juárez, Nezahualcóyotl.",
     hours: { week: "06:00 - 22:00", weekend: "09:00 - 15:00" },
     prices: [
@@ -177,6 +189,8 @@ export const templesData: Record<string, Temple> = {
   },
   "pinkreyes": {
     name: "PINK REYES",
+    latitude: 19.36315575601384,
+    longitude: -98.98819992278388,
     dir: "Paseo del Tepozán esq. Álamos, Floresta, Los Reyes.",
     hours: { week: "06:00 - 22:30", weekend: "09:00 - 21:00" },
     prices: [
@@ -194,6 +208,8 @@ export const templesData: Record<string, Temple> = {
   },
   "tezontle": {
     name: "TEZONTLE",
+    latitude: 19.382483910086563,
+    longitude: -99.08676111349308,
     dir: "Canal de Tezontle 55 Primer Piso, Iztapalapa, CDMX.",
     hours: { week: "06:00 - 22:30", weekend: "09:00 - 21:00" },
     prices: [
@@ -213,6 +229,8 @@ export const templesData: Record<string, Temple> = {
   },
   "tlapala": {
     name: "TLAPALA",
+    latitude: 19.24251908592187,
+    longitude: -98.84475999439935,
     dir: "Calle Allende MZ 1 LT 1, La Candelaria Tlapala.",
     hours: { week: "06:00 - 22:00", weekend: "09:00 - 15:00" },
     prices: [
@@ -231,6 +249,8 @@ export const templesData: Record<string, Temple> = {
   },
   "vallechalco": {
     name: "VALLE DE CHALCO",
+    latitude: 19.278573892503037,
+    longitude: -98.94230183013418,
     dir: "Av. Alfredo del Mazo #132, col. Jardín, Valle de Chalco.",
     hours: { week: "06:00 - 00:00", weekend: "08:00 - 20:00" },
     prices: [
@@ -249,6 +269,8 @@ export const templesData: Record<string, Temple> = {
   },
   "valle2": {
     name: "VALLE II",
+    latitude: 19.264725344569136,
+    longitude: -98.95442311657987,
     dir: "Av Cuautemoc, San Miguel Xico 3ra sección, Valle de Chalco.",
     hours: { week: "06:00 - 22:00", weekend: "09:00 - 15:00" },
     prices: [
@@ -265,6 +287,8 @@ export const templesData: Record<string, Temple> = {
   },
   "zapata": {
     name: "ZAPATA",
+    latitude: 19.277266359117384,
+    longitude: -98.88590887668781,
     dir: "Av Tierra y Libertad 120, Emiliano Zapata, Chalco.",
     hours: { week: "06:00 - 00:00", weekend: "08:00 - 21:00" },
     prices: [
@@ -283,6 +307,8 @@ export const templesData: Record<string, Temple> = {
   },
   "gold": {
     name: "GOLD",
+    latitude: 19.338939922594435,
+    longitude: -99.13688498359929,
     dir: "Canal de Miramontes 1976, Col. Educación, Coyoacán. (Arriba de 3B)",
     hours: { week: "05:00 - 00:00", weekend: "08:00 - 21:00" },
     prices: [
