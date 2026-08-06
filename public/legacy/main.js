@@ -360,7 +360,7 @@ import { fetchActiveBranches } from './src/services/branchService.js';
                   </div>
                   <div class="flex-1 min-w-0">
                     <p class="text-[9px] font-black uppercase tracking-[0.2em] mb-0.5" style="color:rgba(0,0,0,0.55)">Acceso Exclusivo &bull; Sin Compromiso</p>
-                    <p class="text-[15px] font-black text-black uppercase tracking-tight leading-tight">Obtener Pase VIP Gratis</p>
+                    <p class="text-[15px] font-black text-black uppercase tracking-tight leading-tight">Reclama tu visita GRATIS</p>
                     <p class="text-[11px] font-semibold mt-0.5" style="color:rgba(0,0,0,0.65)">Congela tu precio especial hoy</p>
                   </div>
                   <span class="material-symbols-outlined text-black flex-shrink-0" style="font-size:20px;opacity:0.6">arrow_forward</span>
