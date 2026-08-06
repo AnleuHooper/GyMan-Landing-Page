@@ -58,29 +58,41 @@ export default function Hero() {
           Durante <strong className="text-white">Agosto</strong>, si eres socio GyMan y traes a un amigo <strong className="text-primary font-bold">100% nuevo</strong> a comprar su <strong className="text-white font-bold">Membresía VIP</strong>, ¡tu VIP del mes es <span className="text-primary font-black uppercase">GRATIS</span>!
         </p>
 
-        {/* Tarjetas Apiladas Móvil Exclusivas */}
-        <div className="flex flex-col gap-3 w-full mb-6 text-left">
-          <div className="bg-[#141414] p-3.5 rounded-none rounded-r-lg border-l-[3px] border-l-emerald-500 flex items-center gap-3">
-            <span className="material-symbols-outlined text-emerald-400 text-xl shrink-0">check_circle</span>
-            <div>
-              <h3 className="text-[11px] font-headline font-bold text-white uppercase tracking-wider">Socio + Cliente Nuevo VIP</h3>
-              <p className="text-[10px] text-zinc-400 leading-tight">Amigo nuevo compra VIP → Tu VIP del mes es GRATIS.</p>
+        {/* Lista de Reglas Móvil Exclusivas */}
+        <div className="w-full mb-6 flex flex-col items-center">
+          <h4 className="text-[10px] text-primary font-headline font-bold uppercase tracking-widest mb-3">Reglas de la Promoción</h4>
+          <div className="flex flex-col gap-4 w-full text-left">
+            <div className="pl-3 py-1 border-l-[3px] border-l-emerald-500 flex items-start gap-3">
+              <span className="material-symbols-outlined text-emerald-400 text-xl shrink-0 mt-0.5">check_circle</span>
+              <div>
+                <h3 className="text-[11px] font-headline font-bold text-white uppercase tracking-wider">Socio + Cliente Nuevo VIP</h3>
+                <p className="text-[10px] text-zinc-400 leading-tight">Socio activo trae a un amigo sin registros previos que compra VIP.</p>
+              </div>
             </div>
-          </div>
 
-          <div className="bg-[#141414] p-3.5 rounded-none rounded-r-lg border-l-[3px] border-l-emerald-500 flex items-center gap-3">
-            <span className="material-symbols-outlined text-emerald-400 text-xl shrink-0">check_circle</span>
-            <div>
-              <h3 className="text-[11px] font-headline font-bold text-white uppercase tracking-wider">Dos Clientes Nuevos VIP</h3>
-              <p className="text-[10px] text-zinc-400 leading-tight">2 amigos nuevos se inscriben juntos en VIP.</p>
+            <div className="pl-3 py-1 border-l-[3px] border-l-emerald-500 flex items-start gap-3">
+              <span className="material-symbols-outlined text-emerald-400 text-xl shrink-0 mt-0.5">check_circle</span>
+              <div>
+                <h3 className="text-[11px] font-headline font-bold text-white uppercase tracking-wider">Dos Clientes Nuevos VIP</h3>
+                <p className="text-[10px] text-zinc-400 leading-tight">2 amigos nuevos se inscriben juntos al mismo tiempo en VIP.</p>
+              </div>
             </div>
-          </div>
 
-          <div className="bg-[#141414] p-3 rounded-none rounded-r-lg border-l-[3px] border-l-rose-600 flex items-center gap-2.5">
-            <span className="material-symbols-outlined text-rose-400 text-lg shrink-0">cancel</span>
-            <p className="text-[10px] text-zinc-400 leading-tight">
-              <strong className="text-zinc-300 uppercase font-semibold">Exclusiones:</strong> No aplica entre 2 socios activos ni con ex-socios antiguos.
-            </p>
+            <div className="pl-3 py-1 border-l-[3px] border-l-rose-600 flex items-start gap-3">
+              <span className="material-symbols-outlined text-rose-400 text-xl shrink-0 mt-0.5">cancel</span>
+              <div>
+                <h3 className="text-[11px] font-headline font-bold text-zinc-400 uppercase tracking-wider">No aplica entre socios</h3>
+                <p className="text-[10px] text-zinc-500 leading-tight">No es válido si el referido ya es o fue socio activo reciente de GyMan.</p>
+              </div>
+            </div>
+
+            <div className="pl-3 py-1 border-l-[3px] border-l-rose-600 flex items-start gap-3">
+              <span className="material-symbols-outlined text-rose-400 text-xl shrink-0 mt-0.5">cancel</span>
+              <div>
+                <h3 className="text-[11px] font-headline font-bold text-zinc-400 uppercase tracking-wider">No aplica con ex-socios</h3>
+                <p className="text-[10px] text-zinc-500 leading-tight">No aplica para ex-socios que abandonaron su membresía en el pasado.</p>
+              </div>
+            </div>
           </div>
         </div>
 
@@ -163,8 +175,8 @@ export default function Hero() {
                 {/* Grid de Reglas de Aplicación */}
                 <div className="w-full max-w-xl mx-auto mb-6 flex flex-col items-center">
                   <h4 className="text-[10px] text-primary font-headline font-bold uppercase tracking-widest mb-3">Reglas de la Promoción</h4>
-                  <div className="grid grid-cols-2 gap-3 w-full text-left">
-                    <div className="bg-[#141414] p-4 rounded-none rounded-r-lg border-l-[3px] border-l-emerald-500 flex items-start gap-3">
+                  <div className="grid grid-cols-2 gap-4 w-full text-left">
+                    <div className="pl-3 py-1 border-l-[3px] border-l-emerald-500 flex items-start gap-3">
                       <span className="material-symbols-outlined text-emerald-400 text-xl shrink-0 mt-0.5">check_circle</span>
                       <div>
                         <h3 className="text-xs font-headline font-bold text-white uppercase tracking-wider">Socio + Cliente Nuevo</h3>
@@ -172,7 +184,7 @@ export default function Hero() {
                       </div>
                     </div>
 
-                    <div className="bg-[#141414] p-4 rounded-none rounded-r-lg border-l-[3px] border-l-emerald-500 flex items-start gap-3">
+                    <div className="pl-3 py-1 border-l-[3px] border-l-emerald-500 flex items-start gap-3">
                       <span className="material-symbols-outlined text-emerald-400 text-xl shrink-0 mt-0.5">check_circle</span>
                       <div>
                         <h3 className="text-xs font-headline font-bold text-white uppercase tracking-wider">Dos Clientes Nuevos</h3>
@@ -180,7 +192,7 @@ export default function Hero() {
                       </div>
                     </div>
 
-                    <div className="bg-[#141414] p-4 rounded-none rounded-r-lg border-l-[3px] border-l-rose-600 flex items-start gap-3">
+                    <div className="pl-3 py-1 border-l-[3px] border-l-rose-600 flex items-start gap-3">
                       <span className="material-symbols-outlined text-rose-400 text-xl shrink-0 mt-0.5">cancel</span>
                       <div>
                         <h3 className="text-xs font-headline font-bold text-zinc-400 uppercase tracking-wider">No aplica entre socios</h3>
@@ -188,7 +200,7 @@ export default function Hero() {
                       </div>
                     </div>
 
-                    <div className="bg-[#141414] p-4 rounded-none rounded-r-lg border-l-[3px] border-l-rose-600 flex items-start gap-3">
+                    <div className="pl-3 py-1 border-l-[3px] border-l-rose-600 flex items-start gap-3">
                       <span className="material-symbols-outlined text-rose-400 text-xl shrink-0 mt-0.5">cancel</span>
                       <div>
                         <h3 className="text-xs font-headline font-bold text-zinc-400 uppercase tracking-wider">No aplica con ex-socios</h3>

@@ -1106,7 +1106,8 @@ import { fetchActiveBranches } from './src/services/branchService.js';
               console.error('Geolocation error:', err);
               alert('No pudimos obtener tu ubicación. Por favor, activa los permisos.');
               resetFindBtns();
-            }
+            },
+            { enableHighAccuracy: true, timeout: 15000, maximumAge: 0 }
           );
         });
       });
