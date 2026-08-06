@@ -1254,7 +1254,7 @@ import { fetchActiveBranches } from './src/services/branchService.js';
         <div class="flex items-center justify-between mb-4">
           <h4 class="text-[10px] font-black text-primary tracking-[.3em] uppercase flex items-center gap-2">
             <span class="material-symbols-outlined text-sm">explore</span>
-            Templos Recomendados
+            Sucursales Recomendadas
           </h4>
           <button onclick="this.parentElement.parentElement.remove()" class="text-zinc-500 hover:text-white transition-colors">
             <span class="material-symbols-outlined text-sm">close</span>
@@ -1274,7 +1274,7 @@ import { fetchActiveBranches } from './src/services/branchService.js';
               </div>
               <div class="text-right flex-none">
                 <p class="text-xs font-black text-primary">${r.distanceText}</p>
-                <span class="text-[9px] text-zinc-600 font-black uppercase tracking-tighter">Ver Templo</span>
+                <span class="text-[9px] text-zinc-600 font-black uppercase tracking-tighter">Ver Sucursal</span>
               </div>
             </button>
           `).join('')}
