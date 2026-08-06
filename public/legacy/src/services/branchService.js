@@ -46,6 +46,10 @@ export async function fetchActiveBranches() {
   // Enrich each branch with landing-page-specific images
   return branches.map(branch => ({
     ...branch,
+    // latitude/longitude son `numeric` en Postgres, por lo que PostgREST los
+    // serializa como string. Google Maps espera números.
+    latitude: branch.latitude === null ? null : Number(branch.latitude),
+    longitude: branch.longitude === null ? null : Number(branch.longitude),
     card_image: cardMap[branch.id]?.image_url ?? null,
     card_video: cardMap[branch.id]?.video_url ?? null,
     gallery_images: galleryMap[branch.id] ?? [],

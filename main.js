@@ -1099,6 +1099,9 @@ import { fetchActiveBranches } from './src/services/branchService.js';
  
     // ── 5. BUSCAR MI TEMPLO (GEOLOCATION + DISTANCE MATRIX) ──────
     const findMyTempleBtns = document.querySelectorAll('.find-temple-btn');
+    // Guardamos el markup original (incluye el icono) para poder restaurarlo tal cual
+    const findBtnOriginalHTML = new Map();
+    findMyTempleBtns.forEach(b => findBtnOriginalHTML.set(b, b.innerHTML));
     let branchesWithCoords = [];
 
     if (findMyTempleBtns.length > 0) {
@@ -1145,7 +1148,8 @@ import { fetchActiveBranches } from './src/services/branchService.js';
     function resetFindBtns() {
       if (findMyTempleBtns.length === 0) return;
       findMyTempleBtns.forEach(b => {
-        b.innerText = 'Busca el gimnasio más cercano';
+        const original = findBtnOriginalHTML.get(b);
+        if (original !== undefined) b.innerHTML = original;
         b.classList.remove('opacity-50', 'pointer-events-none');
       });
     }
@@ -1164,24 +1168,24 @@ import { fetchActiveBranches } from './src/services/branchService.js';
     function calculateHaversineFallback(userLoc) {
       if (!branchesWithCoords || branchesWithCoords.length === 0) {
         alert('No hay sucursales con coordenadas configuradas.');
-        resetFindBtn();
+        resetFindBtns();
         return;
       }
       const recos = branchesWithCoords.map(branch => {
         const distKm = haversineDistance(userLoc.lat, userLoc.lng, branch.latitude, branch.longitude);
-        const durationMin = Math.max(1, Math.round(distKm * 2.5));
         return {
           ...branch,
           distanceText: distKm < 1 ? `${Math.round(distKm * 1000)} m` : `${distKm.toFixed(1)} km`,
           distanceValue: distKm * 1000,
-          durationText: `${durationMin} min`
+          // Sin Google Maps no hay ruta real: no inventamos un tiempo de conducción
+          subtitle: 'Distancia en línea recta'
         };
       })
       .sort((a, b) => a.distanceValue - b.distanceValue)
       .slice(0, 3);
 
-      renderRecommendations(recos);
-      resetFindBtn();
+      renderRecommendations(recos, { approximate: true });
+      resetFindBtns();
     }
 
     async function calculateDistances(userLoc) {
@@ -1193,15 +1197,15 @@ import { fetchActiveBranches } from './src/services/branchService.js';
 
       if (branchesWithCoords.length === 0) {
         alert('No hay sucursales con coordenadas configuradas.');
-        resetFindBtn();
+        resetFindBtns();
         return;
       }
 
       const service = new google.maps.DistanceMatrixService();
-      
+
       const origins = [new google.maps.LatLng(userLoc.lat, userLoc.lng)];
-      const destinations = branchesWithCoords.map(b => new google.maps.LatLng(b.latitude, b.longitude));
- 
+      const destinations = branchesWithCoords.map(b => new google.maps.LatLng(Number(b.latitude), Number(b.longitude)));
+
       service.getDistanceMatrix({
         origins: origins,
         destinations: destinations,
@@ -1213,27 +1217,29 @@ import { fetchActiveBranches } from './src/services/branchService.js';
         if (status !== 'OK') {
           console.error('Distance Matrix Error:', status);
           alert('Error al calcular las distancias: ' + status);
-          resetFindBtn();
+          resetFindBtns();
           return;
         }
- 
+
         const results = response.rows[0].elements;
         const recommendations = branchesWithCoords.map((branch, i) => ({
           ...branch,
           distanceText: results[i].distance?.text || 'N/A',
           distanceValue: results[i].distance?.value ?? 999999,
-          durationText: results[i].duration?.text || 'N/A'
+          subtitle: results[i].duration?.text
+            ? `${results[i].duration.text} de conducción`
+            : 'Ruta no disponible'
         }))
         .filter(b => b.distanceValue < 999999)
         .sort((a, b) => a.distanceValue - b.distanceValue)
         .slice(0, 3);
- 
+
         renderRecommendations(recommendations);
-        resetFindBtn();
+        resetFindBtns();
       });
     }
  
-    function renderRecommendations(recos) {
+    function renderRecommendations(recos, opts = {}) {
       // Remove existing if any
       const existing = document.getElementById('recommendations-panel');
       if (existing) existing.remove();
@@ -1254,12 +1260,17 @@ import { fetchActiveBranches } from './src/services/branchService.js';
             <span class="material-symbols-outlined text-sm">close</span>
           </button>
         </div>
+        ${opts.approximate ? `
+          <p class="text-[9px] text-zinc-500 font-bold uppercase tracking-wider mb-3 -mt-2">
+            Sin conexión a Google Maps: distancias aproximadas en línea recta
+          </p>
+        ` : ''}
         <div class="space-y-3">
           ${recos.map(r => `
             <button class="reco-item w-full flex items-center justify-between p-3 rounded-xl bg-white/5 border border-white/5 hover:border-primary/50 hover:bg-white/10 transition-all group" data-branch-id="${r.id}" data-key="${normalizeKey(r.name)}">
               <div class="text-left min-w-0 flex-1 mr-3">
                 <p class="text-sm font-black text-white uppercase group-hover:text-primary transition-colors truncate">${r.name}</p>
-                <p class="text-[10px] text-zinc-500 font-bold uppercase mt-0.5">${r.durationText} de conducción</p>
+                <p class="text-[10px] text-zinc-500 font-bold uppercase mt-0.5">${r.subtitle}</p>
               </div>
               <div class="text-right flex-none">
                 <p class="text-xs font-black text-primary">${r.distanceText}</p>
@@ -1356,7 +1367,7 @@ import { fetchActiveBranches } from './src/services/branchService.js';
 
     fetchActiveBranches().then(branches => {
       if (branches && branches.length > 0) {
-        branchesWithCoords = branches.filter(b => b.latitude && b.longitude);
+        branchesWithCoords = branches.filter(b => Number.isFinite(b.latitude) && Number.isFinite(b.longitude));
         renderBranchCards(branches);
       }
       ensureEcatepecCoords();
